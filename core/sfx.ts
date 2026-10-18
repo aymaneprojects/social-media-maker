@@ -33,15 +33,15 @@ const DEFS: Def[] = [
   {name: 'pop', src: "aevalsrc='0.6*sin(2*PI*(300+5000*t)*t)*exp(-t*35)'", d: 0.12},
   {name: 'ding', src: "aevalsrc='0.4*(sin(2*PI*1568*t)+0.5*sin(2*PI*2352*t)+0.25*sin(2*PI*3136*t))*exp(-t*3.5)'", d: 1.2},
   {name: 'cash', src: "aevalsrc='0.5*(random(0)*2-1)*exp(-t*40)+0.35*(sin(2*PI*2093*t)+0.6*sin(2*PI*2637*t))*exp(-(t-0.08)*5)*gt(t,0.08)'", d: 0.9},
-  // ambience loops (20 s, mp3)
-  {name: 'amb-rain', src: 'anoisesrc=color=pink:amplitude=0.5', d: 20, af: 'highpass=f=500,lowpass=f=5000', mp3: true},
-  {name: 'amb-storm', src: 'anoisesrc=color=pink:amplitude=0.6', d: 20, af: "highpass=f=300,lowpass=f=4000,volume='0.8+0.2*sin(2*PI*t/5)':eval=frame", mp3: true},
-  {name: 'amb-underwater', src: 'anoisesrc=color=brown:amplitude=0.8', d: 20, af: "lowpass=f=350,volume='0.7+0.3*sin(2*PI*t/4)':eval=frame", mp3: true},
-  {name: 'amb-drone', src: "aevalsrc='0.25*sin(2*PI*55*t)+0.18*sin(2*PI*82.4*t)*(0.6+0.4*sin(2*PI*t/10))+0.08*sin(2*PI*110.3*t)'", d: 20, af: 'lowpass=f=600', mp3: true},
-  {name: 'amb-wind', src: 'anoisesrc=color=pink:amplitude=0.6', d: 20, af: "bandpass=f=700:w=500,volume='0.5+0.5*sin(2*PI*t/6.6)':eval=frame", mp3: true},
-  {name: 'amb-jungle', src: "aevalsrc='0.06*sin(2*PI*4700*t)*gt(sin(2*PI*14*t),0.3)*gt(sin(2*PI*0.5*t),-0.2)+0.04*sin(2*PI*3900*t)*gt(sin(2*PI*11*t+1),0.5)'", d: 20, mp3: true},
-  {name: 'amb-room', src: 'anoisesrc=color=brown:amplitude=0.3', d: 20, af: 'lowpass=f=200', mp3: true},
-  {name: 'amb-tension', src: "aevalsrc='0.2*sin(2*PI*41.2*t)+0.12*sin(2*PI*43.6*t)+0.05*sin(2*PI*329.6*t)*(0.5+0.5*sin(2*PI*t/7))'", d: 20, af: 'lowpass=f=800', mp3: true},
+  // ambiences: one continuous 100 s take (no loop seam, no fade inside the video)
+  {name: 'amb-rain', src: 'anoisesrc=color=pink:amplitude=0.5', d: 100, af: 'highpass=f=500,lowpass=f=5000'},
+  {name: 'amb-storm', src: 'anoisesrc=color=pink:amplitude=0.6', d: 100, af: "highpass=f=300,lowpass=f=4000,volume='0.8+0.2*sin(2*PI*t/5)':eval=frame"},
+  {name: 'amb-underwater', src: 'anoisesrc=color=brown:amplitude=0.8', d: 100, af: "lowpass=f=350,volume='0.7+0.3*sin(2*PI*t/4)':eval=frame"},
+  {name: 'amb-drone', src: "aevalsrc='0.25*sin(2*PI*55*t)+0.18*sin(2*PI*82.4*t)*(0.6+0.4*sin(2*PI*t/10))+0.08*sin(2*PI*110.3*t)'", d: 100, af: 'lowpass=f=600'},
+  {name: 'amb-wind', src: 'anoisesrc=color=pink:amplitude=0.6', d: 100, af: "bandpass=f=700:w=500,volume='0.5+0.5*sin(2*PI*t/6.6)':eval=frame"},
+  {name: 'amb-jungle', src: "aevalsrc='0.06*sin(2*PI*4700*t)*gt(sin(2*PI*14*t),0.3)*gt(sin(2*PI*0.5*t),-0.2)+0.04*sin(2*PI*3900*t)*gt(sin(2*PI*11*t+1),0.5)'", d: 100},
+  {name: 'amb-room', src: 'anoisesrc=color=brown:amplitude=0.3', d: 100, af: 'lowpass=f=200'},
+  {name: 'amb-tension', src: "aevalsrc='0.2*sin(2*PI*41.2*t)+0.12*sin(2*PI*43.6*t)+0.05*sin(2*PI*329.6*t)*(0.5+0.5*sin(2*PI*t/7))'", d: 100, af: 'lowpass=f=800'},
 ];
 
 for (const def of DEFS) {

@@ -10,3 +10,4 @@ data/cache/
 __pycache__/
 data/costs.jsonl
 livraison/
+public/sfx/amb-*.wav

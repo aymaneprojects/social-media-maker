@@ -324,13 +324,15 @@ const FX_GAIN = 0.4;
     }
   });
   add('sting', durationMs - 2000, 0.35);
+  // beats are 0-based; an ambience reaching the last beat runs to the very end (fades out there)
+  const last = timing.length - 1;
   const ambience: Episode['audio']['ambience'] = (sb.ambience ?? []).map((a) => ({
-    src: `sfx/${a.sound}.mp3`,
-    fromMs: timing[Math.max(0, Math.min(timing.length - 1, a.fromBeat - 1))]?.startMs ?? 0,
-    toMs: timing[Math.max(0, Math.min(timing.length - 1, a.toBeat - 1))]?.endMs ?? durationMs,
+    src: `sfx/${a.sound}.wav`,
+    fromMs: a.fromBeat <= 0 ? 0 : timing[Math.min(last, a.fromBeat)].startMs,
+    toMs: a.toBeat >= last ? durationMs : timing[Math.max(0, a.toBeat)].endMs,
     volume: (a.volume ?? 0.25) * FX_GAIN,
   }));
-  if (!ambience.length) ambience.push({src: 'sfx/amb-drone.mp3', fromMs: 0, toMs: durationMs - 2000, volume: 0.22 * FX_GAIN});
+  if (!ambience.length) ambience.push({src: 'sfx/amb-drone.wav', fromMs: 0, toMs: durationMs, volume: 0.22 * FX_GAIN});
   return {sfx, ambience};
 };
 

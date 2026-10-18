@@ -8,3 +8,4 @@ npx remotion browser ensure >/dev/null 2>&1 || true
 python3 -c "import faster_whisper" 2>/dev/null || python3 -m pip install --quiet faster-whisper
 mkdir -p data/cache
 echo "social-media-maker ready"
+[ -f public/sfx/amb-drone.wav ] || npx tsx core/sfx.ts >/dev/null

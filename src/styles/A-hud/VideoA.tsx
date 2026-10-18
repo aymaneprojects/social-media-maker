@@ -61,7 +61,15 @@ export const VideoA: React.FC<Episode> = (ep) => {
       {ep.audio.voice && <Audio src={staticFile(`${ep.assetsBase}${ep.audio.voice}`)} />}
       {ep.audio.ambience.map((a, i) => (
         <Sequence key={`amb-${i}`} from={msToFrame(a.fromMs)} durationInFrames={Math.max(1, msToFrame(a.toMs - a.fromMs))}>
-          <Audio src={staticFile(a.src)} volume={a.volume} loop />
+          {/* long gapless track, faded in and out so nothing starts or stops abruptly */}
+          <Audio
+            src={staticFile(a.src)}
+            volume={(f) => {
+              const len = Math.max(1, msToFrame(a.toMs - a.fromMs));
+              const fade = Math.min(24, len / 3);
+              return a.volume * Math.min(1, f / fade, (len - f) / fade);
+            }}
+          />
         </Sequence>
       ))}
       {ep.audio.sfx.map((s, i) => (
