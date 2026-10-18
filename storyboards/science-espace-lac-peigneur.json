@@ -507,7 +507,7 @@
    "transition": "cut"
   },
   {
-   "text": "Ce matin-là, le foret se bloque à 374 mètres.",
+   "text": "Ce matin-là, le foret se bloque à trois cent soixante-quatorze mètres.",
    "scene": {
     "type": "gauge",
     "from": 0,

@@ -228,7 +228,9 @@ export const makeImages = async (style: 'A' | 'B', brand: BrandConfig, sb: Story
 // Sound design: storyboard cues + automatic cues derived from the scenes.
 export const buildAudio = (style: 'A' | 'B', sb: Storyboard, timing: {startMs: number; endMs: number}[], durationMs: number) => {
   const sfx: Episode['audio']['sfx'] = [];
-  const add = (name: string, atMs: number, volume = 0.4) => sfx.push({src: `sfx/${name}.wav`, atMs: Math.max(0, Math.round(atMs)), volume});
+  // effects and ambiences sit well under the narrator (user feedback: halve them at least)
+const FX_GAIN = 0.4;
+  const add = (name: string, atMs: number, volume = 0.4) => sfx.push({src: `sfx/${name}.wav`, atMs: Math.max(0, Math.round(atMs)), volume: volume * FX_GAIN});
   sb.beats.forEach((b, i) => {
     const t = timing[i].startMs;
     const dur = timing[i].endMs - t;
@@ -326,9 +328,9 @@ export const buildAudio = (style: 'A' | 'B', sb: Storyboard, timing: {startMs: n
     src: `sfx/${a.sound}.mp3`,
     fromMs: timing[Math.max(0, Math.min(timing.length - 1, a.fromBeat - 1))]?.startMs ?? 0,
     toMs: timing[Math.max(0, Math.min(timing.length - 1, a.toBeat - 1))]?.endMs ?? durationMs,
-    volume: a.volume ?? 0.25,
+    volume: (a.volume ?? 0.25) * FX_GAIN,
   }));
-  if (!ambience.length) ambience.push({src: 'sfx/amb-drone.mp3', fromMs: 0, toMs: durationMs - 2000, volume: 0.22});
+  if (!ambience.length) ambience.push({src: 'sfx/amb-drone.mp3', fromMs: 0, toMs: durationMs - 2000, volume: 0.22 * FX_GAIN});
   return {sfx, ambience};
 };
 
