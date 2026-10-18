@@ -1499,38 +1499,62 @@
   {
    "text": "Aujourd'hui, le lac est salé, et profond de 60 mètres.",
    "scene": {
-    "type": "versus",
-    "left": {
-     "name": "Avant",
-     "sub": "1980",
-     "fields": [
-      {
-       "k": "Profondeur",
-       "v": "3 m"
-      },
-      {
-       "k": "Eau",
-       "v": "douce"
-      }
-     ],
-     "sprite": "drop"
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 1,
+     "hole": 0.15,
+     "deep": 1,
+     "drill": 0
     },
-    "right": {
-     "name": "Après",
-     "sub": "aujourd'hui",
-     "fields": [
-      {
-       "k": "Profondeur",
-       "v": "jusqu'à 61 m"
-      },
-      {
-       "k": "Eau",
-       "v": "salée"
-      }
-     ],
-     "sprite": "drop"
-    },
-    "vs": "→"
+    "measures": [
+     {
+      "at": 0.3,
+      "dur": 0.25,
+      "x1": 610,
+      "y1": 432,
+      "x2": 610,
+      "y2": 888,
+      "label": "60 m",
+      "color": "white"
+     }
+    ],
+    "texts": [
+     {
+      "at": 0.6,
+      "dur": 0.2,
+      "x": 440,
+      "y": 560,
+      "text": "EAU SALÉE",
+      "size": 48,
+      "color": "accent",
+      "box": true
+     }
+    ],
+    "pins": [
+     {
+      "x": 320,
+      "y": 432,
+      "label": "Lac Peigneur",
+      "sub": "aujourd'hui",
+      "at": 0.1,
+      "stick": 90
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 560,
+      "y": 700,
+      "zoom": 1.35
+     },
+     {
+      "at": 1,
+      "x": 560,
+      "y": 700,
+      "zoom": 1.45
+     }
+    ]
    },
    "hud": {
     "clock": {

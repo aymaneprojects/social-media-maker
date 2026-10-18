@@ -1,0 +1,11 @@
+# Bob Beamon, 8,90 m (Mexico, 18 octobre 1968) — dossier
+- **Le saut** : 18 octobre 1968, Jeux olympiques de Mexico, premier essai de la finale. 8,90 m, soit +55 cm sur le record du monde.
+- **Qualifications** : la veille, il mord ses deux premiers essais et se qualifie au dernier.
+- **La mesure** : l'appareil optique n'était pas conçu pour une telle longueur et n'atteint pas la marque. Les juges mesurent au ruban d'acier. La durée exacte de l'attente varie selon les sources, elle n'est pas citée dans la vidéo.
+- **Beamon et le système métrique** : il ne le connaît pas. Ralph Boston, son coéquipier, lui traduit : « presque deux pieds ».
+- **Sa réaction** : ses jambes lâchent, il tombe à genoux, les mains sur le visage.
+- **Le rival** : Igor Ter-Ovanesyan dit à Lynn Davies : « À côté de ce saut, nous sommes des enfants » (Sports Illustrated, 1968).
+- **Contexte** : altitude de Mexico ≈ 2 240 m, vent de 2,0 m/s, à la limite autorisée.
+- **Progression du record du monde** : 7,61 m (O'Connor, 1901), 8,13 m (Owens, 1935), 8,21 m (Boston, 1960), 8,35 m (1965 et 1967). Soit +74 cm en 66 ans.
+- **Après** : record du monde jusqu'à Mike Powell (8,95 m, Tokyo, 30.08.1991), soit presque 23 ans. Toujours record olympique. Le mot « Beamonesque » est entré dans l'usage.
+- **Sources** : Wikipédia (Bob Beamon ; Athletics at the 1968 Summer Olympics – Men's long jump), olympics.com, Sports Illustrated (23.12.1968).

@@ -1,0 +1,11 @@
+# Victor Lustig vend la tour Eiffel (1925) — dossier
+- **Victor Lustig** : né en 1890 en Autriche-Hongrie, escroc international.
+- **L'idée** : en 1925, à Paris, il lit un article sur le coût d'entretien de la tour.
+- **La mise en scène** : de faux papiers à en-tête, et il se présente comme directeur général adjoint du ministère des Postes et Télégraphes. Il réunit des ferrailleurs dans un grand hôtel et leur annonce que la ville va démonter la tour pour la vendre en ferraille. Le secret est exigé.
+- **La tour** : sa structure métallique pèse environ 7 300 t.
+- **La victime** : André Poisson, en quête de reconnaissance. Lustig joue le fonctionnaire corrompu et réclame un pot-de-vin, ce qui convainc Poisson. Total : environ 70 000 francs.
+- **La fuite** : Lustig part pour l'Autriche. Humilié, Poisson ne porte pas plainte.
+- **La récidive** : Lustig revient à Paris pour recommencer avec d'autres ferrailleurs. La police est prévenue, il fuit aux États-Unis.
+- **Al Capone** : Capone lui confie 50 000 $. Lustig les garde deux mois dans un coffre, puis les rend. Capone lui donne 5 000 $ (1 000 $ selon d'autres sources).
+- **La fin** : arrêté en 1935 pour fausse monnaie, Alcatraz. Mort en 1947.
+- **Sources** : Wikipédia (Victor Lustig), Smithsonian Magazine.
