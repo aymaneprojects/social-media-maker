@@ -1,9 +1,10 @@
 // LLM steps: topic, research, storyboard (style-specific director), fact check.
 import {readFileSync} from 'node:fs';
-import {chat, chatJson, MODELS} from '../core/openrouter';
+import {chat, chatJson, extractJson, MODELS} from '../core/openrouter';
 import type {AssetSpec} from '../core/illustrate';
 import {agentBrief, loadAgent, sameTopic, saveBacklog, section} from './agents';
-import type {BrandConfig, HistoryEntry} from './brands';
+import {loadHistory, type BrandConfig, type HistoryEntry} from './brands';
+import {nextSlot} from './schedule';
 
 export type Facts = {
   topic: string;
@@ -41,6 +42,17 @@ export type Storyboard = {
 
 const today = () => new Date().toISOString().slice(0, 10);
 
+// Day the video will actually go out: next free slot, pushed back by videos already waiting.
+const publishDate = (brand: BrandConfig, history: HistoryEntry[]) => {
+  try {
+    const queued = history.filter((h) => h.brand === brand.slug && h.status === 'rendered').length;
+    const perDay = Math.max(1, brand.schedule.slots.length);
+    return new Date(Date.parse(nextSlot(brand, history)) + Math.floor(queued / perDay) * 86400000).toISOString().slice(0, 10);
+  } catch {
+    return today();
+  }
+};
+
 export type TopicPick = {topic: string; angle?: string; hook?: string; subgenre?: string};
 
 // The page's agent picks the next topic from its backlog (and tops the backlog up),
@@ -54,11 +66,12 @@ export const pickTopic = async (brand: BrandConfig, history: HistoryEntry[]): Pr
   const {data} = await chatJson<{pick: number; reason: string; ideas: {topic: string; angle: string; hook: string; subgenre: string}[]}>({
     model: MODELS.writer,
     temperature: 0.7,
+    reasoning: 3000,
     messages: [
       {role: 'system', content: `${agentBrief(agent)}\n\nTu es le rédacteur en chef de cette page. Réponds uniquement en JSON.`},
       {
         role: 'user',
-        content: `Date du jour : ${today()} (un anniversaire marquant cette semaine passe en priorité).
+        content: `Date du jour : ${today()}. Publication prévue : ${publishDate(brand, history)} (un anniversaire marquant dans les jours autour de la publication passe en priorité).
 Sous-genres des 3 dernières vidéos (à ne pas répéter) : ${done.slice(-3).map((h) => h.subgenre ?? '?').join(', ') || 'aucune vidéo'}
 Déjà publiés (à exclure, ainsi que les sujets trop proches) : ${doneTopics.join(' ; ') || 'aucun'}
 Backlog (index : sujet | angle | sous-genre) :
@@ -85,6 +98,8 @@ export const research = async (topic: string, brand?: BrandConfig, angle?: strin
     model: MODELS.research,
     web: true,
     temperature: 0.2,
+    maxTokens: 12000,
+    reasoning: 3000,
     messages: [
       {
         role: 'system',
@@ -112,16 +127,16 @@ export const direct = async (brand: BrandConfig, facts: Facts, issue: number, va
     {
       role: 'user' as const,
       content: `Page : ${brand.name} (${brand.handle}) — ${brand.theme}
-Épisode n°${issue}. Date du jour : ${today()}.
+Épisode n°${issue}. Date du jour : ${today()}. Publication prévue : ${publishDate(brand, loadHistory())} — n'écris « jour pour jour » ou « cette semaine » que si c'est vrai à cette date.
 ${agent.persona ? `\nTu écris pour l'agent éditorial de la page. Sa ligne, ses accroches, sa mise en scène et sa mémoire passent avant tes habitudes :\n<agent>\n${agentBrief(agent)}\n</agent>\n` : ''}${pick?.angle ? `Angle choisi : ${pick.angle}\n` : ''}${pick?.hook ? `Piste d'accroche (à améliorer si tu trouves plus fort dans le dossier) : ${pick.hook}\n` : ''}
 ${brand.aiImages === false ? "IMAGES IA DÉSACTIVÉES pour cette page : n'utilise jamais la scène `image` ni le champ `imagePrompt`. Tout est dessiné par le code (backdrop, map, dossier, portrait, gauge, counter…).\n" : ''}Dossier de recherche (seule source autorisée) :
 ${JSON.stringify(facts, null, 1)}`,
     },
   ];
   for (let attempt = 0; attempt < 3; attempt++) {
-    const {text} = await chat({model: MODELS.writer, messages, temperature: 0.8, maxTokens: 16000});
+    const {text} = await chat({model: MODELS.writer, messages, temperature: 0.8, maxTokens: 20000, reasoning: 6000});
     try {
-      const sb = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1)) as Storyboard;
+      const sb = (await parseOrRepair(text)) as Storyboard;
       const errors = validate(sb);
       if (!errors.length) return sb;
       console.warn(`storyboard attempt ${attempt + 1}: ${errors.length} problem(s)\n- ${errors.slice(0, 8).join('\n- ')}`);
@@ -136,10 +151,31 @@ ${JSON.stringify(facts, null, 1)}`,
   throw new Error('storyboard still invalid after 3 attempts');
 };
 
+// Parse the model's JSON; on a syntax slip (unescaped quote…) ask for a cheap repair instead of a full rewrite.
+const parseOrRepair = async (text: string): Promise<unknown> => {
+  try {
+    return extractJson(text);
+  } catch (e) {
+    console.warn(`invalid JSON (${(e as Error).message.slice(0, 100)}), repairing`);
+    const fixed = await chat({
+      model: MODELS.writer,
+      temperature: 0,
+      maxTokens: 12000,
+      messages: [
+        {role: 'system', content: 'Tu répares du JSON invalide. Renvoie uniquement le JSON corrigé, sans rien changer au contenu (échappe les guillemets internes, ajoute les virgules manquantes).'},
+        {role: 'user', content: `Erreur : ${(e as Error).message}\n\n${text}`},
+      ],
+    });
+    return extractJson(fixed.text);
+  }
+};
+
 export const factCheck = async (facts: Facts, sb: Storyboard): Promise<{ok: boolean; fixes: {beat: number; text: string; reason: string}[]}> => {
   const {data} = await chatJson<{ok: boolean; fixes: {beat: number; text: string; reason: string}[]}>({
     model: MODELS.research,
     temperature: 0,
+    maxTokens: 10000,
+    reasoning: 3000,
     messages: [
       {
         role: 'system',

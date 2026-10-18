@@ -82,5 +82,29 @@
   "subgenre": "erreur-historique",
   "status": "todo",
   "by": "seed"
+ },
+ {
+  "topic": "Les esclaves oubliés de l'île de Tromelin (1761-1776)",
+  "angle": "Un navire français s'échoue sur un îlot de sable, l'équipage repart sur un radeau et abandonne des dizaines de Malgaches. Quinze ans plus tard, huit survivants sont retrouvés : sept femmes et un bébé.",
+  "hook": "En 1761, un navire français s'échoue sur un îlot de sable. Et on y abandonne des dizaines de personnes.",
+  "subgenre": "oubliés",
+  "status": "todo",
+  "by": "agent"
+ },
+ {
+  "topic": "Goldsboro, Caroline du Nord (23 janvier 1961) : la bombe qui n'a pas explosé",
+  "angle": "Un bombardier B-52 se désintègre en vol et largue deux bombes à hydrogène. L'une d'elles franchit trois de ses quatre étapes de sécurité, et un seul interrupteur évite la catastrophe.",
+  "hook": "Le 23 janvier 1961, deux bombes nucléaires tombent sur la Caroline du Nord. Pour l'une d'elles, il ne reste qu'un seul interrupteur.",
+  "subgenre": "erreur-historique",
+  "status": "todo",
+  "by": "agent"
+ },
+ {
+  "topic": "Juliane Koepcke, la chute du vol LANSA 508 au-dessus de l'Amazonie (24 décembre 1971)",
+  "angle": "Une lycéenne de 17 ans tombe de 3 000 mètres, toujours attachée à son siège, puis marche dix jours dans la jungle péruvienne en suivant un cours d'eau, comme son père, biologiste, le lui avait appris.",
+  "hook": "Elle tombe de 3 000 mètres, attachée à son siège. Elle a 17 ans. Et la jungle l'attend en bas.",
+  "subgenre": "survie",
+  "status": "todo",
+  "by": "agent"
  }
 ]

@@ -7,7 +7,7 @@ import {alignWords, synthesize} from '../core/voice';
 import {assembleEpisode, makeAssetsB, makeImages, stripImages, validateStoryboard} from './assemble';
 import {loadBrand, loadHistory, nextIssue, saveHistory} from './brands';
 import {renderEpisode} from './render';
-import {markDone} from './agents';
+import {loadAgent, markDone, sameTopic} from './agents';
 import {direct, factCheck, pickTopic, research, type Facts, type Storyboard, type TopicPick} from './steps';
 
 const arg = (name: string) => {
@@ -24,6 +24,12 @@ const slugify = (s: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
     .slice(0, 48);
+
+// angle and subgenre of a topic imposed by hand, when the page's agent has it in its backlog
+const backlogMeta = (slug: string, topic: string) => {
+  const b = loadAgent(slug).backlog.find((x) => sameTopic(x.topic, topic));
+  return b ? {angle: b.angle, hook: b.hook, subgenre: b.subgenre} : {};
+};
 
 export const makeVideo = async (opts: {brand: string; topic?: string; storyboard?: string; render?: boolean}) => {
   const brand = loadBrand(opts.brand);
@@ -42,8 +48,9 @@ export const makeVideo = async (opts: {brand: string; topic?: string; storyboard
   if (opts.storyboard) {
     sb = JSON.parse(readFileSync(opts.storyboard, 'utf8'));
     topic = topic || sb.title;
+    pick = {topic, ...backlogMeta(brand.slug, topic)};
   } else {
-    pick = topic ? {topic} : await pickTopic(brand, history);
+    pick = topic ? {topic, ...backlogMeta(brand.slug, topic)} : await pickTopic(brand, history);
     topic = pick.topic;
     console.log(`topic: ${topic}`);
     facts = await research(topic, brand, pick.angle);

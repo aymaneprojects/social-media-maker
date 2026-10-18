@@ -89,5 +89,21 @@
   "subgenre": "faillite",
   "status": "todo",
   "by": "seed"
+ },
+ {
+  "topic": "Lundi noir, le krach du 19 octobre 1987",
+  "angle": "en une seule journée, la Bourse de New York perd 22,6 %, le pire jour de son histoire, et l'on cherche encore le coupable : des ordinateurs qui vendent tout seuls",
+  "hook": "Le 19 octobre 1987, Wall Street perd un cinquième de sa valeur en une seule journée.",
+  "subgenre": "bulle",
+  "status": "todo",
+  "by": "agent"
+ },
+ {
+  "topic": "Le scandale de l'huile de salade, Tino De Angelis (1963)",
+  "angle": "un négociant remplit ses réservoirs d'eau avec une fine couche d'huile par-dessus, et American Express accepte ces réservoirs comme garantie",
+  "hook": "En 1963, des inspecteurs plongent une perche dans un réservoir d'huile et remontent de l'eau.",
+  "subgenre": "arnaque",
+  "status": "todo",
+  "by": "agent"
  }
 ]

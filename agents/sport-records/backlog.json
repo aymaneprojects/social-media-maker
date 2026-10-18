@@ -89,5 +89,21 @@
   "subgenre": "outsider",
   "status": "todo",
   "by": "seed"
+ },
+ {
+  "topic": "Laurent Fignon battu de 8 secondes par Greg LeMond sur les Champs-Élysées (Tour de France 1989)",
+  "angle": "Après 3 285 km et trois semaines de course, le Tour se joue sur un dernier contre-la-montre : Fignon a 50 secondes d'avance et perd d'un souffle, face à des prolongateurs aérodynamiques que personne ne prenait au sérieux.",
+  "hook": "8 secondes. Après trois semaines de course, c'est tout ce qui sépare le vainqueur du perdant.",
+  "subgenre": "drame",
+  "status": "todo",
+  "by": "agent"
+ },
+ {
+  "topic": "Roger Bannister et le premier mile en moins de 4 minutes (Oxford, 6 mai 1954)",
+  "angle": "Un étudiant en médecine bat une barrière que l'on disait infranchissable en 3 min 59 s 4, puis son record tombe 46 jours plus tard, battu par son rival John Landy.",
+  "hook": "Pendant des années, on répète qu'aucun humain ne peut courir un mile en moins de quatre minutes.",
+  "subgenre": "record",
+  "status": "todo",
+  "by": "agent"
  }
 ]

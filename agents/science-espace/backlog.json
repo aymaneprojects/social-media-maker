@@ -82,5 +82,29 @@
   "subgenre": "espace",
   "status": "todo",
   "by": "seed"
+ },
+ {
+  "topic": "Venera 4, la première sonde à transmettre depuis Vénus (18 octobre 1967)",
+  "angle": "la sonde soviétique transmet pendant 93 minutes en descendant dans l'atmosphère, croit toucher le sol, mais s'écrase en réalité des dizaines de kilomètres plus haut : la pression de l'enfer révèle une planète bien plus hostile que prévu",
+  "hook": "Le 18 octobre 1967, une sonde plonge dans l'atmosphère de Vénus. Elle transmet pendant 93 minutes.",
+  "subgenre": "espace",
+  "status": "todo",
+  "by": "agent"
+ },
+ {
+  "topic": "Barry Marshall et la bactérie avalée (1984)",
+  "angle": "un médecin australien, que personne ne croit, avale volontairement une culture de bactéries pour prouver qu'elles causent l'ulcère de l'estomac, et reçoit le prix Nobel en 2005",
+  "hook": "En 1984, un médecin avale un verre rempli de bactéries. Exprès.",
+  "subgenre": "corps-humain",
+  "status": "todo",
+  "by": "agent"
+ },
+ {
+  "topic": "L'éruption du Krakatoa (27 août 1883)",
+  "angle": "l'explosion la plus bruyante de l'histoire documentée s'entend à près de 4 800 km, et l'onde de pression fait sept fois le tour de la Terre, enregistrée par les baromètres du monde entier",
+  "hook": "En 1883, une explosion s'entend à près de 4 800 kilomètres.",
+  "subgenre": "phénomène",
+  "status": "todo",
+  "by": "agent"
  }
 ]

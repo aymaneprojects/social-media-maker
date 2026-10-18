@@ -82,5 +82,29 @@
   "subgenre": "évasion",
   "status": "todo",
   "by": "seed"
+ },
+ {
+  "topic": "Victor Lustig vend la tour Eiffel (Paris, 1925)",
+  "angle": "un escroc se fait passer pour un fonctionnaire, vend la tour Eiffel comme ferraille à un industriel, puis recommence : la victime n'a pas osé aller voir la police par honte",
+  "hook": "En 1925, un homme vend la tour Eiffel. Et il la vend deux fois.",
+  "subgenre": "escroc",
+  "status": "todo",
+  "by": "agent"
+ },
+ {
+  "topic": "Le vol du Cri d'Edvard Munch à Oslo (février 1994)",
+  "angle": "deux voleurs entrent par une fenêtre pendant les Jeux olympiques de Lillehammer, prennent le tableau en une minute et laissent un mot ironique sur la sécurité du musée ; l'œuvre est retrouvée trois mois plus tard",
+  "hook": "Le 12 février 1994, pendant l'ouverture des Jeux olympiques, un tableau à 70 millions de dollars disparaît en moins de deux minutes.",
+  "subgenre": "vol-d-art",
+  "status": "todo",
+  "by": "agent"
+ },
+ {
+  "topic": "Le col Dyatlov (Oural, février 1959) et l'explication de 2021",
+  "angle": "neuf randonneurs fuient leur tente en pleine nuit, mal chaussés, par -30 °C ; des chercheurs publient en 2021 dans Nature Communications une explication par une plaque de neige qui glisse, et l'enquête russe rouverte en 2019 va dans le même sens",
+  "hook": "Février 1959. Neuf randonneurs sortent de leur tente en pleine nuit, sans chaussures, par moins trente degrés.",
+  "subgenre": "énigme-résolue",
+  "status": "todo",
+  "by": "agent"
  }
 ]

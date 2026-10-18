@@ -27,6 +27,13 @@ const post = async (path: string, body: unknown, retries = 2): Promise<Response>
     const res = await fetch(`${BASE}${path}`, {method: 'POST', headers: headers(), body: JSON.stringify(body)});
     if (res.ok) return res;
     const text = await res.text();
+    // 402 can mean "too many requests in flight for the balance": wait for them to settle
+    if (res.status === 402 && text.includes('in_flight') && attempt < 12) {
+      const wait = Number(res.headers.get('retry-after') ?? 0) * 1000 || 20000;
+      console.warn(`OpenRouter in-flight budget reached, retrying in ${Math.round(wait / 1000)}s`);
+      await new Promise((r) => setTimeout(r, wait));
+      continue;
+    }
     if (res.status === 402) throw new Error(`OpenRouter: insufficient credits (402). Add credits at https://openrouter.ai/settings/credits. ${text}`);
     if (attempt >= retries || (res.status < 500 && res.status !== 429)) throw new Error(`OpenRouter ${path} ${res.status}: ${text.slice(0, 600)}`);
     await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)));
@@ -51,6 +58,7 @@ export const chat = async (opts: {
   web?: boolean; // enable web search with citations
   temperature?: number;
   maxTokens?: number;
+  reasoning?: number; // cap on hidden reasoning tokens (they count in maxTokens)
 }): Promise<{text: string; citations: {url: string; title?: string}[]}> => {
   const model = opts.model ?? MODELS.writer;
   const body: Record<string, unknown> = {
@@ -61,6 +69,7 @@ export const chat = async (opts: {
   };
   if (opts.schema) body.response_format = {type: 'json_schema', json_schema: {name: opts.schema.name, strict: true, schema: opts.schema.schema}};
   if (opts.web) body.plugins = [{id: 'web', max_results: 8}];
+  if (opts.reasoning) body.reasoning = {max_tokens: opts.reasoning};
   const res = await post('/chat/completions', body);
   const json = (await res.json()) as {
     choices: {message: {content: string; annotations?: {type: string; url_citation?: {url: string; title?: string}}[]}}[];
@@ -72,7 +81,7 @@ export const chat = async (opts: {
   return {text: msg.content, citations};
 };
 
-const extractJson = (text: string) => JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+export const extractJson = (text: string) => JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
 
 export const chatJson = async <T>(opts: Parameters<typeof chat>[0]): Promise<{data: T; citations: {url: string; title?: string}[]}> => {
   const {text, citations} = await chat(opts);
