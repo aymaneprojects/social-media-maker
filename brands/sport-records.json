@@ -1,7 +1,7 @@
 {
   "slug": "sport-records",
-  "name": "Records Pixel",
-  "handle": "@records.pixel",
+  "name": "Légendes 8-Bit",
+  "handle": "@legendes.8bit",
   "style": "A",
   "accent": "#2EE6FF",
   "lang": "FR",
@@ -11,8 +11,8 @@
     "Bob Beamon et le saut de 1968",
     "Le miracle d'Istanbul 2005"
   ],
-  "provisional": true,
-  "uploadProfile": null,
+  "provisional": false,
+  "uploadProfile": "legendes-8bit",
   "voice": "F9KUTOne5xOKqAbIU7yg",
   "schedule": {
     "timezone": "Europe/Paris",

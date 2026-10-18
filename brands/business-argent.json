@@ -1,7 +1,7 @@
 {
   "slug": "business-argent",
-  "name": "Alfred Explique",
-  "handle": "@alfred.explique",
+  "name": "Fortune Pixel",
+  "handle": "@fortune.pixel",
   "style": "B",
   "accent": "#E2B04A",
   "lang": "FR",
@@ -11,7 +11,7 @@
     "L'interdiction des flippers à New York",
     "La bulle des tulipes"
   ],
-  "provisional": true,
+  "provisional": false,
   "uploadProfile": null,
   "voice": "F9KUTOne5xOKqAbIU7yg",
   "schedule": {

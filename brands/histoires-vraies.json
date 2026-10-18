@@ -1,7 +1,7 @@
 {
   "slug": "histoires-vraies",
-  "name": "Pixels Stories",
-  "handle": "@pixels.stories.fr",
+  "name": "Pixel Vécu",
+  "handle": "@pixel.vecu",
   "style": "A",
   "accent": "#FF448D",
   "lang": "FR",
@@ -11,8 +11,8 @@
     "L'inondation de bière de Londres en 1814",
     "Stanislav Petrov et la fausse alerte nucléaire de 1983"
   ],
-  "provisional": true,
-  "uploadProfile": null,
+  "provisional": false,
+  "uploadProfile": "pixel-vecu",
   "voice": "F9KUTOne5xOKqAbIU7yg",
   "schedule": {
     "timezone": "Europe/Paris",

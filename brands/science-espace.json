@@ -1,7 +1,7 @@
 {
   "slug": "science-espace",
-  "name": "Pixel Science",
-  "handle": "@pixel.science",
+  "name": "Labo Pixel",
+  "handle": "@labo.pixel",
   "style": "B",
   "accent": "#6FB8FF",
   "lang": "FR",
@@ -11,8 +11,8 @@
     "Joy Milne qui sent la maladie de Parkinson",
     "Les pigeons voyageurs du siège de Paris"
   ],
-  "provisional": true,
-  "uploadProfile": null,
+  "provisional": false,
+  "uploadProfile": "labo-pixel",
   "voice": "F9KUTOne5xOKqAbIU7yg",
   "schedule": {
     "timezone": "Europe/Paris",
