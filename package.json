@@ -8,7 +8,12 @@
     "studio": "remotion studio src/remotion/index.ts",
     "make": "tsx pipeline/make.ts",
     "render": "tsx pipeline/render.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "daily": "tsx pipeline/daily.ts",
+    "schedule": "tsx pipeline/schedule.ts",
+    "stills": "tsx pipeline/stills.ts",
+    "gate-b": "tsx pipeline/gate-b.ts",
+    "sfx": "tsx core/sfx.ts"
   },
   "dependencies": {
     "@fontsource/archivo-black": "5.2.8",

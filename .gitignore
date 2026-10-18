@@ -4,6 +4,8 @@ node_modules/
 out/
 public/ep/
 data/cache/
+!data/history.json
 *.log
 .DS_Store
 __pycache__/
+data/costs.jsonl
