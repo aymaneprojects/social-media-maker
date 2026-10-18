@@ -1,0 +1,1326 @@
+{
+ "title": "Victor Lustig vend la tour Eiffel (1925)",
+ "endCard": {
+  "place": "PARIS",
+  "year": "1925"
+ },
+ "post": {
+  "caption": "En 1925, il a vendu la tour Eiffel… puis il est revenu pour la revendre. Tu serais tombé dans le panneau ?",
+  "hashtags": [
+   "#arnaque",
+   "#escroquerie",
+   "#toureiffel",
+   "#histoire",
+   "#argent",
+   "#business",
+   "#victorlustig"
+  ],
+  "youtubeTitle": "L'homme qui a vendu la tour Eiffel (deux fois, presque)",
+  "description": "En 1925, Victor Lustig se fait passer pour un haut fonctionnaire et vend la tour Eiffel à un ferrailleur. Sources : Wikipédia (Victor Lustig), Smithsonian Magazine."
+ },
+ "ambience": [
+  {
+   "sound": "amb-room",
+   "fromBeat": 0,
+   "toBeat": 22,
+   "volume": 0.14
+  },
+  {
+   "sound": "amb-tension",
+   "fromBeat": 14,
+   "toBeat": 22,
+   "volume": 0.14
+  }
+ ],
+ "beats": [
+  {
+   "text": "En 1925, un homme vend la tour Eiffel.",
+   "scene": {
+    "type": "action",
+    "terrain": "paris",
+    "texts": [
+     {
+      "at": 0.35,
+      "dur": 0.15,
+      "x": 540,
+      "y": 760,
+      "text": "À VENDRE",
+      "size": 64,
+      "color": "accent",
+      "box": true,
+      "rot": -4
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 1000,
+      "zoom": 1.5
+     },
+     {
+      "at": 0.45,
+      "x": 540,
+      "y": 760,
+      "zoom": 1.25
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 760,
+      "zoom": 1.2
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.36,
+      "x": 540,
+      "y": 800,
+      "kind": "spark",
+      "n": 12
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "1925"
+    },
+    "label": "PARIS"
+   },
+   "transition": "cut",
+   "sfx": [
+    "stamp@0.36:0.5"
+   ]
+  },
+  {
+   "text": "Et il trouve un acheteur.",
+   "scene": {
+    "type": "action",
+    "terrain": "paris",
+    "actors": [
+     {
+      "figure": {
+       "top": "mid2",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "tophat",
+       "hatColor": "black"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 420,
+        "y": 1116,
+        "scale": 7,
+        "pose": "stand"
+       },
+       {
+        "at": 0.3,
+        "pose": "point"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "bowler",
+       "hatColor": "black",
+       "mustache": true
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 660,
+        "y": 1116,
+        "scale": 7,
+        "pose": "stand",
+        "flip": true
+       },
+       {
+        "at": 0.3,
+        "pose": "point"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.45,
+      "x": 540,
+      "y": 880,
+      "kind": "confetti",
+      "n": 24
+     }
+    ],
+    "texts": [
+     {
+      "at": 0,
+      "dur": 0.01,
+      "x": 540,
+      "y": 660,
+      "text": "À VENDRE",
+      "size": 44,
+      "color": "accent",
+      "box": true,
+      "rot": -4
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 1007,
+      "zoom": 1.6
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 1013,
+      "zoom": 1.7
+     }
+    ]
+   },
+   "transition": "cut",
+   "sfx": [
+    "cash@0.45"
+   ]
+  },
+  {
+   "text": "Victor Lustig est un escroc international.",
+   "scene": {
+    "type": "dossier",
+    "first": "Victor",
+    "last": "Lustig",
+    "fields": [
+     {
+      "k": "Né en",
+      "v": "1890"
+     },
+     {
+      "k": "Origine",
+      "v": "Autriche-Hongrie"
+     },
+     {
+      "k": "Spécialité",
+      "v": "Escroquerie"
+     }
+    ],
+    "face": {
+     "tone": "light",
+     "hair": "slick",
+     "mustache": "thin",
+     "outfit": "suit",
+     "mouth": "smirk",
+     "brows": "raised",
+     "jaw": "narrow",
+     "seed": "lustig"
+    },
+    "stamp": "ESCROC",
+    "index": "FICHE N°1"
+   },
+   "hud": {
+    "label": "DOSSIER"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "À Paris, il lit que la tour coûte une fortune en entretien.",
+   "scene": {
+    "type": "newspaper",
+    "masthead": "Le Quotidien",
+    "headline": "La tour coûte une fortune",
+    "date": "Paris, 1925",
+    "sub": "Peinture, rouille, réparations"
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "1925"
+    },
+    "label": "PRESSE"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Il fabrique de faux papiers du ministère des Postes.",
+   "scene": {
+    "type": "typedNote",
+    "title": "MINISTÈRE DES POSTES ET TÉLÉGRAPHES",
+    "text": "Réunion confidentielle.",
+    "sub": "signé : le directeur général adjoint (faux)",
+    "face": {
+     "tone": "light",
+     "hair": "slick",
+     "mustache": "thin",
+     "outfit": "suit",
+     "mouth": "smirk",
+     "brows": "raised",
+     "jaw": "narrow",
+     "seed": "lustig"
+    }
+   },
+   "annotation": "faux en-tête",
+   "transition": "cut",
+   "sfx": [
+    "type",
+    "type@0.3",
+    "stamp@0.7:0.3"
+   ]
+  },
+  {
+   "text": "Puis il convoque des ferrailleurs dans un grand hôtel.",
+   "scene": {
+    "type": "action",
+    "terrain": "hotel",
+    "actors": [
+     {
+      "sprite": "table",
+      "keys": [
+       {
+        "at": 0,
+        "x": 420,
+        "y": 1056,
+        "scale": 12
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "plum",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "bowler",
+       "hatColor": "mid1"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 180,
+        "y": 1116,
+        "scale": 6,
+        "pose": "sit"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "bowler",
+       "hatColor": "black",
+       "mustache": true
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 330,
+        "y": 1116,
+        "scale": 6,
+        "pose": "sit"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid2",
+       "hair": "black",
+       "sleeves": "long"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 520,
+        "y": 1116,
+        "scale": 6,
+        "pose": "sit",
+        "flip": true
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid2",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "tophat",
+       "hatColor": "black"
+      },
+      "cycle": 1.5,
+      "keys": [
+       {
+        "at": 0,
+        "x": 1100,
+        "y": 1116,
+        "scale": 7,
+        "pose": "walk",
+        "flip": true
+       },
+       {
+        "at": 0.7,
+        "x": 760,
+        "ease": "out"
+       },
+       {
+        "at": 0.75,
+        "pose": "stand",
+        "flip": true
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 560,
+      "y": 976,
+      "zoom": 1.25
+     },
+     {
+      "at": 1,
+      "x": 520,
+      "y": 981,
+      "zoom": 1.3
+     }
+    ]
+   },
+   "hud": {
+    "label": "GRAND HÔTEL"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "tick@0.2",
+    "tick@0.4",
+    "tick@0.6"
+   ]
+  },
+  {
+   "text": "Son discours : la ville va la démonter et la vendre en ferraille.",
+   "scene": {
+    "type": "action",
+    "terrain": "hotel",
+    "actors": [
+     {
+      "sprite": "table",
+      "keys": [
+       {
+        "at": 0,
+        "x": 420,
+        "y": 1056,
+        "scale": 12
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "plum",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "bowler",
+       "hatColor": "mid1"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 180,
+        "y": 1116,
+        "scale": 6,
+        "pose": "sit"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "bowler",
+       "hatColor": "black",
+       "mustache": true
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 330,
+        "y": 1116,
+        "scale": 6,
+        "pose": "sit"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid2",
+       "hair": "black",
+       "sleeves": "long"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 520,
+        "y": 1116,
+        "scale": 6,
+        "pose": "sit",
+        "flip": true
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid2",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "tophat",
+       "hatColor": "black"
+      },
+      "cycle": 1.3,
+      "keys": [
+       {
+        "at": 0,
+        "x": 760,
+        "y": 1116,
+        "scale": 7,
+        "pose": "talk",
+        "flip": true
+       },
+       {
+        "at": 0.55,
+        "pose": "point",
+        "flip": false
+       }
+      ]
+     }
+    ],
+    "pins": [
+     {
+      "x": 792,
+      "y": 420,
+      "label": "La tour",
+      "sub": "démontée ?",
+      "at": 0.55,
+      "stick": 60
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 640,
+      "y": 995,
+      "zoom": 1.45
+     },
+     {
+      "at": 1,
+      "x": 700,
+      "y": 1003,
+      "zoom": 1.55
+     }
+    ]
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Plus de 7000 tonnes de fer.",
+   "scene": {
+    "type": "counter",
+    "from": 0,
+    "to": 7300,
+    "suffix": "T",
+    "label": "de fer à revendre",
+    "durationRatio": 0.75
+   },
+   "transition": "cut",
+   "sfx": [
+    "counter"
+   ]
+  },
+  {
+   "text": "Mais c'est secret d'État : il ne faut rien dire.",
+   "scene": {
+    "type": "stamp",
+    "text": "SECRET",
+    "sub": "secret d'État"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Un ferrailleur mord à l'hameçon : André Poisson.",
+   "scene": {
+    "type": "dossier",
+    "first": "André",
+    "last": "Poisson",
+    "fields": [
+     {
+      "k": "Métier",
+      "v": "Ferrailleur"
+     },
+     {
+      "k": "Rêve",
+      "v": "entrer dans la haute"
+     }
+    ],
+    "face": {
+     "tone": "light",
+     "hair": "receding",
+     "mustache": "thick",
+     "outfit": "suit",
+     "brows": "worried",
+     "mouth": "tense",
+     "age": "adult",
+     "jaw": "wide",
+     "seed": "poisson"
+    },
+    "index": "LA CIBLE"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Poisson hésite. Alors Lustig joue le fonctionnaire corrompu.",
+   "scene": {
+    "type": "action",
+    "terrain": "hotel",
+    "args": {
+     "windowX": 20
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "bowler",
+       "hatColor": "black",
+       "mustache": true
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 400,
+        "y": 1116,
+        "scale": 8,
+        "pose": "stand"
+       },
+       {
+        "at": 0.2,
+        "pose": "shrug"
+       },
+       {
+        "at": 0.6,
+        "pose": "stand"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid2",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "tophat",
+       "hatColor": "black"
+      },
+      "cycle": 1.4,
+      "keys": [
+       {
+        "at": 0,
+        "x": 700,
+        "y": 1116,
+        "scale": 8,
+        "pose": "stand",
+        "flip": true
+       },
+       {
+        "at": 0.45,
+        "x": 620,
+        "pose": "talk",
+        "ease": "out"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 1003,
+      "zoom": 1.55
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 1013,
+      "zoom": 1.7
+     }
+    ]
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Il réclame un pot-de-vin.",
+   "scene": {
+    "type": "action",
+    "terrain": "hotel",
+    "args": {
+     "windowX": 20
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "bowler",
+       "hatColor": "black",
+       "mustache": true
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 400,
+        "y": 1116,
+        "scale": 8,
+        "pose": "hold"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid2",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "tophat",
+       "hatColor": "black"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 620,
+        "y": 1116,
+        "scale": 8,
+        "pose": "stand",
+        "flip": true
+       },
+       {
+        "at": 0.3,
+        "pose": "hold"
+       }
+      ]
+     },
+     {
+      "sprite": "bill",
+      "keys": [
+       {
+        "at": 0,
+        "x": 450,
+        "y": 930,
+        "scale": 7,
+        "opacity": 0
+       },
+       {
+        "at": 0.2,
+        "opacity": 1,
+        "ease": "step"
+       },
+       {
+        "at": 0.6,
+        "x": 580,
+        "y": 930,
+        "ease": "inOut"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 520,
+      "y": 1019,
+      "zoom": 1.8
+     },
+     {
+      "at": 1,
+      "x": 520,
+      "y": 1024,
+      "zoom": 1.9
+     }
+    ]
+   },
+   "annotation": "pot-de-vin",
+   "transition": "cut",
+   "sfx": [
+    "cash@0.6"
+   ]
+  },
+  {
+   "text": "Pour Poisson, c'est la preuve que tout est vrai.",
+   "scene": {
+    "type": "thought",
+    "value": "VRAI",
+    "text": "un vrai fonctionnaire",
+    "sub": "il réclame un pot-de-vin"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Il paie. Environ 70 000 francs.",
+   "scene": {
+    "type": "counter",
+    "from": 0,
+    "to": 70000,
+    "suffix": "F",
+    "label": "pot-de-vin + « achat »",
+    "durationRatio": 0.7
+   },
+   "transition": "cut",
+   "sfx": [
+    "counter",
+    "cash@0.75"
+   ]
+  },
+  {
+   "text": "Lustig file aussitôt en Autriche avec l'argent.",
+   "scene": {
+    "type": "map",
+    "mode": "flat",
+    "center": [
+     12.5,
+     47.2
+    ],
+    "zoom": 4.5,
+    "highlight": [
+     "France",
+     "Austria"
+    ],
+    "pin": {
+     "lon": 16.37,
+     "lat": 48.21,
+     "label": "Vienne",
+     "sub": "Autriche"
+    },
+    "route": [
+     [
+      2.35,
+      48.86
+     ],
+     [
+      8.0,
+      48.6
+     ],
+     [
+      12.5,
+      47.9
+     ],
+     [
+      16.37,
+      48.21
+     ]
+    ]
+   },
+   "hud": {
+    "label": "FUITE"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "text": "Poisson, humilié, ne porte jamais plainte.",
+   "scene": {
+    "type": "portrait",
+    "face": {
+     "tone": "light",
+     "hair": "receding",
+     "mustache": "thick",
+     "outfit": "suit",
+     "brows": "worried",
+     "mouth": "tense",
+     "age": "adult",
+     "jaw": "wide",
+     "seed": "poisson",
+     "eyes": "narrow"
+    }
+   },
+   "hud": {
+    "label": "AUCUNE PLAINTE"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Alors Lustig revient à Paris, pour revendre la tour.",
+   "scene": {
+    "type": "action",
+    "terrain": "paris",
+    "actors": [
+     {
+      "figure": {
+       "top": "mid2",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "tophat",
+       "hatColor": "black",
+       "prop": "briefcase"
+      },
+      "cycle": 1.5,
+      "keys": [
+       {
+        "at": 0,
+        "x": 1150,
+        "y": 1116,
+        "scale": 7,
+        "pose": "walk",
+        "flip": true
+       },
+       {
+        "at": 1,
+        "x": 700,
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "texts": [
+     {
+      "at": 0.3,
+      "dur": 0.15,
+      "x": 540,
+      "y": 660,
+      "text": "À VENDRE (BIS)",
+      "size": 44,
+      "color": "accent",
+      "box": true,
+      "rot": -4
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 700,
+      "y": 999,
+      "zoom": 1.5
+     },
+     {
+      "at": 1,
+      "x": 640,
+      "y": 991,
+      "zoom": 1.4
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "1925"
+    },
+    "label": "LE RETOUR"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Cette fois, un ferrailleur prévient la police.",
+   "scene": {
+    "type": "action",
+    "terrain": "paris",
+    "actors": [
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "police",
+       "hatColor": "black"
+      },
+      "cycle": 2.6,
+      "keys": [
+       {
+        "at": 0,
+        "x": -60,
+        "y": 1116,
+        "scale": 7,
+        "pose": "run"
+       },
+       {
+        "at": 1,
+        "x": 620,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "police",
+       "hatColor": "black"
+      },
+      "cycle": 2.6,
+      "keys": [
+       {
+        "at": 0,
+        "x": -200,
+        "y": 1116,
+        "scale": 7,
+        "pose": "run"
+       },
+       {
+        "at": 1,
+        "x": 460,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid2",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "tophat",
+       "hatColor": "black"
+      },
+      "cycle": 2.8,
+      "keys": [
+       {
+        "at": 0,
+        "x": 700,
+        "y": 1116,
+        "scale": 7,
+        "pose": "stand",
+        "flip": true
+       },
+       {
+        "at": 0.3,
+        "pose": "run",
+        "flip": false
+       },
+       {
+        "at": 1,
+        "x": 1200,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "speedLines": {
+     "from": 0.35,
+     "to": 1,
+     "dir": "left"
+    },
+    "camera": [
+     {
+      "at": 0,
+      "x": 560,
+      "y": 991,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 760,
+      "y": 991,
+      "zoom": 1.4
+     }
+    ]
+   },
+   "hud": {
+    "label": "POLICE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "alarm@0.1:0.3"
+   ]
+  },
+  {
+   "text": "Il s'enfuit aux États-Unis.",
+   "scene": {
+    "type": "map",
+    "mode": "globe",
+    "center": [
+     -35,
+     42
+    ],
+    "zoom": 1.3,
+    "highlight": [
+     "United States of America",
+     "France"
+    ],
+    "pin": {
+     "lon": -74.0,
+     "lat": 40.7,
+     "label": "New York"
+    },
+    "route": [
+     [
+      2.35,
+      48.86
+     ],
+     [
+      -20,
+      47
+     ],
+     [
+      -45,
+      44
+     ],
+     [
+      -74.0,
+      40.7
+     ]
+    ]
+   },
+   "hud": {
+    "label": "AMÉRIQUE"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "text": "Là-bas, il ose même arnaquer Al Capone.",
+   "scene": {
+    "type": "dossier",
+    "first": "Al",
+    "last": "Capone",
+    "fields": [
+     {
+      "k": "Ville",
+      "v": "Chicago"
+     },
+     {
+      "k": "Métier",
+      "v": "Gangster"
+     }
+    ],
+    "face": {
+     "tone": "light",
+     "hair": "short",
+     "hat": "fedora",
+     "outfit": "suit",
+     "mouth": "smirk",
+     "brows": "angry",
+     "jaw": "wide",
+     "seed": "capone"
+    },
+    "index": "DANGER"
+   },
+   "hud": {
+    "label": "CHICAGO"
+   },
+   "transition": "glitch"
+  },
+  {
+   "text": "Capone lui confie 50 000 dollars. Deux mois après, Lustig les rend.",
+   "scene": {
+    "type": "action",
+    "terrain": "vault",
+    "args": {
+     "open": 0.02
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid2",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "tophat",
+       "hatColor": "black",
+       "prop": "briefcase"
+      },
+      "cycle": 1.5,
+      "keys": [
+       {
+        "at": 0,
+        "x": 200,
+        "y": 1116,
+        "scale": 7,
+        "pose": "walk"
+       },
+       {
+        "at": 0.3,
+        "x": 520,
+        "ease": "linear"
+       },
+       {
+        "at": 0.33,
+        "pose": "hold"
+       },
+       {
+        "at": 0.62,
+        "pose": "walk",
+        "flip": true
+       },
+       {
+        "at": 1,
+        "x": 160,
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "texts": [
+     {
+      "at": 0.05,
+      "dur": 0.1,
+      "x": 540,
+      "y": 560,
+      "text": "$ 50 000",
+      "size": 64,
+      "color": "accent",
+      "box": true
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 480,
+      "y": 1000,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 420,
+      "y": 1000,
+      "zoom": 1.4
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "+2 MOIS"
+    },
+    "label": "COFFRE"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Capone, touché par tant d'honnêteté, lui donne 5 000 dollars.",
+   "scene": {
+    "type": "counter",
+    "from": 0,
+    "to": 5000,
+    "prefix": "$ ",
+    "label": "pour son « honnêteté »",
+    "durationRatio": 0.6
+   },
+   "transition": "cut",
+   "sfx": [
+    "counter",
+    "cash@0.65"
+   ]
+  },
+  {
+   "text": "Il finira à Alcatraz.",
+   "scene": {
+    "type": "action",
+    "terrain": "prison",
+    "actors": [
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true,
+       "hat": "none",
+       "hatColor": "black"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 540,
+        "y": 1300,
+        "scale": 8,
+        "pose": "sit"
+       }
+      ]
+     }
+    ],
+    "pins": [
+     {
+      "x": 540,
+      "y": 980,
+      "label": "Alcatraz",
+      "sub": "1935",
+      "at": 0.25,
+      "stick": 60
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 1180,
+      "zoom": 1.45
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 1187,
+      "zoom": 1.55
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1925",
+     "to": "1935"
+    },
+    "label": "FIN"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "stamp@0.2:0.4"
+   ]
+  }
+ ]
+}

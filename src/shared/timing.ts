@@ -11,7 +11,25 @@ export const beatAt = (beats: Beat[], ms: number) => {
 // like the reference videos (max ~16 characters per line).
 export type CaptionPage = {words: Word[]; startMs: number; endMs: number};
 
-export const buildCaptionPages = (words: Word[], beats: Beat[], maxChars = 16, maxWords = 3): CaptionPage[] => {
+export const buildCaptionPages = (rawWords: Word[], beats: Beat[], maxChars = 16, maxWords = 3): CaptionPage[] => {
+  // French typography puts a space before ":;!?" — never show such a token alone
+  const words: Word[] = [];
+  let opener = '';
+  for (const raw of rawWords) {
+    // opening marks (« “ ( [) belong to the next word
+    if (/^[«“(\[]+$/.test(raw.text)) {
+      opener += `${raw.text}\u00a0`;
+      continue;
+    }
+    const w = opener ? {...raw, text: `${opener}${raw.text}`} : raw;
+    opener = '';
+    const prev = words[words.length - 1];
+    const punct = !/[\p{L}\p{N}]/u.test(w.text);
+    // "50 000" is one number: glue thousand groups to the digits before
+    const thousands = prev && /^\d{1,3}$/.test(prev.text.replace(/^\D+/, '')) && /^\d{3}\b/.test(w.text);
+    if ((punct || thousands) && prev) words[words.length - 1] = {...prev, text: `${prev.text}\u00a0${w.text}`, endMs: w.endMs};
+    else words.push(w);
+  }
   const pages: CaptionPage[] = [];
   const beatIndexOf = (ms: number) => {
     let idx = 0;

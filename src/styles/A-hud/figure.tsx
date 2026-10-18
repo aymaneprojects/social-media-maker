@@ -80,12 +80,15 @@ export const POSES: Record<string, (ph: number) => Joints> = {
     });
   },
   takeoff: () => P({torso: 10, head: -10, ua: [150, 40], fa: [10, 20], th: [70, -20], sh: [-80, -10], dy: -1}),
-  hang: () => P({torso: -14, head: -6, ua: [165, 160], fa: [15, 15], th: [20, 10], sh: [-95, -100], dy: -2}),
+  hang: () => P({torso: -10, head: -4, ua: [138, 122], fa: [28, 24], th: [22, 12], sh: [-95, -100], dy: -2}),
   flight: () => P({torso: 6, head: -4, ua: [120, 100], fa: [20, 20], th: [60, 50], sh: [-70, -60], dy: -1}),
   land: () => P({torso: 38, head: -18, ua: [70, 50], fa: [30, 30], th: [85, 80], sh: [-10, -5], dy: 4}),
   crouch: () => P({torso: 30, head: -20, ua: [40, 10], fa: [50, 40], th: [80, 70], sh: [-120, -115], dy: 9}),
   kneel: () => P({torso: 6, head: 6, ua: [10, 0], fa: [30, 20], th: [80, -5], sh: [-85, -90], dy: 8}),
   kneelDown: () => P({torso: 24, head: 22, ua: [-10, -20], fa: [20, 10], th: [-5, -5], sh: [-90, -90], dy: 8}),
+  kneelCover: (ph) => P({torso: 18 + Math.sin(ph * 6.28) * 3, head: 26, ua: [150, 140], fa: [150, 150], th: [-5, -5], sh: [-90, -90], dy: 8}),
+  standCover: () => P({torso: 10, head: 20, ua: [150, 140], fa: [150, 150]}),
+  measure: () => P({torso: 70, head: -50, ua: [100, 60], fa: [0, 20], th: [90, 40], sh: [-110, -60], dy: 9}),
   fall: () => P({torso: 75, head: -30, ua: [150, 120], fa: [10, 20], th: [40, -30], sh: [-20, -40], dy: 6}),
   lie: () => P({torso: 90, head: -80, ua: [170, 10], fa: [0, 0], th: [90, 85], sh: [0, 0], dy: 14}),
   sit: () => P({torso: -4, ua: [20, 10], fa: [60, 50], th: [90, 85], sh: [-90, -85], dy: 7}),
@@ -330,6 +333,8 @@ export const drawFigure = (ctx: CanvasRenderingContext2D, j: Joints, o: Outfit, 
   drawArm(0, false);
 };
 
+export const paletteList = (pal: PaletteA) => [pal.bg, pal.plum, pal.plum2, pal.mid1, pal.mid2, pal.mid3, pal.paper, pal.accent, pal.accentDark, pal.white, pal.black];
+
 // A figure as a positioned element (centre-bottom anchor at x,y screen px).
 export const Figure: React.FC<{
   joints: Joints;
@@ -361,7 +366,7 @@ export const Figure: React.FC<{
         transform: `${flip ? 'scaleX(-1) ' : ''}rotate(${rot}deg)`,
       }}
     >
-      <PixelCanvas w={FIG_W} h={FIG_H} scale={scale} deps={[key, pal]} draw={(ctx) => drawFigure(ctx, joints, outfit, pal)} />
+      <PixelCanvas w={FIG_W} h={FIG_H} scale={scale} deps={[key, pal]} draw={(ctx) => drawFigure(ctx, joints, outfit, pal)} quantize={paletteList(pal)} />
     </div>
   );
 };

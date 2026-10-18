@@ -75,13 +75,14 @@ export const SmallText: React.FC<{
 };
 
 // Map / location tag: framed label on a stick with a dot (like "GOLFE DE GUINÉE").
-export const PinLabel: React.FC<{x: number; y: number; title: string; sub?: string; stick?: number; visible?: number}> = ({
+export const PinLabel: React.FC<{x: number; y: number; title: string; sub?: string; stick?: number; visible?: number; left?: boolean}> = ({
   x,
   y,
   title,
   sub,
   stick = 60,
   visible = 1,
+  left = false,
 }) => {
   const {pal} = useThemeA();
   if (visible <= 0) return null;
@@ -92,7 +93,8 @@ export const PinLabel: React.FC<{x: number; y: number; title: string; sub?: stri
       <div
         style={{
           position: 'absolute',
-          left: 12,
+          left: left ? undefined : 12,
+          right: left ? 12 : undefined,
           top: -66,
           border: `3px solid ${pal.white}`,
           background: pal.bg,

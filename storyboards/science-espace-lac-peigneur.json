@@ -1,0 +1,1546 @@
+{
+ "title": "Le lac Peigneur, englouti par une mine de sel (1980)",
+ "endCard": {
+  "place": "LOUISIANE",
+  "year": "1980"
+ },
+ "post": {
+  "caption": "Un lac entier aspiré en quelques heures par une mine de sel… avec une plateforme pétrolière dessus. Tu connaissais le lac Peigneur ?",
+  "hashtags": [
+   "#science",
+   "#sciencefacts",
+   "#lacpeigneur",
+   "#louisiane",
+   "#geologie",
+   "#catastrophe",
+   "#histoire"
+  ],
+  "youtubeTitle": "Le lac qui a disparu dans une mine de sel (Lac Peigneur, 1980)",
+  "description": "Le 20 novembre 1980, un forage de Texaco perce une mine de sel sous le lac Peigneur, en Louisiane. Le lac se vide en quelques heures. Sources : Wikipédia (Lake Peigneur), rapport MSHA (1981)."
+ },
+ "ambience": [
+  {
+   "sound": "amb-drone",
+   "fromBeat": 0,
+   "toBeat": 20,
+   "volume": 0.18
+  },
+  {
+   "sound": "amb-underwater",
+   "fromBeat": 6,
+   "toBeat": 15,
+   "volume": 0.12
+  }
+ ],
+ "beats": [
+  {
+   "text": "20 novembre 1980 : un lac de Louisiane disparaît en quelques heures.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": [
+      1,
+      0.05
+     ],
+     "hole": 1,
+     "vortex": [
+      1,
+      0.4
+     ],
+     "drill": 0,
+     "deep": [
+      0,
+      0.5
+     ]
+    },
+    "actors": [
+     {
+      "sprite": "barge",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 330,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.3,
+        "x": 450,
+        "y": 438,
+        "rot": 10,
+        "ease": "in"
+       },
+       {
+        "at": 0.55,
+        "x": 570,
+        "y": 522,
+        "rot": 40,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "sprite": "barge",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 780,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.45,
+        "x": 675,
+        "y": 438,
+        "rot": -10,
+        "ease": "in"
+       },
+       {
+        "at": 0.7,
+        "x": 570,
+        "y": 522,
+        "rot": -40,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "sprite": "tug",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 420,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.6,
+        "x": 570,
+        "y": 512,
+        "rot": 50,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 560,
+      "zoom": 1.9
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 600,
+      "zoom": 1.45
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.3,
+      "x": 570,
+      "y": 432,
+      "kind": "water",
+      "n": 20
+     },
+     {
+      "at": 0.6,
+      "x": 570,
+      "y": 452,
+      "kind": "water",
+      "n": 20
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "20.11.1980"
+    },
+    "label": "LOUISIANE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "swell",
+    "splash@0.3",
+    "splash@0.6"
+   ]
+  },
+  {
+   "text": "Avec une plateforme pétrolière, onze barges et un remorqueur.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 0.4,
+     "hole": 1,
+     "vortex": 0.8,
+     "drill": 0,
+     "deep": 0.4
+    },
+    "actors": [
+     {
+      "sprite": "rig",
+      "clipBelow": 462,
+      "keys": [
+       {
+        "at": 0,
+        "x": 540,
+        "y": 452,
+        "scale": 6,
+        "rot": 20
+       },
+       {
+        "at": 1,
+        "x": 570,
+        "y": 592,
+        "rot": 55,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "sprite": "barge",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 250,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.4,
+        "x": 410,
+        "y": 438,
+        "rot": 10,
+        "ease": "in"
+       },
+       {
+        "at": 0.65,
+        "x": 570,
+        "y": 522,
+        "rot": 40,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "sprite": "barge",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 860,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.55,
+        "x": 715,
+        "y": 438,
+        "rot": -10,
+        "ease": "in"
+       },
+       {
+        "at": 0.8,
+        "x": 570,
+        "y": 522,
+        "rot": -40,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 600,
+      "zoom": 1.6
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 640,
+      "zoom": 1.7
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.2,
+      "x": 570,
+      "y": 462,
+      "kind": "water",
+      "n": 24
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.2,
+      "amp": 10
+     }
+    ]
+   },
+   "hud": {
+    "label": "ENGLOUTIS"
+   },
+   "transition": "cut",
+   "sfx": [
+    "boom@0.2:0.4"
+   ]
+  },
+  {
+   "text": "Le lac Peigneur ne fait que trois mètres de profondeur.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 1,
+     "hole": 0,
+     "vortex": 0,
+     "drill": 0
+    },
+    "actors": [
+     {
+      "sprite": "rig",
+      "keys": [
+       {
+        "at": 0,
+        "x": 570,
+        "y": 438,
+        "scale": 6
+       }
+      ]
+     },
+     {
+      "sprite": "barge",
+      "keys": [
+       {
+        "at": 0,
+        "x": 330,
+        "y": 438,
+        "scale": 6
+       }
+      ]
+     },
+     {
+      "sprite": "tug",
+      "keys": [
+       {
+        "at": 0,
+        "x": 800,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 1,
+        "x": 740,
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "measures": [
+     {
+      "at": 0.35,
+      "dur": 0.2,
+      "x1": 700,
+      "y1": 432,
+      "x2": 700,
+      "y2": 516,
+      "label": "3 m",
+      "color": "white"
+     }
+    ],
+    "pins": [
+     {
+      "x": 400,
+      "y": 432,
+      "label": "Lac Peigneur",
+      "sub": "eau douce",
+      "at": 0.1,
+      "stick": 110
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 560,
+      "y": 560,
+      "zoom": 1.8
+     },
+     {
+      "at": 1,
+      "x": 600,
+      "y": 540,
+      "zoom": 2.0
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "20.11.2026",
+     "to": "20.11.1980"
+    },
+    "label": "AVANT"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Dessus, une plateforme de Texaco cherche du pétrole.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 1,
+     "hole": 0,
+     "drill": [
+      0.1,
+      0.85
+     ]
+    },
+    "actors": [
+     {
+      "sprite": "rig",
+      "keys": [
+       {
+        "at": 0,
+        "x": 570,
+        "y": 438,
+        "scale": 7
+       }
+      ]
+     }
+    ],
+    "pins": [
+     {
+      "x": 570,
+      "y": 392,
+      "label": "Texaco",
+      "sub": "forage pétrolier",
+      "at": 0.15,
+      "stick": 60
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 520,
+      "zoom": 2.3
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 700,
+      "zoom": 1.5
+     }
+    ]
+   },
+   "hud": {
+    "label": "FORAGE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "counter@0.1:0.15"
+   ]
+  },
+  {
+   "text": "Dessous : une mine de sel.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 1,
+     "hole": 0,
+     "drill": 0.85
+    },
+    "actors": [
+     {
+      "sprite": "rig",
+      "keys": [
+       {
+        "at": 0,
+        "x": 570,
+        "y": 438,
+        "scale": 6
+       }
+      ]
+     }
+    ],
+    "pins": [
+     {
+      "x": 300,
+      "y": 960,
+      "label": "Mine de sel",
+      "sub": "Diamond Crystal",
+      "at": 0.3,
+      "stick": 100
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 600,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 880,
+      "zoom": 1.35
+     }
+    ]
+   },
+   "hud": {
+    "label": "SOUS LE LAC"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Ce matin-là, le foret se bloque à 374 mètres.",
+   "scene": {
+    "type": "gauge",
+    "from": 0,
+    "to": 374,
+    "unit": "M",
+    "label": "PROFONDEUR DU FORET",
+    "trail": "none"
+   },
+   "annotation": "foret bloqué",
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "20.11.1980"
+    },
+    "label": "MATIN"
+   },
+   "transition": "cut",
+   "sfx": [
+    "alarm@0.85:0.25"
+   ]
+  },
+  {
+   "text": "Il vient de percer le plafond de la mine.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 1,
+     "hole": [
+      0,
+      0.06,
+      0.3,
+      0.6
+     ],
+     "drill": 1
+    },
+    "bursts": [
+     {
+      "at": 0.35,
+      "x": 570,
+      "y": 936,
+      "kind": "debris",
+      "n": 16
+     },
+     {
+      "at": 0.37,
+      "x": 570,
+      "y": 936,
+      "kind": "spark",
+      "n": 10
+     }
+    ],
+    "flashAt": [
+     0.35
+    ],
+    "shake": [
+     {
+      "at": 0.35,
+      "amp": 16
+     }
+    ],
+    "pins": [
+     {
+      "x": 570,
+      "y": 940,
+      "label": "Percé",
+      "sub": "niveau 3 de la mine",
+      "at": 0.45,
+      "stick": 110
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 900,
+      "zoom": 2.4
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 920,
+      "zoom": 2.2
+     }
+    ]
+   },
+   "hud": {
+    "label": "ALERTE"
+   },
+   "transition": "glitch",
+   "sfx": [
+    "boom@0.35:0.45"
+   ]
+  },
+  {
+   "text": "L'eau du lac s'engouffre dans le trou.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": [
+      1,
+      0.92
+     ],
+     "hole": [
+      0.06,
+      0.3
+     ],
+     "flood": [
+      0,
+      0.15
+     ],
+     "drill": 1
+    },
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 560,
+      "zoom": 1.9
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 780,
+      "zoom": 1.5
+     }
+    ]
+   },
+   "hud": {
+    "label": "INFILTRATION"
+   },
+   "transition": "cut",
+   "sfx": [
+    "splash"
+   ]
+  },
+  {
+   "text": "L'eau dissout le sel, et le trou devient un gouffre.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": [
+      0.92,
+      0.7
+     ],
+     "hole": [
+      0.3,
+      1
+     ],
+     "flood": [
+      0.15,
+      0.5
+     ],
+     "vortex": [
+      0,
+      0.6
+     ],
+     "drill": 0
+    },
+    "texts": [
+     {
+      "at": 0.1,
+      "dur": 0.3,
+      "x": 800,
+      "y": 620,
+      "text": "SEL + EAU\n= DISSOLUTION",
+      "size": 44,
+      "color": "accent",
+      "font": "hud"
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 700,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 700,
+      "zoom": 1.3
+     }
+    ]
+   },
+   "hud": {
+    "label": "SCIENCE"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "En bas, 55 mineurs voient arriver l'eau.",
+   "scene": {
+    "type": "action",
+    "terrain": "mine",
+    "args": {
+     "flood": [
+      0,
+      0.45
+     ]
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "helmet",
+       "hatColor": "paper",
+       "prop": "torch"
+      },
+      "cycle": 2.6,
+      "keys": [
+       {
+        "at": 0,
+        "x": 700,
+        "y": 1116,
+        "scale": 6,
+        "pose": "walk"
+       },
+       {
+        "at": 0.35,
+        "x": 640,
+        "pose": "walk",
+        "ease": "linear"
+       },
+       {
+        "at": 0.4,
+        "pose": "standCover"
+       },
+       {
+        "at": 0.55,
+        "pose": "run",
+        "flip": true
+       },
+       {
+        "at": 1,
+        "x": 200,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "helmet",
+       "hatColor": "paper",
+       "prop": "torch"
+      },
+      "cycle": 2.6,
+      "keys": [
+       {
+        "at": 0,
+        "x": 420,
+        "y": 1116,
+        "scale": 6,
+        "pose": "stand"
+       },
+       {
+        "at": 0.45,
+        "pose": "run",
+        "flip": true
+       },
+       {
+        "at": 1,
+        "x": 60,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 900,
+      "zoom": 1.15
+     },
+     {
+      "at": 1,
+      "x": 500,
+      "y": 900,
+      "zoom": 1.2
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.3,
+      "x": 552,
+      "y": 600,
+      "kind": "water",
+      "n": 20
+     }
+    ]
+   },
+   "annotation": "55 mineurs",
+   "hud": {
+    "label": "NIVEAU 3"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "alarm@0.4:0.3"
+   ]
+  },
+  {
+   "text": "Ils remontent tous, par le seul ascenseur.",
+   "scene": {
+    "type": "iconGrid",
+    "total": 55,
+    "crossed": 0,
+    "label": "55 / 55",
+    "sub": "tous sortis vivants"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "En surface, un tourbillon géant se forme.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": [
+      0.75,
+      0.6
+     ],
+     "hole": 1,
+     "vortex": [
+      0.4,
+      1
+     ],
+     "drill": 0,
+     "deep": 0.3
+    },
+    "actors": [
+     {
+      "sprite": "rig",
+      "clipBelow": 452,
+      "keys": [
+       {
+        "at": 0,
+        "x": 510,
+        "y": 438,
+        "scale": 6,
+        "rot": 0
+       },
+       {
+        "at": 1,
+        "x": 535,
+        "y": 442,
+        "rot": 12,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.2,
+      "x": 570,
+      "y": 452,
+      "kind": "water",
+      "n": 20
+     },
+     {
+      "at": 0.6,
+      "x": 590,
+      "y": 452,
+      "kind": "water",
+      "n": 20
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 520,
+      "zoom": 2.2
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 540,
+      "zoom": 1.9
+     }
+    ]
+   },
+   "hud": {
+    "label": "TOURBILLON"
+   },
+   "transition": "cut",
+   "sfx": [
+    "splash@0.2",
+    "splash@0.6"
+   ]
+  },
+  {
+   "text": "La plateforme bascule et sombre. Son équipage a fui à temps.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 0.55,
+     "hole": 1,
+     "vortex": 1,
+     "drill": 0,
+     "deep": 0.3
+    },
+    "actors": [
+     {
+      "sprite": "rig",
+      "clipBelow": 448,
+      "keys": [
+       {
+        "at": 0,
+        "x": 535,
+        "y": 442,
+        "scale": 6,
+        "rot": 12
+       },
+       {
+        "at": 0.55,
+        "x": 570,
+        "y": 582,
+        "rot": 60,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.3,
+      "x": 570,
+      "y": 442,
+      "kind": "water",
+      "n": 30
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.3,
+      "amp": 14
+     }
+    ],
+    "pins": [
+     {
+      "x": 150,
+      "y": 422,
+      "label": "Équipage",
+      "sub": "7 évacués",
+      "at": 0.55,
+      "stick": 120
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 510,
+      "y": 560,
+      "zoom": 1.9
+     },
+     {
+      "at": 1,
+      "x": 420,
+      "y": 540,
+      "zoom": 1.6
+     }
+    ]
+   },
+   "hud": {
+    "label": "PLATEFORME"
+   },
+   "transition": "cut",
+   "sfx": [
+    "boom@0.3:0.4"
+   ]
+  },
+  {
+   "text": "Onze barges et un remorqueur sont aspirés.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 0.5,
+     "hole": 1,
+     "vortex": 1,
+     "drill": 0,
+     "deep": 0.3
+    },
+    "actors": [
+     {
+      "sprite": "barge",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 280,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.25,
+        "x": 425,
+        "y": 438,
+        "rot": 10,
+        "ease": "in"
+       },
+       {
+        "at": 0.5,
+        "x": 570,
+        "y": 522,
+        "rot": 40,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "sprite": "barge",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 860,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.35,
+        "x": 715,
+        "y": 438,
+        "rot": -10,
+        "ease": "in"
+       },
+       {
+        "at": 0.6,
+        "x": 570,
+        "y": 522,
+        "rot": -40,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "sprite": "barge",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 380,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.5,
+        "x": 475,
+        "y": 438,
+        "rot": 10,
+        "ease": "in"
+       },
+       {
+        "at": 0.75,
+        "x": 570,
+        "y": 522,
+        "rot": 40,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "sprite": "barge",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 760,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.6,
+        "x": 665,
+        "y": 438,
+        "rot": -10,
+        "ease": "in"
+       },
+       {
+        "at": 0.85,
+        "x": 570,
+        "y": 522,
+        "rot": -40,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "sprite": "tug",
+      "clipBelow": 440,
+      "keys": [
+       {
+        "at": 0,
+        "x": 900,
+        "y": 438,
+        "scale": 6
+       },
+       {
+        "at": 0.7,
+        "x": 570,
+        "y": 512,
+        "rot": -50,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 540,
+      "zoom": 1.5
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 560,
+      "zoom": 1.7
+     }
+    ]
+   },
+   "annotation": "11 barges + 1 remorqueur",
+   "hud": {
+    "label": "ASPIRÉS"
+   },
+   "transition": "cut",
+   "sfx": [
+    "splash@0.4",
+    "splash@0.7"
+   ]
+  },
+  {
+   "text": "Le lac se vide comme une baignoire.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": [
+      0.5,
+      0
+     ],
+     "hole": 1,
+     "vortex": [
+      1,
+      0.2
+     ],
+     "drill": 0,
+     "deep": [
+      0.3,
+      1
+     ]
+    },
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 600,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 620,
+      "zoom": 1.2
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "time",
+     "from": "10:00",
+     "to": "13:00"
+    },
+    "label": "VIDANGE"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Puis le canal relié au golfe du Mexique s'inverse.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 0,
+     "hole": 1,
+     "deep": 1,
+     "fall": [
+      0,
+      0.35
+     ],
+     "drill": 0
+    },
+    "texts": [
+     {
+      "at": 0.15,
+      "dur": 0.3,
+      "x": 860,
+      "y": 330,
+      "text": "← EAU DU GOLFE",
+      "size": 40,
+      "color": "accent",
+      "font": "hud"
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 700,
+      "y": 560,
+      "zoom": 1.6
+     },
+     {
+      "at": 1,
+      "x": 820,
+      "y": 560,
+      "zoom": 1.9
+     }
+    ]
+   },
+   "annotation": "canal de Delcambre",
+   "hud": {
+    "label": "GOLFE DU MEXIQUE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "text": "L'eau de mer tombe en cascade de 50 mètres.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 0,
+     "hole": 1,
+     "fall": [
+      0.35,
+      1
+     ],
+     "drill": 0,
+     "deep": 1
+    },
+    "measures": [
+     {
+      "at": 0.4,
+      "dur": 0.2,
+      "x1": 990,
+      "y1": 432,
+      "x2": 990,
+      "y2": 840,
+      "label": "50 m",
+      "color": "white"
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.3,
+      "x": 880,
+      "y": 840,
+      "kind": "splash",
+      "n": 20
+     },
+     {
+      "at": 0.7,
+      "x": 885,
+      "y": 840,
+      "kind": "splash",
+      "n": 20
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 820,
+      "y": 620,
+      "zoom": 1.8
+     },
+     {
+      "at": 1,
+      "x": 820,
+      "y": 640,
+      "zoom": 1.7
+     }
+    ]
+   },
+   "annotation": "la plus haute de Louisiane",
+   "hud": {
+    "label": "CASCADE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "splash@0.3",
+    "splash@0.7"
+   ]
+  },
+  {
+   "text": "L'air chassé de la mine jaillit en geysers de 120 mètres.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 0.1,
+     "hole": 1,
+     "fall": 1,
+     "geyser": [
+      0,
+      1.3,
+      0.15,
+      0.45
+     ],
+     "drill": 0,
+     "deep": 1
+    },
+    "bursts": [
+     {
+      "at": 0.15,
+      "x": 180,
+      "y": 300,
+      "kind": "water",
+      "n": 30
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.15,
+      "amp": 12
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 360,
+      "y": 700,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 340,
+      "y": 690,
+      "zoom": 1.45
+     }
+    ]
+   },
+   "hud": {
+    "label": "GEYSERS"
+   },
+   "transition": "cut",
+   "sfx": [
+    "boom@0.15:0.4",
+    "splash@0.2"
+   ],
+   "annotation": "jusqu'à 120 m de haut"
+  },
+  {
+   "text": "Bilan : aucun mort. Seulement trois chiens.",
+   "scene": {
+    "type": "stamp",
+    "text": "0 MORT",
+    "sub": "trois chiens n'ont pas survécu"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Quelques jours plus tard, neuf barges remontent à la surface.",
+   "scene": {
+    "type": "action",
+    "terrain": "lake",
+    "args": {
+     "water": 0.85,
+     "hole": 0.4,
+     "vortex": 0,
+     "drill": 0,
+     "deep": 1
+    },
+    "actors": [
+     {
+      "sprite": "barge",
+      "keys": [
+       {
+        "at": 0,
+        "x": 530,
+        "y": 512,
+        "scale": 6,
+        "rot": -40,
+        "opacity": 0
+       },
+       {
+        "at": 0.2,
+        "opacity": 1,
+        "ease": "step"
+       },
+       {
+        "at": 0.45,
+        "y": 438,
+        "rot": 0,
+        "ease": "out"
+       }
+      ]
+     },
+     {
+      "sprite": "barge",
+      "keys": [
+       {
+        "at": 0,
+        "x": 630,
+        "y": 512,
+        "scale": 6,
+        "rot": 40,
+        "opacity": 0
+       },
+       {
+        "at": 0.45,
+        "opacity": 1,
+        "ease": "step"
+       },
+       {
+        "at": 0.7,
+        "y": 438,
+        "rot": 0,
+        "ease": "out"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.25,
+      "x": 530,
+      "y": 432,
+      "kind": "splash",
+      "n": 24
+     },
+     {
+      "at": 0.5,
+      "x": 630,
+      "y": 432,
+      "kind": "splash",
+      "n": 24
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 520,
+      "zoom": 2.0
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 520,
+      "zoom": 2.1
+     }
+    ]
+   },
+   "annotation": "9 sur 11",
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "20.11.1980",
+     "to": "23.11.1980"
+    },
+    "label": "REMONTÉE"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "splash@0.25",
+    "splash@0.5"
+   ]
+  },
+  {
+   "text": "Aujourd'hui, le lac est salé, et profond de 60 mètres.",
+   "scene": {
+    "type": "versus",
+    "left": {
+     "name": "Avant",
+     "sub": "1980",
+     "fields": [
+      {
+       "k": "Profondeur",
+       "v": "3 m"
+      },
+      {
+       "k": "Eau",
+       "v": "douce"
+      }
+     ],
+     "sprite": "drop"
+    },
+    "right": {
+     "name": "Après",
+     "sub": "aujourd'hui",
+     "fields": [
+      {
+       "k": "Profondeur",
+       "v": "jusqu'à 61 m"
+      },
+      {
+       "k": "Eau",
+       "v": "salée"
+      }
+     ],
+     "sprite": "drop"
+    },
+    "vs": "→"
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1980",
+     "to": "2026"
+    },
+    "label": "AUJOURD'HUI"
+   },
+   "transition": "cut"
+  }
+ ]
+}

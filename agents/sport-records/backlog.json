@@ -10,8 +10,9 @@
   "topic": "Bob Beamon et le saut de 8,90 m à Mexico (1968)",
   "angle": "un saut si long que l'appareil de mesure ne suffit pas",
   "subgenre": "record",
-  "status": "todo",
-  "by": "seed"
+  "status": "done",
+  "by": "seed",
+  "episodeId": "sport-records-001-bob-beamon-et-le-saut-de-8-90-m-a-mexico-1968"
  },
  {
   "topic": "Le miracle d'Istanbul, finale Liverpool-Milan (2005)",

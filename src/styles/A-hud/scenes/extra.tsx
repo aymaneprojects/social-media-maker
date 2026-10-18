@@ -58,13 +58,13 @@ export const Scoreboard: React.FC<
 // ---------------------------------------------------------------- lineChart
 // Pixel line chart drawn progressively (stock price, records, temperatures…).
 export const LineChart: React.FC<
-  SceneProps<{title?: string; unit?: string; points: {label: string; value: number}[]; highlight?: number; note?: string}>
+  SceneProps<{title?: string; unit?: string; points: {label: string; value: number}[]; highlight?: number; note?: string; min?: number; max?: number; decimals?: number}>
 > = ({params, ms, durationMs}) => {
   const {pal} = useThemeA();
   const pts = params.points;
   const vals = pts.map((p) => p.value);
-  const min = Math.min(0, ...vals);
-  const max = Math.max(...vals) * 1.1 || 1;
+  const min = params.min ?? Math.min(0, ...vals);
+  const max = params.max ?? (Math.max(...vals) * 1.1 || 1);
   const x0 = 140;
   const x1 = 960;
   const y0 = 1080;
@@ -104,7 +104,7 @@ export const LineChart: React.FC<
         ) : null,
       )}
       <div style={{position: 'absolute', left: Math.min(760, last[0] - 60), top: last[1] - 90, fontFamily: FONT.caption, fontSize: 58, color: pal.white}}>
-        {fmtNumber(pts[Math.min(pts.length - 1, Math.round(shown))].value)} {params.unit ?? ''}
+        {fmtNumber(pts[Math.min(pts.length - 1, Math.round(shown))].value, params.decimals ?? 0)} {params.unit ?? ''}
       </div>
       {hl !== undefined && params.note && (
         <div

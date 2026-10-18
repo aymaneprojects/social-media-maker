@@ -39,14 +39,19 @@ type Actor = {
   glow?: boolean;
   layer?: number;
   label?: {text: string; sub?: string; from?: number; to?: number; dy?: number};
+  clipBelow?: number; // world y: hide what goes below (sinking under the water line)
 };
-type Burst = {at: number; x: number; y: number; kind: 'dust' | 'sand' | 'splash' | 'debris' | 'spark' | 'smoke' | 'bubbles' | 'confetti' | 'impact' | 'water'; n?: number; size?: number; spread?: number; dir?: number};
+type Burst = {at: number; x: number; y: number; kind: 'dust' | 'sand' | 'splash' | 'debris' | 'spark' | 'smoke' | 'bubbles' | 'confetti' | 'impact' | 'water' | 'sonar'; n?: number; size?: number; spread?: number; dir?: number};
 type CamKey = {at: number; x?: number; y?: number; zoom?: number; ease?: Ease};
 type Measure = {at: number; dur?: number; x1: number; y1: number; x2: number; y2: number; label: string; sub?: string; color?: 'accent' | 'white'};
 
 export type ActionParams = {
   terrain: string;
   worldW?: number; // terrain width in art px (default 180 = one screen)
+  // terrain arguments; a [from, to] pair is animated over the beat (dig progress, water level…)
+  args?: Record<string, number | string | boolean | number[]>;
+  // words written on the set (graffiti, signs, chalk), revealed letter by letter
+  texts?: {at: number; dur?: number; x: number; y: number; text: string; size?: number; color?: 'white' | 'accent' | 'paper' | 'dark'; rot?: number; font?: 'caption' | 'hud'; box?: boolean}[];
   actors?: Actor[];
   camera?: CamKey[];
   bursts?: Burst[];
@@ -55,7 +60,7 @@ export type ActionParams = {
   flashAt?: number[];
   fx?: Fx[];
   measures?: Measure[];
-  pins?: {x: number; y: number; label: string; sub?: string; at?: number}[];
+  pins?: {x: number; y: number; label: string; sub?: string; at?: number; stick?: number}[];
 };
 
 const EASE: Record<Ease, (t: number) => number> = {
@@ -137,6 +142,7 @@ const PARTICLE: Record<Burst['kind'], {n: number; life: number; speed: number; u
   bubbles: {n: 14, life: 1800, speed: 50, up: 260, g: -120, size: 9, colors: (p) => [p.mid3, p.white]},
   confetti: {n: 30, life: 2000, speed: 380, up: 700, g: 700, size: 9, colors: (p) => [p.accent, p.white, p.paper]},
   impact: {n: 12, life: 380, speed: 800, up: 0, g: 0, size: 6, colors: (p) => [p.white, p.accent]},
+  sonar: {n: 0, life: 1600, speed: 0, up: 0, g: 0, size: 6, colors: (p) => [p.white]},
 };
 
 const Particles: React.FC<{bursts: Burst[]; ms: number; durationMs: number}> = ({bursts, ms, durationMs}) => {
@@ -149,6 +155,18 @@ const Particles: React.FC<{bursts: Burst[]; ms: number; durationMs: number}> = (
     if (age < 0 || age > P.life * 1.2) return;
     const n = b.n ?? P.n;
     const cols = P.colors(pal);
+    if (b.kind === 'sonar')
+      for (let k = 0; k < 3; k++) {
+        const a = age - k * 260;
+        if (a < 0 || a > 1100) continue;
+        const r = 30 + a * 0.5;
+        out.push(
+          <div
+            key={`son${bi}-${k}`}
+            style={{position: 'absolute', left: snap(b.x - r, 6), top: snap(b.y - r * 0.6, 6), width: snap(2 * r, 6), height: snap(1.2 * r, 6), border: `6px solid ${pal.accent}`, borderRadius: '50%', opacity: 0.8 * (1 - a / 1100)}}
+          />,
+        );
+      }
     if (b.kind === 'impact' && age < 260) {
       const r = 20 + age * 0.9;
       out.push(
@@ -236,8 +254,10 @@ const MeasureLine: React.FC<{m: Measure; ms: number; durationMs: number}> = ({m,
   const ang = (Math.atan2(y2 - m.y1, x2 - m.x1) * 180) / Math.PI;
   const dashes: React.ReactNode[] = [];
   for (let d = 0; d < len; d += 30) dashes.push(<div key={d} style={{position: 'absolute', left: d, top: -3, width: Math.min(18, len - d), height: 6, background: c}} />);
-  const midX = (m.x1 + m.x2) / 2;
-  const midY = Math.min(m.y1, m.y2);
+  // vertical measures carry their label on the side, horizontal ones above
+  const vertical = Math.abs(m.y2 - m.y1) > Math.abs(m.x2 - m.x1);
+  const midX = vertical ? Math.max(m.x1, m.x2) + 40 + 140 : (m.x1 + m.x2) / 2;
+  const midY = vertical ? (m.y1 + m.y2) / 2 + 60 : Math.min(m.y1, m.y2);
   return (
     <>
       <div style={{position: 'absolute', left: m.x1, top: m.y1, width: len, height: 0, transformOrigin: '0 0', transform: `rotate(${ang}deg)`}}>
@@ -311,8 +331,14 @@ export const Action: React.FC<SceneProps<ActionParams>> = ({params, ms, duration
       sy += (random(`shy-${Math.floor(age / 33)}`) - 0.5) * 2 * amp;
     }
   }
+  // never show outside the set
+  const halfW = 540 / cam.zoom;
+  const halfH = 960 / cam.zoom;
+  cam.x = Math.max(halfW, Math.min(worldW * 6 - halfW, cam.x));
+  cam.y = Math.max(halfH, Math.min(1920 - halfH, cam.y));
   const tx = snap(540 - cam.x * cam.zoom + sx, 6);
   const ty = snap(960 - cam.y * cam.zoom + sy, 6);
+  const onRight = (wx: number) => tx + wx * cam.zoom > 620;
 
   const actors = (params.actors ?? []).map((a, i) => ({a, i})).sort((u, v) => (u.a.layer ?? 0) - (v.a.layer ?? 0));
   const renderActor = (a: Actor, i: number, at: number, ghost = 1) => {
@@ -346,18 +372,29 @@ export const Action: React.FC<SceneProps<ActionParams>> = ({params, ms, duration
     const age = ms - f * durationMs;
     return age >= 0 && age < 160 ? Math.max(acc, 1 - age / 160) : acc;
   }, 0);
+  const pq = Math.round(p * 60) / 60;
+  const args: Record<string, number | string | boolean> = {};
+  // [from, to] animates over the beat, [from, to, at0, at1] between two moments
+  for (const [k, v] of Object.entries(params.args ?? {})) {
+    if (!Array.isArray(v)) args[k] = v;
+    else {
+      const [a, b, at0 = 0, at1 = 1] = v as number[];
+      args[k] = a + (b - a) * EASE.inOut(clamp01((pq - at0) / Math.max(1e-6, at1 - at0)));
+    }
+  }
   const lines = params.speedLines && p >= params.speedLines.from && p <= params.speedLines.to ? Math.min(1, (p - params.speedLines.from) * 20, (params.speedLines.to - p) * 20) : 0;
 
   return (
     <>
-      <div style={{position: 'absolute', left: 0, top: 0, width: worldW * 6, height: 1920, transformOrigin: '0 0', transform: `translate(${tx}px, ${ty}px) scale(${cam.zoom})`}}>
+      {/* CSS zoom (not transform: scale) so canvases are re-rasterised at the final size and stay pixel-crisp */}
+      <div style={{position: 'absolute', left: tx / cam.zoom, top: ty / cam.zoom, width: worldW * 6, height: 1920, zoom: cam.zoom}}>
         <PixelCanvas
           w={worldW}
           h={320}
           scale={6}
-          deps={[params.terrain, worldW, tStep, pal]}
+          deps={[params.terrain, worldW, tStep, pal, JSON.stringify(args)]}
           draw={(ctx) => {
-            if (!drawStoryTerrain(ctx, params.terrain, tStep, pal, worldW, 320, `act-${params.terrain}`)) drawTerrain(ctx, params.terrain, tStep, pal, params.terrain);
+            if (!drawStoryTerrain(ctx, params.terrain, tStep, pal, worldW, 320, `act-${params.terrain}`, args)) drawTerrain(ctx, params.terrain, tStep, pal, params.terrain);
           }}
           style={{left: 0, top: 0}}
         />
@@ -379,23 +416,56 @@ export const Action: React.FC<SceneProps<ActionParams>> = ({params, ms, duration
               const st = actorState(a, p);
               return <div style={{position: 'absolute', left: st.x - 150, top: st.y - 260, width: 300, height: 300, background: `radial-gradient(circle, ${pal.accent} 0%, transparent 65%)`, opacity: 0.35 + Math.sin(ms / 180) * 0.1}} />;
             })()}
-            {renderActor(a, i, ms)}
+            {a.clipBelow !== undefined ? (
+              <div style={{position: 'absolute', inset: 0, clipPath: `inset(0px 0px ${1920 - a.clipBelow}px 0px)`}}>{renderActor(a, i, ms)}</div>
+            ) : (
+              renderActor(a, i, ms)
+            )}
           </React.Fragment>
         ))}
+        {(params.texts ?? []).map((tx0, i) => {
+          const k = clamp01((p - tx0.at) / (tx0.dur ?? 0.3));
+          if (k <= 0) return null;
+          const n = Math.ceil(tx0.text.length * k);
+          const color = tx0.color === 'accent' ? pal.accent : tx0.color === 'paper' ? pal.paper : tx0.color === 'dark' ? pal.bg : pal.white;
+          return (
+            <div
+              key={`tx${i}`}
+              style={{
+                position: 'absolute',
+                left: tx0.x,
+                top: tx0.y,
+                transform: `translateX(-50%) rotate(${tx0.rot ?? 0}deg)`,
+                fontFamily: tx0.font === 'hud' ? FONT.hud : FONT.caption,
+                fontSize: tx0.size ?? 72,
+                lineHeight: `${(tx0.size ?? 72) * 1.05}px`,
+                color,
+                whiteSpace: 'pre',
+                textAlign: 'center',
+                textShadow: `4px 4px 0 ${pal.bg}`,
+                ...(tx0.box ? {background: pal.bg, border: `6px solid ${color}`, padding: '10px 26px 4px', boxShadow: `12px 12px 0 ${pal.black}`} : {}),
+              }}
+            >
+              {tx0.text.slice(0, n)}
+            </div>
+          );
+        })}
         <Particles bursts={params.bursts ?? []} ms={ms} durationMs={durationMs} />
         {(params.measures ?? []).map((m, i) => (
           <MeasureLine key={i} m={m} ms={ms} durationMs={durationMs} />
         ))}
         {(params.pins ?? []).map((pin, i) => {
           const v = clamp01((ms - (pin.at ?? 0.2) * durationMs) / 300);
-          return <PinLabel key={i} x={pin.x} y={pin.y} title={pin.label} sub={pin.sub} visible={v} />;
+          return <PinLabel key={i} x={pin.x} y={pin.y} title={pin.label} sub={pin.sub} visible={v} left={onRight(pin.x)} stick={pin.stick} />;
         })}
         {actors.map(({a, i}) => {
           if (!a.label) return null;
           if (p < (a.label.from ?? 0) || p > (a.label.to ?? 1)) return null;
           const st = actorState(a, p);
           const v = clamp01((p - (a.label.from ?? 0)) * durationMs / 300);
-          return <PinLabel key={`l${i}`} x={st.x} y={st.y - (a.label.dy ?? 300)} title={a.label.text} sub={a.label.sub} visible={v} />;
+          // keep the label under the HUD (screen y >= 330)
+          const ly = Math.max(st.y - (a.label.dy ?? 300), (330 - ty) / cam.zoom + 66);
+          return <PinLabel key={`l${i}`} x={st.x} y={ly} title={a.label.text} sub={a.label.sub} visible={v} left={onRight(st.x)} />;
         })}
       </div>
       {lines > 0 && <SpeedLines dir={params.speedLines!.dir ?? 'left'} ms={ms} k={lines} />}

@@ -26,7 +26,7 @@ export const autofixStoryboard = (style: 'A' | 'B', sb: Storyboard) => {
   let images = 0;
   sb.beats?.forEach((b) => {
     if (b.transition && !TRANSITIONS.includes(b.transition)) b.transition = 'cut';
-    if (b.sfx) b.sfx = b.sfx.filter((x) => SFX.includes(x));
+    if (b.sfx) b.sfx = b.sfx.filter((x) => SFX.includes(x.split('@')[0]));
     if (b.imagePrompt) {
       images++;
       if (images > maxImages && b.scene?.type !== 'image') delete b.imagePrompt;
@@ -232,7 +232,19 @@ export const buildAudio = (style: 'A' | 'B', sb: Storyboard, timing: {startMs: n
   sb.beats.forEach((b, i) => {
     const t = timing[i].startMs;
     const dur = timing[i].endMs - t;
-    (b.sfx ?? []).forEach((s) => add(s, t, 0.45));
+    // "name" plays at the beat start, "name@0.55" at 55 % of the beat, "name@0.55:0.3" with volume 0.3
+    (b.sfx ?? []).forEach((s) => {
+      const [name, at] = s.split('@');
+      const [frac, vol] = (at ?? '0').split(':').map(Number);
+      add(name, t + dur * (frac || 0), vol || 0.45);
+    });
+    // action scenes: bursts make their own sound (landing, impact, splash…)
+    if (b.scene.type === 'action')
+      for (const bu of (b.scene.bursts as {at: number; kind: string}[] | undefined) ?? []) {
+        const snd: Record<string, [string, number]> = {dust: ['whoosh', 0.25], sand: ['stamp', 0.4], splash: ['splash', 0.45], water: ['splash', 0.5], debris: ['boom', 0.5], spark: ['blip', 0.2], impact: ['boom', 0.45], bubbles: ['blip', 0.15], confetti: ['ding', 0.3], smoke: ['whoosh', 0.2], sonar: ['beep-low', 0.3]};
+        const m = snd[bu.kind];
+        if (m) add(m[0], t + dur * bu.at, m[1]);
+      }
     if (b.transition === 'pixelDissolve') add('pixel', t - 80, 0.35);
     if (b.transition === 'glitch') add('glitch', t, 0.35);
     if (b.transition === 'flash') add('boom', t, 0.5);

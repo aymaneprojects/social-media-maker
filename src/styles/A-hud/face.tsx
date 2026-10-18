@@ -2,6 +2,7 @@ import React from 'react';
 import {random} from 'remotion';
 import {PixelCanvas} from '../../shared/PixelCanvas';
 import type {PaletteA} from '../../shared/palette';
+import {paletteList} from './figure';
 
 // Procedural pixel portrait (head and shoulders) drawn on a 64x80 grid:
 // four-tone skin shading lit from the left, accent rim light on the shadow
@@ -335,6 +336,6 @@ export const drawFace = (ctx: CanvasRenderingContext2D, f: FaceSpec, pal: Palett
 export const Face: React.FC<{spec: FaceSpec; pal: PaletteA; ms: number; scale: number; style?: React.CSSProperties}> = ({spec, pal, ms, scale, style}) => {
   const t = Math.floor(ms / (1000 / 15)) / 15; // features animate at 15 fps
   return (
-    <PixelCanvas w={FACE_W} h={FACE_H} scale={scale} deps={[JSON.stringify(spec), pal, t]} draw={(ctx) => drawFace(ctx, spec, pal, t)} style={{left: 0, top: 0, ...style}} />
+    <PixelCanvas w={FACE_W} h={FACE_H} scale={scale} deps={[JSON.stringify(spec), pal, t]} draw={(ctx) => drawFace(ctx, spec, pal, t)} style={{left: 0, top: 0, ...style}} quantize={paletteList(pal)} />
   );
 };

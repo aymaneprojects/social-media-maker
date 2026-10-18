@@ -1,0 +1,1498 @@
+{
+ "title": "Le casse de la Société générale de Nice (1976)",
+ "endCard": {
+  "place": "NICE",
+  "year": "1976"
+ },
+ "post": {
+  "caption": "Un tunnel de 8 m creusé à la main, 371 coffres vidés et un message sur le mur. Qui était vraiment le cerveau du casse de Nice ?",
+  "hashtags": [
+   "#truecrime",
+   "#faitdivers",
+   "#casse",
+   "#nice",
+   "#spaggiari",
+   "#histoire",
+   "#enquete"
+  ],
+  "youtubeTitle": "Le casse du siècle : un tunnel, 371 coffres et un message sur le mur (Nice, 1976)",
+  "description": "Juillet 1976 : une équipe creuse un tunnel depuis les égouts du Paillon jusqu'à la salle des coffres de la Société générale de Nice. Sources : Wikipédia (Albert Spaggiari), Larousse (archives 1977), AFP."
+ },
+ "ambience": [
+  {
+   "sound": "amb-tension",
+   "fromBeat": 0,
+   "toBeat": 23,
+   "volume": 0.18
+  },
+  {
+   "sound": "amb-rain",
+   "fromBeat": 7,
+   "toBeat": 10,
+   "volume": 0.12
+  }
+ ],
+ "beats": [
+  {
+   "text": "Ni armes, ni violence et sans haine.",
+   "scene": {
+    "type": "action",
+    "terrain": "brickwall",
+    "args": {
+     "hole": 1,
+     "holeX": 140,
+     "holeY": 165
+    },
+    "texts": [
+     {
+      "at": 0.02,
+      "dur": 0.75,
+      "x": 520,
+      "y": 430,
+      "text": "NI ARMES,\nNI VIOLENCE\nET SANS HAINE",
+      "size": 110,
+      "color": "white",
+      "rot": -4
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 960,
+      "zoom": 1.0
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 900,
+      "zoom": 1.12
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "DOSSIER 76"
+    },
+    "label": "PIÈCE N°1"
+   },
+   "transition": "cut",
+   "sfx": [
+    "type",
+    "type@0.25",
+    "type@0.5"
+   ]
+  },
+  {
+   "text": "Il est écrit dans une salle des coffres, à Nice.",
+   "scene": {
+    "type": "action",
+    "terrain": "vault",
+    "args": {
+     "open": 0.093,
+     "hole": true,
+     "holeY": 150
+    },
+    "texts": [
+     {
+      "at": 0,
+      "dur": 0.01,
+      "x": 640,
+      "y": 470,
+      "text": "NI ARMES,\nNI VIOLENCE\nET SANS HAINE",
+      "size": 52,
+      "color": "white",
+      "rot": -4
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 300,
+      "y": 820,
+      "zoom": 1.35
+     },
+     {
+      "at": 1,
+      "x": 700,
+      "y": 820,
+      "zoom": 1.35
+     }
+    ],
+    "pins": [
+     {
+      "x": 156,
+      "y": 900,
+      "label": "Le tunnel",
+      "sub": "accès",
+      "at": 0.08,
+      "stick": 120
+     }
+    ]
+   },
+   "hud": {
+    "label": "SALLE DES COFFRES"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Juillet 1976. Société générale, centre-ville.",
+   "scene": {
+    "type": "bigDate",
+    "date": "07.1976",
+    "label": "Société générale · Nice",
+    "under": {
+     "type": "map",
+     "mode": "flat",
+     "center": [
+      3.5,
+      48.5
+     ],
+     "zoom": 4.2,
+     "highlight": [
+      "France"
+     ],
+     "pin": {
+      "lon": 7.27,
+      "lat": 43.7,
+      "label": "Nice",
+      "sub": "Alpes-Maritimes"
+     }
+    }
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "10.2026",
+     "to": "07.1976"
+    },
+    "label": "ARCHIVES"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Un lundi matin, la porte blindée est bloquée de l'intérieur.",
+   "scene": {
+    "type": "action",
+    "terrain": "vaultdoor",
+    "args": {
+     "turn": [
+      0,
+      0.25,
+      0.2,
+      0.5
+     ]
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "paper",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true
+      },
+      "cycle": 1.2,
+      "keys": [
+       {
+        "at": 0,
+        "x": 200,
+        "y": 1140,
+        "scale": 7,
+        "pose": "walk"
+       },
+       {
+        "at": 0.25,
+        "x": 330,
+        "pose": "walk",
+        "ease": "linear"
+       },
+       {
+        "at": 0.28,
+        "pose": "push"
+       },
+       {
+        "at": 0.6,
+        "pose": "push"
+       },
+       {
+        "at": 0.75,
+        "pose": "shrug"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 880,
+      "zoom": 1.0
+     },
+     {
+      "at": 1,
+      "x": 480,
+      "y": 860,
+      "zoom": 1.12
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.35,
+      "amp": 8
+     },
+     {
+      "at": 0.5,
+      "amp": 8
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "time",
+     "from": "08:58",
+     "to": "09:04"
+    },
+    "label": "LUNDI"
+   },
+   "transition": "cut",
+   "sfx": [
+    "tick@0.35",
+    "tick@0.5",
+    "beep-low@0.75"
+   ],
+   "annotation": "bloquée de l'intérieur"
+  },
+  {
+   "text": "Derrière : 371 coffres éventrés, sur environ 4000.",
+   "scene": {
+    "type": "counter",
+    "from": 0,
+    "to": 371,
+    "suffix": "COFFRES",
+    "label": "forcés, sur environ 4000",
+    "durationRatio": 0.7
+   },
+   "hud": {
+    "label": "INVENTAIRE"
+   },
+   "transition": "glitch",
+   "sfx": [
+    "counter"
+   ]
+  },
+  {
+   "text": "Et dans le mur, un trou.",
+   "scene": {
+    "type": "action",
+    "terrain": "brickwall",
+    "args": {
+     "hole": 1,
+     "holeX": 140,
+     "holeY": 165
+    },
+    "camera": [
+     {
+      "at": 0,
+      "x": 700,
+      "y": 980,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 840,
+      "y": 990,
+      "zoom": 2.6
+     }
+    ]
+   },
+   "hud": {
+    "label": "PIÈCE N°2"
+   },
+   "transition": "cut",
+   "sfx": [
+    "swell"
+   ]
+  },
+  {
+   "text": "Un tunnel de huit mètres, creusé à la main depuis les égouts.",
+   "scene": {
+    "type": "action",
+    "terrain": "sewer",
+    "args": {
+     "dig": 1
+    },
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 620,
+      "zoom": 1.15
+     },
+     {
+      "at": 1,
+      "x": 560,
+      "y": 860,
+      "zoom": 1.25
+     }
+    ],
+    "measures": [
+     {
+      "at": 0.35,
+      "dur": 0.3,
+      "x1": 540,
+      "y1": 1060,
+      "x2": 750,
+      "y2": 660,
+      "label": "8 m"
+     }
+    ],
+    "pins": [
+     {
+      "x": 276,
+      "y": 1080,
+      "label": "Égout",
+      "sub": "le Paillon",
+      "at": 0.15,
+      "stick": 90
+     },
+     {
+      "x": 900,
+      "y": 560,
+      "label": "Banque",
+      "at": 0.25,
+      "stick": 80
+     }
+    ]
+   },
+   "hud": {
+    "label": "COUPE"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "text": "Premier coup de burin : le 7 mai.",
+   "scene": {
+    "type": "bigDate",
+    "date": "07.05.1976",
+    "label": "premier coup de burin",
+    "under": {
+     "type": "action",
+     "terrain": "tunnel",
+     "worldW": 180,
+     "args": {
+      "face": 150
+     },
+     "actors": [
+      {
+       "figure": {
+        "top": "mid3",
+        "bottom": "mid1",
+        "skin": "mid3",
+        "hair": "black",
+        "sleeves": "short",
+        "prop": "shovel",
+        "hat": "helmet",
+        "hatColor": "paper"
+       },
+       "cycle": 1.6,
+       "keys": [
+        {
+         "at": 0,
+         "x": 820,
+         "y": 1140,
+         "scale": 6,
+         "pose": "dig"
+        }
+       ]
+      }
+     ],
+     "bursts": [
+      {
+       "at": 0.2,
+       "x": 900,
+       "y": 1000,
+       "kind": "debris",
+       "n": 8
+      },
+      {
+       "at": 0.6,
+       "x": 900,
+       "y": 1000,
+       "kind": "debris",
+       "n": 8
+      }
+     ]
+    }
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "07.1976",
+     "to": "05.1976"
+    },
+    "label": "TRAVAUX"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Des semaines durant, ils descendent par le Paillon, la rivière couverte.",
+   "scene": {
+    "type": "action",
+    "terrain": "sewer",
+    "args": {
+     "dig": [
+      0.1,
+      0.6
+     ]
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "prop": "briefcase",
+       "hat": "helmet",
+       "hatColor": "paper"
+      },
+      "cycle": 1.2,
+      "keys": [
+       {
+        "at": 0,
+        "x": 150,
+        "y": 560,
+        "scale": 3,
+        "pose": "climb"
+       },
+       {
+        "at": 0.35,
+        "y": 1140,
+        "ease": "linear"
+       },
+       {
+        "at": 0.38,
+        "pose": "walk"
+       },
+       {
+        "at": 1,
+        "x": 480,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "short",
+       "prop": "shovel",
+       "hat": "helmet",
+       "hatColor": "paper"
+      },
+      "cycle": 1.2,
+      "keys": [
+       {
+        "at": 0,
+        "x": 150,
+        "y": 430,
+        "scale": 3,
+        "pose": "climb",
+        "opacity": 0
+       },
+       {
+        "at": 0.15,
+        "opacity": 1,
+        "ease": "step"
+       },
+       {
+        "at": 0.5,
+        "y": 1140,
+        "ease": "linear"
+       },
+       {
+        "at": 0.53,
+        "pose": "walk"
+       },
+       {
+        "at": 1,
+        "x": 380,
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 300,
+      "y": 760,
+      "zoom": 1.7
+     },
+     {
+      "at": 1,
+      "x": 420,
+      "y": 950,
+      "zoom": 1.7
+     }
+    ],
+    "fx": []
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "05.1976",
+     "to": "07.1976"
+    },
+    "label": "SOUS LA VILLE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "splash@0.4:0.2"
+   ]
+  },
+  {
+   "text": "Ils creusent, étayent, évacuent la terre.",
+   "scene": {
+    "type": "action",
+    "terrain": "tunnel",
+    "worldW": 240,
+    "args": {
+     "face": 220
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "short",
+       "prop": "shovel",
+       "hat": "helmet",
+       "hatColor": "paper"
+      },
+      "cycle": 1.7,
+      "keys": [
+       {
+        "at": 0,
+        "x": 1240,
+        "y": 1140,
+        "scale": 6,
+        "pose": "dig"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "prop": "briefcase",
+       "hat": "helmet",
+       "hatColor": "paper"
+      },
+      "cycle": 1.5,
+      "keys": [
+       {
+        "at": 0,
+        "x": 1100,
+        "y": 1140,
+        "scale": 6,
+        "pose": "walk",
+        "flip": true
+       },
+       {
+        "at": 1,
+        "x": 700,
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.1,
+      "x": 1310,
+      "y": 1000,
+      "kind": "debris",
+      "n": 10
+     },
+     {
+      "at": 0.4,
+      "x": 1310,
+      "y": 980,
+      "kind": "debris",
+      "n": 10
+     },
+     {
+      "at": 0.7,
+      "x": 1310,
+      "y": 1010,
+      "kind": "debris",
+      "n": 10
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 1100,
+      "y": 860,
+      "zoom": 1.3
+     },
+     {
+      "at": 1,
+      "x": 1000,
+      "y": 860,
+      "zoom": 1.3
+     }
+    ]
+   },
+   "hud": {
+    "label": "TUNNEL"
+   },
+   "transition": "cut",
+   "sfx": [
+    "stamp@0.1:0.25",
+    "stamp@0.4:0.25",
+    "stamp@0.7:0.25"
+   ]
+  },
+  {
+   "text": "Vendredi 16 juillet, 21 h 30 : le dernier morceau de mur tombe.",
+   "scene": {
+    "type": "action",
+    "terrain": "brickwall",
+    "args": {
+     "hole": [
+      0,
+      1,
+      0.62,
+      0.7
+     ],
+     "holeX": 90,
+     "holeY": 150
+    },
+    "bursts": [
+     {
+      "at": 0.62,
+      "x": 540,
+      "y": 900,
+      "kind": "debris",
+      "n": 30,
+      "spread": 2
+     },
+     {
+      "at": 0.64,
+      "x": 540,
+      "y": 900,
+      "kind": "dust",
+      "n": 20,
+      "spread": 2
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.62,
+      "amp": 30,
+      "dur": 500
+     }
+    ],
+    "flashAt": [
+     0.62
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 900,
+      "zoom": 1.3
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 900,
+      "zoom": 1.15
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "time",
+     "from": "21:29",
+     "to": "21:30"
+    },
+    "label": "VENDREDI 16.07"
+   },
+   "transition": "cut",
+   "sfx": [
+    "heartbeat",
+    "boom@0.62:0.6"
+   ]
+  },
+  {
+   "text": "Tout le week-end, ils vident les coffres.",
+   "scene": {
+    "type": "action",
+    "terrain": "vault",
+    "args": {
+     "open": [
+      0.01,
+      0.093
+     ],
+     "hole": true,
+     "holeY": 150
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "paper",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "short",
+       "prop": "drill"
+      },
+      "cycle": 2,
+      "keys": [
+       {
+        "at": 0,
+        "x": 620,
+        "y": 1116,
+        "scale": 6,
+        "pose": "hold"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "prop": "briefcase",
+       "hat": "helmet",
+       "hatColor": "paper"
+      },
+      "cycle": 1.4,
+      "keys": [
+       {
+        "at": 0,
+        "x": 900,
+        "y": 1116,
+        "scale": 6,
+        "pose": "walk",
+        "flip": true
+       },
+       {
+        "at": 1,
+        "x": 220,
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.2,
+      "x": 700,
+      "y": 800,
+      "kind": "spark",
+      "n": 10
+     },
+     {
+      "at": 0.5,
+      "x": 690,
+      "y": 760,
+      "kind": "spark",
+      "n": 10
+     },
+     {
+      "at": 0.8,
+      "x": 710,
+      "y": 820,
+      "kind": "spark",
+      "n": 10
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 560,
+      "y": 820,
+      "zoom": 1.2
+     },
+     {
+      "at": 1,
+      "x": 520,
+      "y": 820,
+      "zoom": 1.25
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "17.07.1976",
+     "to": "18.07.1976"
+    },
+    "label": "WEEK-END"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "blip@0.2",
+    "blip@0.5",
+    "blip@0.8"
+   ]
+  },
+  {
+   "text": "Environ 50 millions de francs.",
+   "scene": {
+    "type": "inventory",
+    "title": "LE BUTIN",
+    "items": [
+     {
+      "sprite": "gem",
+      "text": "Bijoux"
+     },
+     {
+      "sprite": "goldbar",
+      "text": "Lingots d'or"
+     },
+     {
+      "sprite": "bill",
+      "text": "Billets et devises"
+     }
+    ]
+   },
+   "annotation": "≈ 50 millions de francs",
+   "transition": "cut",
+   "sfx": [
+    "cash"
+   ]
+  },
+  {
+   "text": "Selon certains, ils auraient même pique-niqué sur place.",
+   "scene": {
+    "type": "action",
+    "terrain": "vault",
+    "args": {
+     "open": 0.093,
+     "hole": true,
+     "holeY": 150
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long"
+      },
+      "cycle": 0.8,
+      "keys": [
+       {
+        "at": 0,
+        "x": 440,
+        "y": 1116,
+        "scale": 7,
+        "pose": "sit"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long"
+      },
+      "cycle": 0.9,
+      "keys": [
+       {
+        "at": 0,
+        "x": 700,
+        "y": 1116,
+        "scale": 7,
+        "pose": "sit",
+        "flip": true
+       },
+       {
+        "at": 0.5,
+        "pose": "talk"
+       }
+      ]
+     },
+     {
+      "sprite": "bottle",
+      "keys": [
+       {
+        "at": 0,
+        "x": 560,
+        "y": 1116,
+        "scale": 8
+       }
+      ]
+     },
+     {
+      "sprite": "bread",
+      "keys": [
+       {
+        "at": 0,
+        "x": 600,
+        "y": 1116,
+        "scale": 7
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 570,
+      "y": 900,
+      "zoom": 1.6
+     },
+     {
+      "at": 1,
+      "x": 570,
+      "y": 920,
+      "zoom": 1.75
+     }
+    ]
+   },
+   "hud": {
+    "label": "SELON TÉMOIGNAGES"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "En octobre, la police arrête un photographe : Albert Spaggiari.",
+   "scene": {
+    "type": "dossier",
+    "first": "Albert",
+    "last": "Spaggiari",
+    "fields": [
+     {
+      "k": "Né en",
+      "v": "1932"
+     },
+     {
+      "k": "Métier",
+      "v": "Photographe"
+     },
+     {
+      "k": "Arrêté le",
+      "v": "27.10.1976"
+     }
+    ],
+    "face": {
+     "tone": "light",
+     "hair": "slick",
+     "outfit": "suit",
+     "mouth": "smirk",
+     "brows": "raised",
+     "seed": "spag"
+    },
+    "stamp": "ARRÊTÉ",
+    "index": "SUSPECT N°1"
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "27.10.1976"
+    },
+    "label": "AÉROPORT DE NICE"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Il se dit le cerveau du casse.",
+   "scene": {
+    "type": "portrait",
+    "face": {
+     "tone": "light",
+     "hair": "slick",
+     "outfit": "suit",
+     "mouth": "smirk",
+     "brows": "raised",
+     "seed": "spag"
+    }
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Mars 1977. Chez le juge, il saute par la fenêtre.",
+   "scene": {
+    "type": "action",
+    "terrain": "courthouse",
+    "args": {
+     "open": true
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "paper",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true
+      },
+      "cycle": 1,
+      "blend": 0.04,
+      "keys": [
+       {
+        "at": 0,
+        "x": 552,
+        "y": 498,
+        "scale": 5,
+        "pose": "stand"
+       },
+       {
+        "at": 0.55,
+        "pose": "crouch"
+       },
+       {
+        "at": 0.7,
+        "x": 570,
+        "y": 470,
+        "pose": "takeoff"
+       },
+       {
+        "at": 1,
+        "x": 590,
+        "y": 760,
+        "pose": "fall",
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 552,
+      "y": 620,
+      "zoom": 1.45
+     },
+     {
+      "at": 0.6,
+      "x": 552,
+      "y": 560,
+      "zoom": 1.6
+     },
+     {
+      "at": 1,
+      "x": 580,
+      "y": 700,
+      "zoom": 1.4
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "10.03.1977"
+    },
+    "label": "PALAIS DE JUSTICE"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "heartbeat",
+    "whoosh@0.7"
+   ]
+  },
+  {
+   "text": "Sept mètres plus bas, il atterrit sur une voiture,",
+   "scene": {
+    "type": "action",
+    "terrain": "courthouse",
+    "args": {
+     "open": true
+    },
+    "actors": [
+     {
+      "sprite": "r6",
+      "keys": [
+       {
+        "at": 0,
+        "x": 620,
+        "y": 1036,
+        "scale": 7
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "paper",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true
+      },
+      "cycle": 2.6,
+      "blend": 0.04,
+      "keys": [
+       {
+        "at": 0,
+        "x": 590,
+        "y": 700,
+        "scale": 5,
+        "pose": "fall"
+       },
+       {
+        "at": 0.3,
+        "x": 610,
+        "y": 968,
+        "pose": "land",
+        "ease": "in"
+       },
+       {
+        "at": 0.55,
+        "x": 720,
+        "y": 1032,
+        "pose": "crouch",
+        "arc": 40
+       },
+       {
+        "at": 0.7,
+        "pose": "run"
+       },
+       {
+        "at": 1,
+        "x": 860,
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.3,
+      "x": 620,
+      "y": 968,
+      "kind": "debris",
+      "n": 14
+     },
+     {
+      "at": 0.31,
+      "x": 620,
+      "y": 968,
+      "kind": "impact"
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.3,
+      "amp": 26
+     }
+    ],
+    "measures": [
+     {
+      "at": 0.05,
+      "dur": 0.2,
+      "x1": 470,
+      "y1": 500,
+      "x2": 470,
+      "y2": 965,
+      "label": "7 m",
+      "color": "white"
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 600,
+      "y": 820,
+      "zoom": 1.25
+     },
+     {
+      "at": 0.35,
+      "x": 620,
+      "y": 900,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 700,
+      "y": 900,
+      "zoom": 1.35
+     }
+    ]
+   },
+   "hud": {
+    "label": "ÉVASION"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "et file sur une moto qui l'attendait.",
+   "scene": {
+    "type": "action",
+    "terrain": "courthouse",
+    "args": {
+     "open": true
+    },
+    "actors": [
+     {
+      "sprite": "r6",
+      "keys": [
+       {
+        "at": 0,
+        "x": 420,
+        "y": 1036,
+        "scale": 7
+       }
+      ]
+     },
+     {
+      "sprite": "moto",
+      "keys": [
+       {
+        "at": 0,
+        "x": 820,
+        "y": 1036,
+        "scale": 9
+       },
+       {
+        "at": 0.4,
+        "x": 820
+       },
+       {
+        "at": 1,
+        "x": 1500,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "black",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hat": "helmet",
+       "hatColor": "accent",
+       "sleeves": "long"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 830,
+        "y": 990,
+        "scale": 5,
+        "pose": "sit"
+       },
+       {
+        "at": 0.4,
+        "x": 830
+       },
+       {
+        "at": 1,
+        "x": 1510,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "paper",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "tie": true
+      },
+      "cycle": 2.6,
+      "keys": [
+       {
+        "at": 0,
+        "x": 620,
+        "y": 1032,
+        "scale": 5,
+        "pose": "run"
+       },
+       {
+        "at": 0.35,
+        "x": 760,
+        "y": 990,
+        "pose": "sit",
+        "ease": "linear"
+       },
+       {
+        "at": 0.4,
+        "x": 770
+       },
+       {
+        "at": 1,
+        "x": 1450,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.42,
+      "x": 760,
+      "y": 1030,
+      "kind": "dust",
+      "dir": 180,
+      "spread": 0.4,
+      "n": 16
+     }
+    ],
+    "speedLines": {
+     "from": 0.5,
+     "to": 1,
+     "dir": "left"
+    },
+    "camera": [
+     {
+      "at": 0,
+      "x": 700,
+      "y": 880,
+      "zoom": 1.3
+     },
+     {
+      "at": 1,
+      "x": 840,
+      "y": 880,
+      "zoom": 1.3
+     }
+    ]
+   },
+   "transition": "cut",
+   "sfx": [
+    "whoosh@0.4",
+    "whoosh@0.6"
+   ]
+  },
+  {
+   "text": "Il ne sera jamais repris.",
+   "scene": {
+    "type": "stamp",
+    "text": "ÉVADÉ",
+    "sub": "jamais repris"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Il meurt en 1989, toujours en cavale.",
+   "scene": {
+    "type": "timeline",
+    "title": "Albert Spaggiari",
+    "events": [
+     {
+      "date": "1976",
+      "text": "Le casse"
+     },
+     {
+      "date": "1977",
+      "text": "L'évasion"
+     },
+     {
+      "date": "1989",
+      "text": "Mort en cavale"
+     }
+    ],
+    "highlight": 2
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1977",
+     "to": "1989"
+    },
+    "label": "CAVALE"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "L'essentiel du butin n'a jamais été retrouvé.",
+   "scene": {
+    "type": "bigWord",
+    "text": "Introuvable",
+    "sub": "≈ 50 millions de francs",
+    "color": "white",
+    "under": {
+     "type": "action",
+     "terrain": "vault",
+     "args": {
+      "open": 0.093,
+      "hole": true,
+      "holeY": 150
+     },
+     "camera": [
+      {
+       "at": 0,
+       "x": 540,
+       "y": 900,
+       "zoom": 1.6
+      },
+      {
+       "at": 1,
+       "x": 540,
+       "y": 900,
+       "zoom": 1.2
+      }
+     ]
+    }
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1989",
+     "to": "2026"
+    },
+    "label": "BUTIN"
+   },
+   "transition": "glitch"
+  },
+  {
+   "text": "Et le vrai cerveau du casse fait toujours débat.",
+   "scene": {
+    "type": "versus",
+    "left": {
+     "name": "Spaggiari",
+     "sub": "le photographe",
+     "fields": [
+      {
+       "k": "Rôle",
+       "v": "Cerveau ?"
+      }
+     ],
+     "sprite": "person"
+    },
+    "right": {
+     "name": "?",
+     "sub": "un autre cerveau",
+     "fields": [
+      {
+       "k": "Rôle",
+       "v": "Inconnu"
+      }
+     ],
+     "sprite": "personOutline"
+    },
+    "vs": "?"
+   },
+   "transition": "cut"
+  }
+ ]
+}

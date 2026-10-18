@@ -5,6 +5,7 @@ import {Sprite, spriteSize} from '../../../shared/pixel';
 import {colorsA, SPRITES} from '../sprites';
 import {type SceneProps, useThemeA} from '../theme';
 import {BigText, Panel, SmallText, typed, useEcho} from '../ui';
+import {Face, type FaceSpec} from '../face';
 
 export const fmtNumber = (n: number, decimals = 0) => {
   const s = n.toFixed(decimals);
@@ -27,7 +28,11 @@ export const BigDate: React.FC<SceneProps<{date: string; label?: string; y?: num
   return (
     <>
       <BigText text={text} y={y} size={text.length > 8 ? 170 : 200} />
-      {params.label && ms > 500 && <SmallText text={params.label} y={y + 215} color={pal.accent} size={32} />}
+      {params.label && ms > 500 && (
+        <div style={{position: 'absolute', left: 0, right: 0, top: y + 215, display: 'flex', justifyContent: 'center'}}>
+          <div style={{background: pal.bg, border: `3px solid ${pal.accent}`, padding: '8px 18px', fontFamily: FONT.hud, fontSize: 30, color: pal.accent, letterSpacing: 2}}>{params.label.toUpperCase()}</div>
+        </div>
+      )}
     </>
   );
 };
@@ -503,18 +508,31 @@ export const HeartRateOverlay: React.FC<{bpmFrom: number; bpmTo: number; ms: num
 
 // ---------------------------------------------------------------- typed note
 // Terminal-like report line typed under a portrait (e.g. "FAUSSE ALERTE").
-export const TypedNote: React.FC<SceneProps<{title?: string; text: string; sub?: string}>> = ({params, ms}) => {
+export const TypedNote: React.FC<SceneProps<{title?: string; text: string; sub?: string; face?: FaceSpec}>> = ({params, ms}) => {
   const {pal} = useThemeA();
   const {outline} = useEcho();
+  const withFace = !!params.face;
+  const len = params.text.length;
+  const size = len > 40 ? 64 : 76;
   return (
-    <Panel x={70} y={760} w={940} h={230}>
-      {params.title && (
-        <div style={{position: 'absolute', top: -24, left: 20, background: pal.accent, color: pal.bg, fontFamily: FONT.hud, fontSize: 14, padding: '2px 10px'}}>
-          {params.title.toUpperCase()}
+    <>
+      {withFace && (
+        <div style={{position: 'absolute', left: 300, top: 300, width: 480, height: 440, border: `3px solid ${pal.accent}`, overflow: 'hidden', background: `radial-gradient(circle at 40% 35%, ${pal.plum2}, ${pal.plum} 70%)`}}>
+          <div style={{position: 'absolute', left: 48, top: 40, width: 384, height: 400}}>
+            <Face spec={params.face!} pal={pal} ms={ms} scale={5} />
+          </div>
         </div>
       )}
-      <div style={{padding: '40px 36px', fontFamily: FONT.caption, fontSize: 72, color: pal.white, textShadow: outline}}>{typed(params.text.toUpperCase(), ms, 100, 18)}</div>
-      {params.sub && <div style={{position: 'absolute', left: 36, bottom: 24, fontFamily: FONT.hud, fontSize: 14, color: pal.accent}}>{typed(params.sub.toUpperCase(), ms, 800, 30)}</div>}
-    </Panel>
+      <Panel x={70} y={withFace ? 790 : 640} w={940} h={withFace ? 320 : 420}>
+        {params.title && (
+          <div style={{position: 'absolute', top: -30, left: 20, background: pal.accent, color: pal.bg, fontFamily: FONT.hud, fontSize: 20, padding: '4px 14px'}}>
+            {params.title.toUpperCase()}
+          </div>
+        )}
+        <div style={{position: 'absolute', left: 36, top: 26, fontFamily: FONT.caption, fontSize: 140, lineHeight: '140px', color: pal.accent, opacity: 0.5}}>«</div>
+        <div style={{padding: '50px 40px 0 110px', fontFamily: FONT.caption, fontSize: size, lineHeight: `${size}px`, color: pal.white, textShadow: outline}}>{typed(params.text.toUpperCase(), ms, 100, 18)}</div>
+        {params.sub && <div style={{position: 'absolute', left: 110, bottom: 26, fontFamily: FONT.hud, fontSize: 20, color: pal.accent}}>{typed(params.sub.toUpperCase(), ms, 800, 30)}</div>}
+      </Panel>
+    </>
   );
 };

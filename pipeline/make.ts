@@ -33,8 +33,11 @@ const backlogMeta = (slug: string, topic: string) => {
 
 export const makeVideo = async (opts: {brand: string; topic?: string; storyboard?: string; render?: boolean}) => {
   const brand = loadBrand(opts.brand);
-  const history = loadHistory();
-  const issue = nextIssue(history, brand.slug);
+  let history = loadHistory();
+  // re-rendering a video that was not published yet keeps its issue number
+  const again = opts.topic ? history.find((h) => h.brand === brand.slug && h.topic === opts.topic && h.status === 'rendered') : undefined;
+  if (again) history = history.filter((h) => h !== again);
+  const issue = again?.issue ?? nextIssue(history, brand.slug);
   try {
     console.log(`OpenRouter balance: $${(await credits()).toFixed(2)}`);
   } catch {

@@ -9,7 +9,8 @@ export const PixelCanvas: React.FC<{
   draw: (ctx: CanvasRenderingContext2D, w: number, h: number) => void;
   deps: unknown[];
   style?: React.CSSProperties;
-}> = ({w, h, scale, draw, deps, style}) => {
+  quantize?: string[]; // snap every pixel to the nearest of these colours (no blended edge colours)
+}> = ({w, h, scale, draw, deps, style, quantize}) => {
   const ref = useRef<HTMLCanvasElement>(null);
   useLayoutEffect(() => {
     const c = ref.current;
@@ -24,6 +25,27 @@ export const PixelCanvas: React.FC<{
     const d = img.data;
     // (getImageData is not premultiplied, so only alpha needs snapping)
     for (let i = 3; i < d.length; i += 4) d[i] = d[i] < 110 ? 0 : 255;
+    if (quantize?.length) {
+      const pal = quantize.map((hex) => [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)]);
+      for (let i = 0; i < d.length; i += 4) {
+        if (!d[i + 3]) continue;
+        let best = 0;
+        let bd = Infinity;
+        for (let k = 0; k < pal.length; k++) {
+          const dr = d[i] - pal[k][0];
+          const dg = d[i + 1] - pal[k][1];
+          const db = d[i + 2] - pal[k][2];
+          const dist = dr * dr * 0.3 + dg * dg * 0.59 + db * db * 0.11;
+          if (dist < bd) {
+            bd = dist;
+            best = k;
+          }
+        }
+        d[i] = pal[best][0];
+        d[i + 1] = pal[best][1];
+        d[i + 2] = pal[best][2];
+      }
+    }
     ctx.putImageData(img, 0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);

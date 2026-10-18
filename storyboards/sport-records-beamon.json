@@ -1,0 +1,1489 @@
+{
+ "title": "Bob Beamon, 8,90 m à Mexico",
+ "endCard": {
+  "place": "MEXICO",
+  "year": "1968"
+ },
+ "post": {
+  "caption": "8,90 m. Un saut si long que l'appareil de mesure n'a pas suivi. Tu connaissais l'histoire de Bob Beamon ?",
+  "hashtags": [
+   "#bobbeamon",
+   "#jeuxolympiques",
+   "#athletisme",
+   "#sautenlongueur",
+   "#record",
+   "#histoiredusport",
+   "#sport"
+  ],
+  "youtubeTitle": "Le saut si long que l'appareil de mesure n'a pas suivi (Bob Beamon, 1968)",
+  "description": "Le 18 octobre 1968 à Mexico, Bob Beamon saute 8,90 m et bat le record du monde de 55 cm. Sources : Wikipédia (Bob Beamon ; Athletics at the 1968 Summer Olympics – Men's long jump), olympics.com, Sports Illustrated (déc. 1968)."
+ },
+ "ambience": [
+  {
+   "sound": "amb-tension",
+   "fromBeat": 0,
+   "toBeat": 24,
+   "volume": 0.18
+  },
+  {
+   "sound": "amb-wind",
+   "fromBeat": 7,
+   "toBeat": 12,
+   "volume": 0.12
+  }
+ ],
+ "beats": [
+  {
+   "text": "Huit mètres quatre-vingt-dix.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "cycle": 0.5,
+      "shadow": 1290,
+      "keys": [
+       {
+        "at": 0,
+        "x": 1230,
+        "y": 1130,
+        "scale": 7,
+        "pose": "hang"
+       },
+       {
+        "at": 1,
+        "x": 1420,
+        "y": 1150,
+        "pose": "flight",
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 1240,
+      "y": 1240,
+      "zoom": 1.5
+     },
+     {
+      "at": 1,
+      "x": 1400,
+      "y": 1240,
+      "zoom": 1.45
+     }
+    ],
+    "speedLines": {
+     "from": 0,
+     "to": 1,
+     "dir": "left"
+    },
+    "measures": [
+     {
+      "at": 0.3,
+      "dur": 0.35,
+      "x1": 1020,
+      "y1": 1330,
+      "x2": 1640,
+      "y2": 1330,
+      "label": "8,90 m"
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "8,90 M"
+    },
+    "label": "MEXICO 1968"
+   },
+   "transition": "cut",
+   "sfx": [
+    "swell"
+   ]
+  },
+  {
+   "text": "Si loin que l'appareil de mesure ne suit pas.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "sprite": "sighter",
+      "keys": [
+       {
+        "at": 0,
+        "x": 1300,
+        "y": 1266,
+        "scale": 7
+       },
+       {
+        "at": 0.55,
+        "x": 1548,
+        "ease": "out"
+       },
+       {
+        "at": 0.62,
+        "x": 1540,
+        "ease": "out"
+       }
+      ]
+     },
+     {
+      "sprite": "dent",
+      "keys": [
+       {
+        "at": 0,
+        "x": 1640,
+        "y": 1296,
+        "scale": 6
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 1440,
+      "y": 1245,
+      "zoom": 2.2
+     },
+     {
+      "at": 1,
+      "x": 1480,
+      "y": 1245,
+      "zoom": 2.0
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.55,
+      "amp": 12
+     }
+    ],
+    "pins": [
+     {
+      "x": 1640,
+      "y": 1290,
+      "label": "Beamon",
+      "sub": "8,90 m",
+      "at": 0.15,
+      "stick": 170
+     },
+     {
+      "x": 1548,
+      "y": 1250,
+      "label": "Fin du rail",
+      "at": 0.6,
+      "stick": 60
+     }
+    ]
+   },
+   "hud": {
+    "label": "MESURE"
+   },
+   "transition": "glitch",
+   "sfx": [
+    "beep@0.55",
+    "glitch@0.6:0.3"
+   ]
+  },
+  {
+   "text": "Jeux olympiques de Mexico, 18 octobre 1968.",
+   "scene": {
+    "type": "bigDate",
+    "date": "18.10.1968",
+    "label": "Jeux olympiques",
+    "under": {
+     "type": "map",
+     "mode": "flat",
+     "center": [
+      -100.5,
+      25.5
+     ],
+     "zoom": 3.2,
+     "highlight": [
+      "Mexico"
+     ],
+     "pin": {
+      "lon": -99.13,
+      "lat": 19.43,
+      "label": "Mexico",
+      "sub": "2 240 m d'altitude"
+     }
+    }
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "18.10.2026",
+     "to": "18.10.1968"
+    },
+    "label": "ARCHIVES"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Bob Beamon a 22 ans.",
+   "scene": {
+    "type": "dossier",
+    "first": "Bob",
+    "last": "Beamon",
+    "fields": [
+     {
+      "k": "Âge",
+      "v": "22 ans"
+     },
+     {
+      "k": "Pays",
+      "v": "États-Unis"
+     },
+     {
+      "k": "Épreuve",
+      "v": "Saut en longueur"
+     }
+    ],
+    "face": {
+     "tone": "dark",
+     "hair": "short",
+     "outfit": "jersey",
+     "age": "young",
+     "seed": "beamon"
+    },
+    "index": "ATHLÈTE 1 / 1"
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "17.10.1968"
+    },
+    "label": "MEXICO"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "La veille, en qualifications, il mord deux fois la planche.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "cycle": 2.8,
+      "shadow": 1284,
+      "keys": [
+       {
+        "at": 0,
+        "x": 560,
+        "y": 1284,
+        "scale": 8,
+        "pose": "sprint"
+       },
+       {
+        "at": 0.42,
+        "x": 1040,
+        "y": 1284,
+        "ease": "linear"
+       },
+       {
+        "at": 0.45,
+        "x": 1070,
+        "y": 1254,
+        "pose": "takeoff",
+        "ease": "linear"
+       },
+       {
+        "at": 0.72,
+        "x": 1380,
+        "y": 1290,
+        "pose": "land",
+        "arc": 200,
+        "ease": "linear"
+       },
+       {
+        "at": 1,
+        "x": 1400,
+        "y": 1290,
+        "pose": "crouch"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "white",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "hat": "cap",
+       "hatColor": "white",
+       "sleeves": "short"
+      },
+      "layer": -1,
+      "keys": [
+       {
+        "at": 0,
+        "x": 930,
+        "y": 1272,
+        "scale": 7,
+        "pose": "stand",
+        "flip": false
+       },
+       {
+        "at": 0.47,
+        "pose": "wave"
+       }
+      ],
+      "cycle": 1.2,
+      "label": {
+       "text": "Mordu",
+       "sub": "essai annulé",
+       "from": 0.5,
+       "dy": 330
+      }
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 700,
+      "y": 1215,
+      "zoom": 1.5
+     },
+     {
+      "at": 0.45,
+      "x": 1030,
+      "y": 1215,
+      "zoom": 1.5
+     },
+     {
+      "at": 1,
+      "x": 1150,
+      "y": 1215,
+      "zoom": 1.45
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.44,
+      "x": 1040,
+      "y": 1284,
+      "kind": "dust",
+      "dir": 180,
+      "spread": 0.4
+     }
+    ],
+    "speedLines": {
+     "from": 0.05,
+     "to": 0.44,
+     "dir": "left"
+    }
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "17.10.1968"
+    },
+    "label": "QUALIFICATIONS"
+   },
+   "transition": "cut",
+   "sfx": [
+    "alarm@0.48:0.25"
+   ]
+  },
+  {
+   "text": "Il ne lui reste qu'un essai.",
+   "scene": {
+    "type": "checklist",
+    "title": "QUALIFICATIONS",
+    "items": [
+     {
+      "text": "Essai 1 : mordu",
+      "state": "strike"
+     },
+     {
+      "text": "Essai 2 : mordu",
+      "state": "strike"
+     },
+     {
+      "text": "Essai 3",
+      "state": "lock"
+     }
+    ],
+    "status": "DERNIÈRE CHANCE"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Il passe, de justesse.",
+   "scene": {
+    "type": "stamp",
+    "text": "QUALIFIÉ",
+    "sub": "au dernier essai"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Finale. Premier essai.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "cycle": 0.7,
+      "shadow": 1284,
+      "keys": [
+       {
+        "at": 0,
+        "x": 300,
+        "y": 1284,
+        "scale": 8,
+        "pose": "idle"
+       },
+       {
+        "at": 0.7,
+        "pose": "stand"
+       },
+       {
+        "at": 0.85,
+        "pose": "run"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 1120,
+      "zoom": 1.0
+     },
+     {
+      "at": 1,
+      "x": 360,
+      "y": 1215,
+      "zoom": 1.7
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.25,
+      "x": 620,
+      "y": 700,
+      "kind": "spark",
+      "n": 5
+     },
+     {
+      "at": 0.55,
+      "x": 220,
+      "y": 820,
+      "kind": "spark",
+      "n": 5
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "18.10.1968"
+    },
+    "label": "FINALE"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "heartbeat"
+   ]
+  },
+  {
+   "text": "Il s'élance.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "cycle": 3.0,
+      "shadow": 1284,
+      "trail": 1,
+      "keys": [
+       {
+        "at": 0,
+        "x": 320,
+        "y": 1284,
+        "scale": 8,
+        "pose": "sprint"
+       },
+       {
+        "at": 1,
+        "x": 880,
+        "y": 1284,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 380,
+      "y": 1215,
+      "zoom": 1.6
+     },
+     {
+      "at": 1,
+      "x": 860,
+      "y": 1215,
+      "zoom": 1.6
+     }
+    ],
+    "speedLines": {
+     "from": 0.15,
+     "to": 1,
+     "dir": "left"
+    }
+   },
+   "hud": {
+    "clock": {
+     "mode": "elapsed",
+     "fromSec": 0,
+     "toSec": 2
+    },
+    "label": "ÉLAN"
+   },
+   "transition": "cut",
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "text": "Il décolle,",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "cycle": 3.0,
+      "shadow": 1284,
+      "trail": 2,
+      "keys": [
+       {
+        "at": 0,
+        "x": 880,
+        "y": 1284,
+        "scale": 8,
+        "pose": "sprint"
+       },
+       {
+        "at": 0.3,
+        "x": 1015,
+        "y": 1284,
+        "ease": "linear"
+       },
+       {
+        "at": 0.4,
+        "x": 1060,
+        "y": 1224,
+        "pose": "takeoff",
+        "ease": "out"
+       },
+       {
+        "at": 1,
+        "x": 1250,
+        "y": 1060,
+        "pose": "hang",
+        "ease": "out"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 900,
+      "y": 1215,
+      "zoom": 1.6
+     },
+     {
+      "at": 0.35,
+      "x": 1030,
+      "y": 1200,
+      "zoom": 1.6
+     },
+     {
+      "at": 1,
+      "x": 1220,
+      "y": 1180,
+      "zoom": 1.5
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.32,
+      "x": 1015,
+      "y": 1284,
+      "kind": "dust",
+      "dir": 180,
+      "spread": 0.5,
+      "n": 18
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.32,
+      "amp": 10,
+      "dur": 250
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "elapsed",
+     "fromSec": 2,
+     "toSec": 3
+    },
+    "label": "APPEL"
+   },
+   "transition": "cut",
+   "sfx": [
+    "whoosh@0.3"
+   ]
+  },
+  {
+   "text": "et retombe presque au bout du sable.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "cycle": 0.8,
+      "shadow": 1290,
+      "keys": [
+       {
+        "at": 0,
+        "x": 1250,
+        "y": 1060,
+        "scale": 8,
+        "pose": "hang"
+       },
+       {
+        "at": 0.25,
+        "x": 1450,
+        "y": 1130,
+        "pose": "flight",
+        "ease": "linear"
+       },
+       {
+        "at": 0.55,
+        "x": 1640,
+        "y": 1292,
+        "pose": "land",
+        "ease": "in"
+       },
+       {
+        "at": 1,
+        "x": 1665,
+        "y": 1292,
+        "pose": "crouch",
+        "ease": "out"
+       }
+      ]
+     },
+     {
+      "sprite": "dent",
+      "keys": [
+       {
+        "at": 0,
+        "x": 1640,
+        "y": 1296,
+        "scale": 6,
+        "opacity": 0
+       },
+       {
+        "at": 0.56,
+        "opacity": 0,
+        "ease": "step"
+       },
+       {
+        "at": 0.57,
+        "opacity": 1,
+        "ease": "step"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 1260,
+      "y": 1180,
+      "zoom": 1.5
+     },
+     {
+      "at": 0.55,
+      "x": 1560,
+      "y": 1215,
+      "zoom": 1.55
+     },
+     {
+      "at": 1,
+      "x": 1580,
+      "y": 1215,
+      "zoom": 1.5
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.55,
+      "x": 1645,
+      "y": 1290,
+      "kind": "sand",
+      "n": 34
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.55,
+      "amp": 22
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "elapsed",
+     "fromSec": 3,
+     "toSec": 4
+    },
+    "label": "RÉCEPTION"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Le viseur optique glisse sur son rail : trop court.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "sprite": "sighter",
+      "keys": [
+       {
+        "at": 0,
+        "x": 1180,
+        "y": 1266,
+        "scale": 7
+       },
+       {
+        "at": 0.6,
+        "x": 1548,
+        "ease": "inOut"
+       }
+      ]
+     },
+     {
+      "sprite": "dent",
+      "keys": [
+       {
+        "at": 0,
+        "x": 1640,
+        "y": 1296,
+        "scale": 6
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 1730,
+        "y": 1284,
+        "scale": 7,
+        "pose": "stand",
+        "flip": true
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 1360,
+      "y": 1215,
+      "zoom": 1.35
+     },
+     {
+      "at": 1,
+      "x": 1440,
+      "y": 1215,
+      "zoom": 1.4
+     }
+    ],
+    "measures": [
+     {
+      "at": 0.62,
+      "dur": 0.2,
+      "x1": 1548,
+      "y1": 1236,
+      "x2": 1640,
+      "y2": 1236,
+      "label": "?",
+      "color": "white"
+     }
+    ],
+    "pins": [
+     {
+      "x": 1554,
+      "y": 1258,
+      "label": "Fin du rail",
+      "at": 0.62
+     }
+    ]
+   },
+   "hud": {
+    "label": "MESURE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "beep@0.6",
+    "beep-low@0.7"
+   ]
+  },
+  {
+   "text": "Les juges sortent un mètre ruban.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "white",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "hat": "cap",
+       "hatColor": "white",
+       "sleeves": "short"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 900,
+        "y": 1284,
+        "scale": 7,
+        "pose": "walk"
+       },
+       {
+        "at": 0.3,
+        "x": 1022,
+        "pose": "walk",
+        "ease": "linear"
+       },
+       {
+        "at": 0.35,
+        "pose": "measure"
+       }
+      ],
+      "cycle": 1.6
+     },
+     {
+      "figure": {
+       "top": "white",
+       "bottom": "mid1",
+       "skin": "mid3",
+       "hair": "black",
+       "hat": "cap",
+       "hatColor": "white",
+       "sleeves": "short"
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 1440,
+        "y": 1284,
+        "scale": 7,
+        "pose": "walk"
+       },
+       {
+        "at": 0.35,
+        "x": 1650,
+        "pose": "walk",
+        "ease": "linear"
+       },
+       {
+        "at": 0.4,
+        "pose": "measure",
+        "flip": true
+       }
+      ],
+      "cycle": 1.6
+     },
+     {
+      "sprite": "dent",
+      "keys": [
+       {
+        "at": 0,
+        "x": 1640,
+        "y": 1296,
+        "scale": 6
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 1300,
+      "y": 1215,
+      "zoom": 1.25
+     },
+     {
+      "at": 1,
+      "x": 1330,
+      "y": 1215,
+      "zoom": 1.3
+     }
+    ],
+    "measures": [
+     {
+      "at": 0.4,
+      "dur": 0.45,
+      "x1": 1022,
+      "y1": 1300,
+      "x2": 1640,
+      "y2": 1300,
+      "label": "…",
+      "color": "white"
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "elapsed",
+     "fromSec": 0,
+     "toSec": 95
+    },
+    "label": "ATTENTE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "tick@0.2",
+    "tick@0.5",
+    "tick@0.8"
+   ]
+  },
+  {
+   "text": "Puis le tableau affiche : huit mètres quatre-vingt-dix.",
+   "scene": {
+    "type": "counter",
+    "from": 0,
+    "to": 8.9,
+    "decimals": 2,
+    "suffix": "M",
+    "label": "Record du monde",
+    "durationRatio": 0.55
+   },
+   "hud": {
+    "label": "RÉSULTAT"
+   },
+   "transition": "flash",
+   "sfx": [
+    "counter",
+    "sting@0.7"
+   ]
+  },
+  {
+   "text": "En 66 ans, le record avait gagné 74 centimètres. Beamon en ajoute 55 d'un seul coup.",
+   "scene": {
+    "type": "lineChart",
+    "title": "Record du monde du saut en longueur",
+    "unit": "M",
+    "decimals": 2,
+    "min": 7.4,
+    "max": 9.0,
+    "points": [
+     {
+      "label": "1901",
+      "value": 7.61
+     },
+     {
+      "label": "1935",
+      "value": 8.13
+     },
+     {
+      "label": "1960",
+      "value": 8.21
+     },
+     {
+      "label": "1967",
+      "value": 8.35
+     },
+     {
+      "label": "1968",
+      "value": 8.9
+     }
+    ],
+    "highlight": 4,
+    "note": "+55 cm"
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1901",
+     "to": "1968"
+    },
+    "label": "PROGRESSION"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Mais lui ne comprend pas.",
+   "scene": {
+    "type": "portrait",
+    "face": {
+     "tone": "dark",
+     "hair": "short",
+     "outfit": "jersey",
+     "age": "young",
+     "seed": "beamon",
+     "brows": "raised",
+     "eyes": "wide",
+     "mouth": "open"
+    }
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "18.10.1968"
+    },
+    "label": "MEXICO"
+   },
+   "transition": "cut",
+   "sfx": [
+    "heartbeat"
+   ]
+  },
+  {
+   "text": "Il ne connaît pas le système métrique.",
+   "scene": {
+    "type": "thought",
+    "value": "8,90",
+    "text": "mètres ?",
+    "sub": "ça fait combien ?"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Son coéquipier traduit : presque deux pieds de plus.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "mid1",
+       "skin": "mid2",
+       "hair": "black",
+       "sleeves": "long"
+      },
+      "cycle": 1.4,
+      "keys": [
+       {
+        "at": 0,
+        "x": 1500,
+        "y": 1284,
+        "scale": 8,
+        "pose": "talk"
+       },
+       {
+        "at": 0.6,
+        "pose": "point"
+       }
+      ],
+      "label": {
+       "text": "Ralph Boston",
+       "sub": "coéquipier",
+       "from": 0.1,
+       "dy": 240
+      }
+     },
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "keys": [
+       {
+        "at": 0,
+        "x": 1700,
+        "y": 1284,
+        "scale": 8,
+        "pose": "stand",
+        "flip": true
+       },
+       {
+        "at": 0.7,
+        "pose": "shrug"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 1600,
+      "y": 1235,
+      "zoom": 1.7
+     },
+     {
+      "at": 1,
+      "x": 1600,
+      "y": 1240,
+      "zoom": 1.8
+     }
+    ]
+   },
+   "annotation": "≈ 2 pieds de plus",
+   "transition": "cut"
+  },
+  {
+   "text": "Ses jambes lâchent. Il tombe à genoux, les mains sur le visage.",
+   "scene": {
+    "type": "action",
+    "terrain": "track",
+    "worldW": 300,
+    "actors": [
+     {
+      "figure": {
+       "top": "accent",
+       "bottom": "white",
+       "skin": "mid2",
+       "hair": "black",
+       "hairStyle": "short",
+       "sleeves": "none",
+       "shorts": true,
+       "number": true
+      },
+      "cycle": 0.6,
+      "blend": 0.15,
+      "keys": [
+       {
+        "at": 0,
+        "x": 1640,
+        "y": 1284,
+        "scale": 9,
+        "pose": "standCover"
+       },
+       {
+        "at": 0.25,
+        "pose": "kneelCover"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 1640,
+      "y": 1225,
+      "zoom": 1.5
+     },
+     {
+      "at": 1,
+      "x": 1640,
+      "y": 1215,
+      "zoom": 2.1
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.3,
+      "x": 1630,
+      "y": 1284,
+      "kind": "dust",
+      "n": 10
+     },
+     {
+      "at": 0.15,
+      "x": 1100,
+      "y": 760,
+      "kind": "spark",
+      "n": 4
+     },
+     {
+      "at": 0.45,
+      "x": 2000,
+      "y": 800,
+      "kind": "spark",
+      "n": 4
+     },
+     {
+      "at": 0.7,
+      "x": 1400,
+      "y": 720,
+      "kind": "spark",
+      "n": 4
+     }
+    ]
+   },
+   "transition": "cut",
+   "sfx": [
+    "swell"
+   ]
+  },
+  {
+   "text": "Un rival soupire : à côté, nous sommes des enfants.",
+   "scene": {
+    "type": "typedNote",
+    "title": "IGOR TER-OVANESYAN · URSS",
+    "text": "À côté, nous sommes des enfants.",
+    "sub": "Rival de Beamon en finale",
+    "face": {
+     "tone": "light",
+     "hair": "short",
+     "outfit": "sweater",
+     "brows": "raised",
+     "mouth": "tense",
+     "age": "adult",
+     "seed": "igor"
+    }
+   },
+   "transition": "glitch"
+  },
+  {
+   "text": "L'altitude et un vent limite l'ont aidé.",
+   "scene": {
+    "type": "gauge",
+    "from": 0,
+    "to": 2240,
+    "unit": "M",
+    "label": "ALTITUDE DE MEXICO",
+    "sprite": "runner",
+    "trail": "wind",
+    "under": {
+     "type": "backdrop",
+     "terrain": "sky",
+     "sprites": [
+      {
+       "sprite": "mountain",
+       "x": 420,
+       "y": 1020,
+       "scale": 34
+      }
+     ]
+    }
+   },
+   "annotation": "vent : 2,0 m/s",
+   "transition": "cut"
+  },
+  {
+   "text": "Pas à ce point.",
+   "scene": {
+    "type": "counter",
+    "from": 0,
+    "to": 55,
+    "prefix": "+",
+    "suffix": "CM",
+    "label": "d'un seul saut",
+    "blocks": 55,
+    "durationRatio": 0.7
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Son record du monde tiendra presque 23 ans.",
+   "scene": {
+    "type": "timeline",
+    "title": "Record du monde",
+    "events": [
+     {
+      "date": "1968",
+      "text": "Beamon : 8,90 m"
+     },
+     {
+      "date": "1991",
+      "text": "Powell : 8,95 m"
+     }
+    ],
+    "highlight": 0
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1968",
+     "to": "1991"
+    },
+    "label": "RECORD"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Et aux Jeux, personne ne l'a jamais dépassé.",
+   "scene": {
+    "type": "stamp",
+    "text": "INTACT",
+    "sub": "record olympique depuis 1968"
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1991",
+     "to": "2026"
+    },
+    "label": "JEUX OLYMPIQUES"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "L'anglais en a tiré un mot : Beamonesque.",
+   "scene": {
+    "type": "bigWord",
+    "text": "Beamonesque",
+    "sub": "un exploit qui dépasse l'imagination",
+    "color": "white",
+    "under": {
+     "type": "action",
+     "terrain": "track",
+     "worldW": 300,
+     "actors": [
+      {
+       "figure": {
+        "top": "accent",
+        "bottom": "white",
+        "skin": "mid2",
+        "hair": "black",
+        "hairStyle": "short",
+        "sleeves": "none",
+        "shorts": true,
+        "number": true
+       },
+       "cycle": 0.4,
+       "shadow": 1290,
+       "keys": [
+        {
+         "at": 0,
+         "x": 1180,
+         "y": 1080,
+         "scale": 6,
+         "pose": "hang",
+         "opacity": 0.6
+        },
+        {
+         "at": 1,
+         "x": 1330,
+         "y": 1090,
+         "pose": "flight",
+         "ease": "linear",
+         "opacity": 0.6
+        }
+       ]
+      }
+     ],
+     "camera": [
+      {
+       "at": 0,
+       "x": 1200,
+       "y": 1000,
+       "zoom": 1.45
+      },
+      {
+       "at": 1,
+       "x": 1300,
+       "y": 1000,
+       "zoom": 1.5
+      }
+     ],
+     "speedLines": {
+      "from": 0,
+      "to": 1,
+      "dir": "left"
+     }
+    }
+   },
+   "transition": "glitch"
+  }
+ ]
+}

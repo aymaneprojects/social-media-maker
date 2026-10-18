@@ -1,0 +1,1215 @@
+{
+ "title": "Vassili Arkhipov et le sous-marin B-59 (1962)",
+ "endCard": {
+  "place": "CARAÏBES",
+  "year": "1962"
+ },
+ "post": {
+  "caption": "Trois officiers devaient dire oui pour lancer une torpille nucléaire. Deux ont dit oui. L'histoire de Vassili Arkhipov, l'homme qui a dit non.",
+  "hashtags": [
+   "#histoirevraie",
+   "#histoire",
+   "#guerrefroide",
+   "#crisedecuba",
+   "#arkhipov",
+   "#sousmarin",
+   "#1962"
+  ],
+  "youtubeTitle": "L'homme qui a dit non à une torpille nucléaire (Vassili Arkhipov, 1962)",
+  "description": "27 octobre 1962 : traqué par la marine américaine, le sous-marin soviétique B-59 envisage de tirer une torpille nucléaire. Sources : Wikipédia (Vasily Arkhipov), National Security Archive (témoignage de Vadim Orlov). Le déroulé exact reste discuté par les historiens."
+ },
+ "ambience": [
+  {
+   "sound": "amb-underwater",
+   "fromBeat": 0,
+   "toBeat": 20,
+   "volume": 0.16
+  },
+  {
+   "sound": "amb-tension",
+   "fromBeat": 5,
+   "toBeat": 15,
+   "volume": 0.14
+  }
+ ],
+ "beats": [
+  {
+   "text": "Un capitaine soviétique veut lancer une torpille nucléaire.",
+   "scene": {
+    "type": "action",
+    "terrain": "ocean",
+    "worldW": 180,
+    "actors": [
+     {
+      "sprite": "sub",
+      "keys": [
+       {
+        "at": 0,
+        "x": 560,
+        "y": 900,
+        "scale": 7
+       },
+       {
+        "at": 1,
+        "x": 520,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "sprite": "torpedo",
+      "glow": true,
+      "keys": [
+       {
+        "at": 0,
+        "x": 400,
+        "y": 886,
+        "scale": 5
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.1,
+      "x": 560,
+      "y": 870,
+      "kind": "sonar"
+     },
+     {
+      "at": 0.55,
+      "x": 560,
+      "y": 870,
+      "kind": "sonar"
+     },
+     {
+      "at": 0,
+      "x": 420,
+      "y": 870,
+      "kind": "bubbles"
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 480,
+      "y": 860,
+      "zoom": 1.9
+     },
+     {
+      "at": 1,
+      "x": 500,
+      "y": 870,
+      "zoom": 1.7
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "27.10.1962"
+    },
+    "label": "MER DES SARGASSES"
+   },
+   "transition": "cut",
+   "sfx": [
+    "heartbeat"
+   ]
+  },
+  {
+   "text": "Et un seul homme peut l'en empêcher.",
+   "scene": {
+    "type": "portrait",
+    "face": {
+     "tone": "light",
+     "hair": "short",
+     "hat": "navy",
+     "outfit": "navy",
+     "brows": "neutral",
+     "mouth": "tense",
+     "seed": "arkhipov"
+    }
+   },
+   "hud": {
+    "label": "B-59"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "27 octobre 1962. La crise des missiles de Cuba.",
+   "scene": {
+    "type": "bigDate",
+    "date": "27.10.1962",
+    "label": "crise des missiles de Cuba",
+    "under": {
+     "type": "map",
+     "mode": "globe",
+     "center": [
+      -72,
+      27
+     ],
+     "zoom": 2.2,
+     "highlight": [
+      "Cuba",
+      "United States of America"
+     ],
+     "pin": {
+      "lon": -66,
+      "lat": 24,
+      "label": "B-59",
+      "sub": "sous-marin soviétique"
+     }
+    }
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "27.10.2026",
+     "to": "27.10.1962"
+    },
+    "label": "ARCHIVES"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Le sous-marin soviétique B-59 est traqué par onze destroyers américains.",
+   "scene": {
+    "type": "action",
+    "terrain": "ocean",
+    "worldW": 260,
+    "actors": [
+     {
+      "sprite": "destroyer",
+      "keys": [
+       {
+        "at": 0,
+        "x": 180,
+        "y": 402,
+        "scale": 6
+       },
+       {
+        "at": 1,
+        "x": 240,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "sprite": "destroyer",
+      "keys": [
+       {
+        "at": 0,
+        "x": 560,
+        "y": 402,
+        "scale": 6
+       },
+       {
+        "at": 1,
+        "x": 600,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "sprite": "destroyer",
+      "keys": [
+       {
+        "at": 0,
+        "x": 980,
+        "y": 402,
+        "scale": 6
+       },
+       {
+        "at": 1,
+        "x": 930,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "sprite": "carrier",
+      "keys": [
+       {
+        "at": 0,
+        "x": 1350,
+        "y": 402,
+        "scale": 6
+       }
+      ]
+     },
+     {
+      "sprite": "sub",
+      "keys": [
+       {
+        "at": 0,
+        "x": 700,
+        "y": 900,
+        "scale": 7
+       },
+       {
+        "at": 1,
+        "x": 660,
+        "ease": "linear"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.15,
+      "x": 560,
+      "y": 412,
+      "kind": "sonar"
+     },
+     {
+      "at": 0.5,
+      "x": 980,
+      "y": 412,
+      "kind": "sonar"
+     },
+     {
+      "at": 0.8,
+      "x": 180,
+      "y": 412,
+      "kind": "sonar"
+     }
+    ],
+    "pins": [
+     {
+      "x": 700,
+      "y": 860,
+      "label": "B-59",
+      "at": 0.3,
+      "stick": 80
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 500,
+      "y": 700,
+      "zoom": 1.3
+     },
+     {
+      "at": 1,
+      "x": 900,
+      "y": 700,
+      "zoom": 1.3
+     }
+    ]
+   },
+   "annotation": "11 destroyers + 1 porte-avions",
+   "hud": {
+    "label": "TRAQUÉ"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Ils lâchent des grenades d'exercice. Mais à bord, l'équipage croit à une attaque.",
+   "scene": {
+    "type": "action",
+    "terrain": "ocean",
+    "actors": [
+     {
+      "sprite": "destroyer",
+      "keys": [
+       {
+        "at": 0,
+        "x": 330,
+        "y": 402,
+        "scale": 6
+       },
+       {
+        "at": 1,
+        "x": 330,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "sprite": "destroyer",
+      "keys": [
+       {
+        "at": 0,
+        "x": 780,
+        "y": 402,
+        "scale": 6
+       },
+       {
+        "at": 1,
+        "x": 780,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "sprite": "sub",
+      "keys": [
+       {
+        "at": 0,
+        "x": 560,
+        "y": 900,
+        "scale": 7
+       }
+      ]
+     },
+     {
+      "sprite": "charge",
+      "keys": [
+       {
+        "at": 0,
+        "x": 360,
+        "y": 402,
+        "scale": 6
+       },
+       {
+        "at": 0.35,
+        "x": 470,
+        "y": 780,
+        "ease": "in"
+       },
+       {
+        "at": 0.36,
+        "opacity": 0,
+        "ease": "step"
+       }
+      ]
+     },
+     {
+      "sprite": "charge",
+      "keys": [
+       {
+        "at": 0.1,
+        "x": 760,
+        "y": 402,
+        "scale": 6,
+        "opacity": 0
+       },
+       {
+        "at": 0.11,
+        "opacity": 1,
+        "ease": "step"
+       },
+       {
+        "at": 0.55,
+        "x": 660,
+        "y": 800,
+        "ease": "in"
+       },
+       {
+        "at": 0.56,
+        "opacity": 0,
+        "ease": "step"
+       }
+      ]
+     },
+     {
+      "sprite": "charge",
+      "keys": [
+       {
+        "at": 0.3,
+        "x": 420,
+        "y": 402,
+        "scale": 6,
+        "opacity": 0
+       },
+       {
+        "at": 0.31,
+        "opacity": 1,
+        "ease": "step"
+       },
+       {
+        "at": 0.75,
+        "x": 540,
+        "y": 810,
+        "ease": "in"
+       },
+       {
+        "at": 0.76,
+        "opacity": 0,
+        "ease": "step"
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.36,
+      "x": 470,
+      "y": 780,
+      "kind": "impact"
+     },
+     {
+      "at": 0.36,
+      "x": 470,
+      "y": 780,
+      "kind": "bubbles",
+      "n": 20
+     },
+     {
+      "at": 0.56,
+      "x": 660,
+      "y": 800,
+      "kind": "impact"
+     },
+     {
+      "at": 0.56,
+      "x": 660,
+      "y": 800,
+      "kind": "bubbles",
+      "n": 20
+     },
+     {
+      "at": 0.76,
+      "x": 540,
+      "y": 810,
+      "kind": "impact"
+     },
+     {
+      "at": 0.76,
+      "x": 540,
+      "y": 810,
+      "kind": "bubbles",
+      "n": 20
+     }
+    ],
+    "shake": [
+     {
+      "at": 0.36,
+      "amp": 20
+     },
+     {
+      "at": 0.56,
+      "amp": 24
+     },
+     {
+      "at": 0.76,
+      "amp": 28
+     }
+    ],
+    "flashAt": [
+     0.36,
+     0.56,
+     0.76
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 560,
+      "y": 700,
+      "zoom": 1.35
+     },
+     {
+      "at": 0.4,
+      "x": 560,
+      "y": 820,
+      "zoom": 1.55
+     },
+     {
+      "at": 1,
+      "x": 560,
+      "y": 860,
+      "zoom": 1.7
+     }
+    ]
+   },
+   "annotation": "grenades d'exercice",
+   "hud": {
+    "label": "ATTAQUE ?"
+   },
+   "transition": "cut",
+   "sfx": [
+    "boom@0.36:0.5",
+    "boom@0.56:0.55",
+    "boom@0.76:0.6"
+   ]
+  },
+  {
+   "text": "Batteries presque vides, climatisation en panne : une chaleur infernale.",
+   "scene": {
+    "type": "action",
+    "terrain": "subInterior",
+    "args": {
+     "alarm": 0.3,
+     "heat": [
+      0.3,
+      1
+     ]
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "short"
+      },
+      "cycle": 0.6,
+      "keys": [
+       {
+        "at": 0,
+        "x": 260,
+        "y": 1116,
+        "scale": 7,
+        "pose": "sit"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "short"
+      },
+      "cycle": 0.7,
+      "keys": [
+       {
+        "at": 0,
+        "x": 760,
+        "y": 1116,
+        "scale": 7,
+        "pose": "sit",
+        "flip": true
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "police",
+       "hatColor": "paper"
+      },
+      "cycle": 0.8,
+      "keys": [
+       {
+        "at": 0,
+        "x": 520,
+        "y": 1116,
+        "scale": 7,
+        "pose": "idle"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 980,
+      "zoom": 1.25
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 990,
+      "zoom": 1.4
+     }
+    ]
+   },
+   "hud": {
+    "gauge": {
+     "label": "BATTERIE",
+     "from": 14,
+     "to": 4
+    },
+    "label": "À BORD"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Depuis des jours, aucun contact avec Moscou.",
+   "scene": {
+    "type": "radar",
+    "blips": 0,
+    "label": "LIAISON MOSCOU",
+    "alert": "AUCUN SIGNAL"
+   },
+   "transition": "cut",
+   "sfx": [
+    "beep-low",
+    "beep-low@0.5"
+   ]
+  },
+  {
+   "text": "Le capitaine Savitsky croit que la guerre a commencé.",
+   "scene": {
+    "type": "portrait",
+    "face": {
+     "tone": "light",
+     "hair": "short",
+     "hat": "navy",
+     "outfit": "navy",
+     "brows": "angry",
+     "mouth": "shout",
+     "sweat": true,
+     "seed": "savitsky"
+    },
+    "alarm": true,
+    "bpm": [
+     110,
+     150
+    ]
+   },
+   "hud": {
+    "label": "CAPITAINE"
+   },
+   "transition": "glitch"
+  },
+  {
+   "text": "Selon un témoin, il ordonne de préparer la torpille nucléaire.",
+   "scene": {
+    "type": "action",
+    "terrain": "subInterior",
+    "args": {
+     "alarm": 1,
+     "heat": 1
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "police",
+       "hatColor": "paper"
+      },
+      "cycle": 1.2,
+      "keys": [
+       {
+        "at": 0,
+        "x": 360,
+        "y": 1116,
+        "scale": 8,
+        "pose": "point"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "short"
+      },
+      "cycle": 2.6,
+      "keys": [
+       {
+        "at": 0,
+        "x": 620,
+        "y": 1116,
+        "scale": 7,
+        "pose": "stand"
+       },
+       {
+        "at": 0.3,
+        "pose": "run"
+       },
+       {
+        "at": 1,
+        "x": 1150,
+        "ease": "in"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid3",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "short"
+      },
+      "cycle": 2.6,
+      "keys": [
+       {
+        "at": 0,
+        "x": 760,
+        "y": 1116,
+        "scale": 7,
+        "pose": "stand",
+        "flip": true
+       },
+       {
+        "at": 0.4,
+        "pose": "run",
+        "flip": false
+       },
+       {
+        "at": 1,
+        "x": 1250,
+        "ease": "in"
+       }
+      ]
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 520,
+      "y": 1000,
+      "zoom": 1.35
+     },
+     {
+      "at": 1,
+      "x": 560,
+      "y": 1000,
+      "zoom": 1.45
+     }
+    ]
+   },
+   "annotation": "témoignage de Vadim Orlov",
+   "hud": {
+    "label": "ALERTE"
+   },
+   "transition": "cut",
+   "sfx": [
+    "alarm",
+    "alarm@0.5"
+   ]
+  },
+  {
+   "text": "« Nous allons mourir, mais nous les coulerons tous. »",
+   "scene": {
+    "type": "typedNote",
+    "title": "CAPITAINE VALENTIN SAVITSKY",
+    "text": "Nous allons mourir, mais nous les coulerons tous.",
+    "sub": "propos rapportés par l'officier Vadim Orlov",
+    "face": {
+     "tone": "light",
+     "hair": "short",
+     "hat": "navy",
+     "outfit": "navy",
+     "brows": "angry",
+     "mouth": "shout",
+     "sweat": true,
+     "seed": "savitsky"
+    }
+   },
+   "transition": "cut",
+   "sfx": [
+    "type",
+    "type@0.3",
+    "type@0.6"
+   ]
+  },
+  {
+   "text": "Mais ici, le tir exige l'accord de trois officiers.",
+   "scene": {
+    "type": "iconGrid",
+    "total": 3,
+    "crossed": 0,
+    "label": "3 / 3",
+    "sub": "accords nécessaires pour tirer"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "L'officier politique dit oui.",
+   "scene": {
+    "type": "checklist",
+    "title": "TIR NUCLÉAIRE",
+    "items": [
+     {
+      "text": "Capitaine : oui",
+      "state": "check"
+     },
+     {
+      "text": "Officier politique : oui",
+      "state": "check"
+     },
+     {
+      "text": "3e officier : ?",
+      "state": "lock"
+     }
+    ],
+    "status": "EN ATTENTE"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Le troisième s'appelle Vassili Arkhipov.",
+   "scene": {
+    "type": "dossier",
+    "first": "Vassili",
+    "last": "Arkhipov",
+    "fields": [
+     {
+      "k": "Âge",
+      "v": "36 ans"
+     },
+     {
+      "k": "Fonction",
+      "v": "chef d'état-major"
+     },
+     {
+      "k": "Unité",
+      "v": "brigade de sous-marins"
+     }
+    ],
+    "face": {
+     "tone": "light",
+     "hair": "short",
+     "hat": "navy",
+     "outfit": "navy",
+     "brows": "neutral",
+     "mouth": "tense",
+     "seed": "arkhipov"
+    },
+    "index": "OFFICIER 3 / 3"
+   },
+   "hud": {
+    "label": "ARKHIPOV"
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Un an plus tôt, il a survécu à l'accident du K-19.",
+   "scene": {
+    "type": "stamp",
+    "text": "K-19",
+    "sub": "accident de réacteur · 1961"
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1962",
+     "to": "1961"
+    },
+    "label": "PASSÉ"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Il dit non.",
+   "scene": {
+    "type": "bigWord",
+    "text": "NON",
+    "sub": "Vassili Arkhipov",
+    "color": "accent",
+    "streaks": true
+   },
+   "hud": {
+    "clock": {
+     "mode": "text",
+     "value": "27.10.1962"
+    },
+    "label": "VOTE"
+   },
+   "transition": "glitch",
+   "sfx": [
+    "sting"
+   ]
+  },
+  {
+   "text": "Il convainc le capitaine de faire surface.",
+   "scene": {
+    "type": "action",
+    "terrain": "subInterior",
+    "args": {
+     "alarm": [
+      1,
+      0.1
+     ],
+     "heat": 0.6
+    },
+    "actors": [
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "police",
+       "hatColor": "paper"
+      },
+      "cycle": 1.2,
+      "keys": [
+       {
+        "at": 0,
+        "x": 400,
+        "y": 1116,
+        "scale": 8,
+        "pose": "point"
+       },
+       {
+        "at": 0.6,
+        "pose": "stand"
+       }
+      ]
+     },
+     {
+      "figure": {
+       "top": "mid1",
+       "bottom": "plum2",
+       "skin": "mid3",
+       "hair": "black",
+       "sleeves": "long",
+       "hat": "police",
+       "hatColor": "accent"
+      },
+      "cycle": 1.3,
+      "keys": [
+       {
+        "at": 0,
+        "x": 680,
+        "y": 1116,
+        "scale": 8,
+        "pose": "talk",
+        "flip": true
+       }
+      ],
+      "label": {
+       "text": "Arkhipov",
+       "from": 0.05,
+       "dy": 260
+      }
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 540,
+      "y": 1000,
+      "zoom": 1.5
+     },
+     {
+      "at": 1,
+      "x": 540,
+      "y": 1000,
+      "zoom": 1.65
+     }
+    ]
+   },
+   "hud": {
+    "label": "DÉCISION"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "Le B-59 émerge au milieu des navires américains.",
+   "scene": {
+    "type": "action",
+    "terrain": "ocean",
+    "args": {
+     "lights": [
+      0,
+      1,
+      0.4,
+      0.8
+     ]
+    },
+    "actors": [
+     {
+      "sprite": "destroyer",
+      "keys": [
+       {
+        "at": 0,
+        "x": 230,
+        "y": 402,
+        "scale": 6
+       },
+       {
+        "at": 1,
+        "x": 230,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "sprite": "destroyer",
+      "keys": [
+       {
+        "at": 0,
+        "x": 860,
+        "y": 402,
+        "scale": 6
+       },
+       {
+        "at": 1,
+        "x": 860,
+        "ease": "linear"
+       }
+      ]
+     },
+     {
+      "sprite": "sub",
+      "keys": [
+       {
+        "at": 0,
+        "x": 560,
+        "y": 900,
+        "scale": 7
+       },
+       {
+        "at": 0.6,
+        "y": 426,
+        "ease": "out"
+       },
+       {
+        "at": 1,
+        "y": 422
+       }
+      ]
+     }
+    ],
+    "bursts": [
+     {
+      "at": 0.6,
+      "x": 560,
+      "y": 402,
+      "kind": "water",
+      "n": 30
+     }
+    ],
+    "camera": [
+     {
+      "at": 0,
+      "x": 560,
+      "y": 760,
+      "zoom": 1.4
+     },
+     {
+      "at": 1,
+      "x": 560,
+      "y": 560,
+      "zoom": 1.5
+     }
+    ]
+   },
+   "hud": {
+    "label": "SURFACE"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "swell",
+    "splash@0.6"
+   ]
+  },
+  {
+   "text": "Pas de guerre. Le sous-marin rentre en URSS.",
+   "scene": {
+    "type": "map",
+    "mode": "globe",
+    "center": [
+     -20,
+     52
+    ],
+    "zoom": 1.25,
+    "highlight": [
+     "Russia",
+     "Cuba"
+    ],
+    "pin": {
+     "lon": 33,
+     "lat": 69,
+     "label": "Retour",
+     "sub": "flotte du Nord"
+    },
+    "route": [
+     [
+      -66,
+      24
+     ],
+     [
+      -40,
+      40
+     ],
+     [
+      -10,
+      58
+     ],
+     [
+      15,
+      68
+     ],
+     [
+      33,
+      69
+     ]
+    ]
+   },
+   "hud": {
+    "label": "RETOUR"
+   },
+   "transition": "cut",
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "text": "Au retour, un amiral leur reproche de ne pas avoir coulé.",
+   "scene": {
+    "type": "typedNote",
+    "title": "UN AMIRAL SOVIÉTIQUE",
+    "text": "Il aurait mieux valu couler avec votre navire.",
+    "sub": "accueil réservé à l'équipage"
+   },
+   "transition": "pixelDissolve",
+   "sfx": [
+    "type",
+    "type@0.4"
+   ]
+  },
+  {
+   "text": "Le monde n'apprendra cette histoire que quarante ans plus tard.",
+   "scene": {
+    "type": "timeline",
+    "title": "Vassili Arkhipov",
+    "events": [
+     {
+      "date": "1962",
+      "text": "Il dit non"
+     },
+     {
+      "date": "1998",
+      "text": "Il meurt, inconnu"
+     },
+     {
+      "date": "2002",
+      "text": "L'histoire est révélée"
+     }
+    ],
+    "highlight": 2
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "1962",
+     "to": "2002"
+    },
+    "label": "SECRET"
+   },
+   "transition": "cut"
+  },
+  {
+   "text": "On surnomme alors Arkhipov « l'homme qui a sauvé le monde ».",
+   "scene": {
+    "type": "typedNote",
+    "title": "THOMAS BLANTON · ARCHIVES NATIONALES DE SÉCURITÉ (2002)",
+    "text": "L'homme qui a sauvé le monde.",
+    "sub": "Vassili Arkhipov, 1926 – 1998",
+    "face": {
+     "tone": "light",
+     "hair": "short",
+     "hat": "navy",
+     "outfit": "navy",
+     "brows": "neutral",
+     "mouth": "neutral",
+     "seed": "arkhipov"
+    }
+   },
+   "transition": "glitch"
+  }
+ ]
+}
