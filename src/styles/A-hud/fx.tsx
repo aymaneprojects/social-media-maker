@@ -1,6 +1,6 @@
 import React from 'react';
 import {random} from 'remotion';
-import {withAlpha} from '../../shared/palette';
+import {hexToRgb, withAlpha} from '../../shared/palette';
 import {useThemeA} from './theme';
 
 // Film grain: an SVG turbulence whose seed changes every frame.
@@ -13,6 +13,49 @@ export const Grain: React.FC<{frame: number; opacity?: number}> = ({frame, opaci
     <rect width="100%" height="100%" filter={`url(#grain-${frame})`} />
   </svg>
 );
+
+// Living background behind every scene (as in the references, the screen is
+// never a flat colour): large dark blotches drifting slowly, a faint pixel grid
+// and a dithered floor in the lower third. Terrains simply paint over it.
+export const Ambient: React.FC<{ms: number}> = ({ms}) => {
+  const {pal} = useThemeA();
+  const [r, g, b] = hexToRgb(pal.plum).map((v) => v / 255);
+  const drift = Math.round(((ms / 1000) * 6) % 60);
+  return (
+    <>
+      <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+        <filter id="ambient" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.0042" numOctaves={3} seed={11} />
+          <feColorMatrix type="matrix" values={`0 0 0 0 ${r} 0 0 0 0 ${g} 0 0 0 0 ${b} 1.5 0 0 0 -0.5`} />
+        </filter>
+        <rect x={-60 + drift} y={-60} width={1200} height={2040} filter="url(#ambient)" opacity={0.7} />
+      </svg>
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.22,
+          backgroundImage: `linear-gradient(${pal.plum2} 3px, transparent 3px), linear-gradient(90deg, ${pal.plum2} 3px, transparent 3px)`,
+          backgroundSize: '60px 60px',
+          backgroundPosition: '0 30px',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 1390,
+          bottom: 0,
+          opacity: 0.55,
+          backgroundImage: `conic-gradient(${pal.plum} 25%, transparent 0 50%, ${pal.plum} 0 75%, transparent 0)`,
+          backgroundSize: '24px 24px',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 40%)',
+        }}
+      />
+    </>
+  );
+};
 
 export const Vignette: React.FC<{strength?: number}> = ({strength = 0.75}) => (
   <div
@@ -36,7 +79,7 @@ export const Scanlines: React.FC<{opacity?: number}> = ({opacity = 0.12}) => (
   />
 );
 
-const CELL = 60;
+const CELL = 30;
 const COLS = 1080 / CELL;
 const ROWS = 1920 / CELL;
 
@@ -49,7 +92,9 @@ export const BlockStorm: React.FC<{density: number; seed: string}> = ({density, 
   for (let y = 0; y < ROWS; y++) {
     for (let x = 0; x < COLS; x++) {
       const r = random(`${seed}-${x}-${y}`);
-      if (r > density * 0.85) continue;
+      // denser on the borders, lighter in the centre (keeps the subject readable)
+      const edge = Math.min(x, y, COLS - 1 - x, ROWS - 1 - y) / (COLS / 2);
+      if (r > density * (0.95 - 0.6 * Math.min(1, edge * 1.4))) continue;
       const c = colors[Math.floor(random(`${seed}-c-${x}-${y}`) * colors.length)];
       const small = random(`${seed}-s-${x}-${y}`) > 0.6;
       cells.push(
@@ -99,8 +144,8 @@ export const NoiseFrame: React.FC<{seed: string; tone: 'light' | 'border'}> = ({
 
 export type TransitionKind = 'cut' | 'pixelDissolve' | 'glitch' | 'flash' | 'pop';
 
-const IN_FRAMES: Record<TransitionKind, number> = {cut: 0, pixelDissolve: 9, glitch: 7, flash: 4, pop: 8};
-export const OUT_FRAMES: Record<TransitionKind, number> = {cut: 0, pixelDissolve: 5, glitch: 2, flash: 0, pop: 0};
+const IN_FRAMES: Record<TransitionKind, number> = {cut: 0, pixelDissolve: 7, glitch: 6, flash: 4, pop: 8};
+export const OUT_FRAMES: Record<TransitionKind, number> = {cut: 0, pixelDissolve: 4, glitch: 2, flash: 0, pop: 0};
 
 // Overlay drawn on top of the scene. `fIn` = frames since the beat started,
 // `fOutNext` = frames left before a beat whose transition is `nextKind`.

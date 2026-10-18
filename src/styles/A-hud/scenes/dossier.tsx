@@ -7,6 +7,7 @@ import {colorsA, SPRITES} from '../sprites';
 import {type SceneProps, useThemeA} from '../theme';
 import {typed} from '../ui';
 import {HeartRateOverlay} from './data';
+import {Face, FACE_H, FACE_W, type FaceSpec} from '../face';
 
 // Fallback portrait when no AI image exists: pixel bust lit from the left.
 const BustCanvas: React.FC<{w: number; h: number; scale: number; hair?: 'short' | 'long' | 'none'; seed?: string}> = ({w, h, scale, hair = 'short'}) => {
@@ -69,8 +70,18 @@ const BustCanvas: React.FC<{w: number; h: number; scale: number; hair?: 'short' 
   );
 };
 
-export const Portrait: React.FC<{image?: string; w: number; h: number; hair?: 'short' | 'long' | 'none'}> = ({image, w, h, hair}) => {
-  const {assetsBase} = useThemeA();
+export const Portrait: React.FC<{image?: string; w: number; h: number; hair?: 'short' | 'long' | 'none'; face?: FaceSpec; ms?: number; boxed?: boolean}> = ({image, w, h, hair, face, ms = 0, boxed = true}) => {
+  const {assetsBase, pal} = useThemeA();
+  if (face) {
+    const sc = Math.max(2, Math.floor(Math.min(w / FACE_W, h / FACE_H)));
+    return (
+      <div style={{position: 'relative', width: w, height: h, overflow: 'hidden', background: boxed ? `radial-gradient(circle at 40% 35%, ${pal.plum2}, ${pal.plum} 70%)` : undefined}}>
+        <div style={{position: 'absolute', left: Math.round((w - FACE_W * sc) / 2), top: h - FACE_H * sc, width: FACE_W * sc, height: FACE_H * sc}}>
+          <Face spec={face} pal={pal} ms={ms} scale={sc} />
+        </div>
+      </div>
+    );
+  }
   if (image)
     return <Img src={staticFile(`${assetsBase}${image}`)} style={{width: w, height: h, objectFit: 'cover', imageRendering: 'pixelated'}} />;
   const scale = 6;
@@ -90,6 +101,7 @@ export const Dossier: React.FC<
     fields: {k: string; v: string}[];
     image?: string;
     hair?: 'short' | 'long' | 'none';
+    face?: FaceSpec;
     index?: string; // "1 / 92"
     sprite?: string; // small icon drawn in the card (ship, plane…)
     stamp?: string;
@@ -112,7 +124,7 @@ export const Dossier: React.FC<
       />
       <div style={{position: 'absolute', left: 84, top: 296, width: 912, height: 810, border: `3px solid ${pal.accent}`, background: pal.bg}}>
         <div style={{position: 'absolute', left: 45, top: 64, width: 370, height: 420, border: `3px solid ${pal.accent}`, overflow: 'hidden'}}>
-          <Portrait image={params.image} w={364} h={414} hair={params.hair} />
+          <Portrait image={params.image} w={364} h={414} hair={params.hair} face={params.face} ms={ms} />
         </div>
         <div style={{position: 'absolute', left: 455, top: 80, fontFamily: FONT.caption, fontSize: 76, lineHeight: '74px'}}>
           <div style={{color: pal.white}}>{params.first.toUpperCase()}</div>
@@ -161,7 +173,7 @@ export const Dossier: React.FC<
 
 // Close-up portrait with sweat drops and a pulse monitor (tension scenes).
 export const PortraitScene: React.FC<
-  SceneProps<{image?: string; hair?: 'short' | 'long' | 'none'; sweat?: boolean; bpm?: [number, number]; water?: boolean}>
+  SceneProps<{image?: string; hair?: 'short' | 'long' | 'none'; face?: FaceSpec; sweat?: boolean; bpm?: [number, number]; water?: boolean; alarm?: boolean}>
 > = ({params, ms, durationMs}) => {
   const {pal} = useThemeA();
   const colors = colorsA(pal);
@@ -171,9 +183,10 @@ export const PortraitScene: React.FC<
     <>
       <div style={{position: 'absolute', inset: 0, background: `radial-gradient(circle at 50% 35%, ${pal.plum2}, ${pal.bg} 70%)`}} />
       <div style={{position: 'absolute', left: 180, top: 260, width: 720, height: 860, transform: `scale(${z})`, transformOrigin: '50% 40%'}}>
-        <Portrait image={params.image} w={720} h={860} hair={params.hair} />
-        {params.sweat && <Sprite art={SPRITES.drop} colors={colors} scale={9} x={520} y={260 + dropY} />}
+        <Portrait image={params.image} w={720} h={860} hair={params.hair} face={params.face ? {...params.face, sweat: params.face.sweat ?? params.sweat} : undefined} ms={ms} boxed={false} />
+        {params.sweat && !params.face && <Sprite art={SPRITES.drop} colors={colors} scale={9} x={520} y={260 + dropY} />}
       </div>
+      {params.alarm && <div style={{position: 'absolute', inset: 0, background: pal.accent, mixBlendMode: 'multiply', opacity: 0.25 + 0.2 * Math.max(0, Math.sin(ms / 160))}} />}
       {params.water && (
         <div
           style={{

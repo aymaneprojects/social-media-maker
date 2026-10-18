@@ -176,21 +176,22 @@ export const TimelineA: React.FC<SceneProps<{title?: string; events: {date: stri
   const {pal} = useThemeA();
   const n = params.events.length;
   const step = (durationMs * 0.75) / Math.max(1, n);
-  const top = 360;
-  const gap = Math.min(170, 760 / Math.max(1, n));
+  const gap = Math.min(210, 760 / Math.max(1, n));
+  const top = Math.round(720 - (gap * (n - 1)) / 2);
   return (
     <>
-      {params.title && <SmallText text={params.title} y={290} size={24} color={pal.accent} />}
+      {params.title && <SmallText text={params.title} y={top - 130} size={32} color={pal.accent} />}
       <div style={{position: 'absolute', left: 230, top, width: 6, height: gap * (n - 1) * Math.min(1, ms / (step * n)) + 6, background: pal.accent}} />
+      <div style={{position: 'absolute', left: 230, top, width: 6, height: gap * (n - 1) + 6, background: pal.plum2, zIndex: -1}} />
       {params.events.map((e, i) => {
         if (ms < i * step) return null;
         const y = top + i * gap;
         const hl = params.highlight === i;
         return (
           <React.Fragment key={i}>
-            <div style={{position: 'absolute', left: 215, top: y - 12, width: 36, height: 36, background: hl ? pal.accent : pal.bg, border: `6px solid ${pal.accent}`, boxSizing: 'border-box'}} />
-            <div style={{position: 'absolute', left: 40, width: 160, top: y - 14, textAlign: 'right', fontFamily: FONT.digits, fontSize: 34, color: pal.white}}>{e.date}</div>
-            <div style={{position: 'absolute', left: 290, right: 60, top: y - 22, fontFamily: FONT.caption, fontSize: 54, lineHeight: '54px', color: hl ? pal.accent : pal.white}}>
+            <div style={{position: 'absolute', left: 209, top: y - 18, width: 48, height: 48, background: hl ? pal.accent : pal.bg, border: `9px solid ${pal.accent}`, boxSizing: 'border-box'}} />
+            <div style={{position: 'absolute', left: 20, width: 170, top: y - 16, textAlign: 'right', fontFamily: FONT.digits, fontSize: 44, color: hl ? pal.accent : pal.white}}>{e.date}</div>
+            <div style={{position: 'absolute', left: 300, right: 40, top: y - 30, fontFamily: FONT.caption, fontSize: 70, lineHeight: '68px', color: hl ? pal.accent : pal.white}}>
               {typed(e.text.toUpperCase(), ms, i * step, 40)}
             </div>
           </React.Fragment>

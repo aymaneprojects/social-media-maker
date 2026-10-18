@@ -26,11 +26,13 @@ export const BigDate: React.FC<SceneProps<{date: string; label?: string; y?: num
   const y = params.y ?? 330;
   return (
     <>
-      <BigText text={text} y={y} size={150} />
-      {params.label && ms > 500 && <SmallText text={params.label} y={y + 175} color={pal.accent} size={26} />}
+      <BigText text={text} y={y} size={text.length > 8 ? 170 : 200} />
+      {params.label && ms > 500 && <SmallText text={params.label} y={y + 215} color={pal.accent} size={32} />}
     </>
   );
 };
+
+const n0 = (v?: number) => (v ?? 0) > 0;
 
 // ---------------------------------------------------------------- counter
 // Big animated number with optional unit, label and a block grid that fills.
@@ -52,8 +54,8 @@ export const Counter: React.FC<
   const p = ease(ms, 0, durationMs * (params.durationRatio ?? 0.8));
   const v = params.from + (params.to - params.from) * p;
   const text = `${params.prefix ?? ''}${fmtNumber(v, params.decimals ?? 0)}${params.suffix ? ` ${params.suffix}` : ''}`;
-  const size = text.length > 9 ? 150 : text.length > 6 ? 190 : 230;
-  const y = params.y ?? 560;
+  const size = text.length > 9 ? 170 : text.length > 6 ? 220 : 280;
+  const y = params.y ?? (n0(params.blocks) ? 430 : 520);
   const color = params.color === 'white' ? pal.white : pal.accent;
   const n = params.blocks ?? 0;
   const cols = Math.min(n, 13);
@@ -61,21 +63,21 @@ export const Counter: React.FC<
   return (
     <>
       <BigText text={text} y={y} size={size} color={color} />
-      {params.label && <SmallText text={params.label} y={y + size + 20} size={24} />}
+      {params.label && <SmallText text={params.label} y={y + size + 24} size={32} />}
       {n > 0 && (
         <div
           style={{
             position: 'absolute',
-            left: 540 - (cols * 30) / 2,
-            top: y + size + 80,
-            width: cols * 30,
+            left: 540 - (cols * 48) / 2,
+            top: y + size + 96,
+            width: cols * 48,
             display: 'grid',
-            gridTemplateColumns: `repeat(${cols}, 30px)`,
+            gridTemplateColumns: `repeat(${cols}, 48px)`,
             gap: 0,
           }}
         >
           {Array.from({length: n}, (_, i) => (
-            <div key={i} style={{width: 21, height: 21, margin: 4, background: i < filled ? color : pal.plum2}} />
+            <div key={i} style={{width: 36, height: 30, margin: '6px 6px', background: i < filled ? color : pal.plum2}} />
           ))}
         </div>
       )}
@@ -463,8 +465,8 @@ export const BigWord: React.FC<SceneProps<{text: string; sub?: string; color?: '
             />
           );
         })}
-      <BigText text={params.text.toUpperCase()} y={560} size={params.text.length > 9 ? 110 : 140} color={color} echo={false} />
-      {params.sub && <SmallText text={params.sub} y={720} size={24} color={pal.accent} />}
+      <BigText text={params.text.toUpperCase()} y={560} size={params.text.length > 9 ? 130 : 180} color={color} />
+      {params.sub && <SmallText text={params.sub} y={params.text.length > 9 ? 720 : 770} size={32} color={pal.accent} />}
     </>
   );
 };

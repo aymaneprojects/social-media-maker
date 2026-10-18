@@ -6,7 +6,7 @@ import {paletteA} from '../../shared/palette';
 import {type Episode, msToFrame} from '../../shared/schema';
 import {beatAt, frameToMs} from '../../shared/timing';
 import {Captions} from './Captions';
-import {Grain, Scanlines, sceneTransform, TransitionOverlay, Vignette, type TransitionKind} from './fx';
+import {Ambient, Grain, Scanlines, sceneTransform, TransitionOverlay, Vignette, type TransitionKind} from './fx';
 import {Hud} from './Hud';
 import {RenderSceneA} from './scenes';
 import {EndCardA} from './scenes/misc';
@@ -38,6 +38,7 @@ export const VideoA: React.FC<Episode> = (ep) => {
       <AbsoluteFill style={{background: pal.bg, overflow: 'hidden'}}>
         {!inEndCard && (
           <>
+            <Ambient ms={ms} />
             <AbsoluteFill style={{transform: [sceneTransform(kind, fIn, beat.id), `scale(${zoom})`].filter(Boolean).join(' ')}}>
               <RenderSceneA scene={beat.scene as never} ms={beatMs} durationMs={beatDur} />
             </AbsoluteFill>
