@@ -102,13 +102,13 @@ export const IconGrid: React.FC<
   const rows = Math.ceil(total / cols);
   const {w, h} = spriteSize(SPRITES.person);
   const maxW = 860;
-  const maxH = 760;
+  const maxH = params.label ? 600 : 760;
   const cellW = maxW / cols;
   const scale = Math.max(2, Math.floor(Math.min(cellW / (w * 1.9), maxH / rows / (h * 1.5))));
   const gridW = cols * w * scale * 1.9;
   const gridH = rows * h * scale * 1.5;
   const x0 = 540 - gridW / 2;
-  const y0 = 300 + (maxH - gridH) / 2;
+  const y0 = 300 + Math.max(0, (maxH - gridH) / 2);
   const crossed = params.crossed ?? 0;
   const order = Array.from({length: total}, (_, i) => i).filter((i) => i !== params.survivor);
   // deterministic shuffle so crosses appear scattered
@@ -166,8 +166,8 @@ export const IconGrid: React.FC<
           </React.Fragment>
         );
       })}
-      {params.label && ms > durationMs * 0.5 && <BigText text={params.label} y={y0 + gridH + 40} size={130} color={pal.accent} />}
-      {params.sub && ms > durationMs * 0.5 && <SmallText text={params.sub} y={y0 + gridH + 180} size={22} />}
+      {params.label && ms > durationMs * 0.5 && <BigText text={params.label} y={Math.min(y0 + gridH + 30, 960)} size={110} color={pal.accent} />}
+      {params.sub && ms > durationMs * 0.5 && <SmallText text={params.sub} y={Math.min(y0 + gridH + 150, 1080)} size={22} />}
     </>
   );
 };

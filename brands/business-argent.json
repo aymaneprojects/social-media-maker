@@ -1,0 +1,33 @@
+{
+  "slug": "business-argent",
+  "name": "Alfred Explique",
+  "handle": "@alfred.explique",
+  "style": "B",
+  "accent": "#E2B04A",
+  "lang": "FR",
+  "theme": "Business & argent : arnaques, fraudes, faillites, fortunes, coulisses des marques et des marchés.",
+  "examples": [
+    "La fraude au Monopoly de McDonald's",
+    "L'interdiction des flippers à New York",
+    "La bulle des tulipes"
+  ],
+  "provisional": true,
+  "uploadProfile": null,
+  "voice": "F9KUTOne5xOKqAbIU7yg",
+  "schedule": {
+    "timezone": "Europe/Paris",
+    "slots": [
+      "18:30"
+    ],
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ]
+  },
+  "hashtags": []
+}

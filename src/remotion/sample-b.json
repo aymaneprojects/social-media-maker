@@ -1,0 +1,229 @@
+{
+ "id": "sample-b",
+ "issue": 7,
+ "brand": {
+  "slug": "business-argent",
+  "name": "Alfred Explique",
+  "handle": "@alfred.explique",
+  "style": "B",
+  "accent": "#E2B04A",
+  "lang": "FR"
+ },
+ "endCard": {
+  "place": "New York",
+  "year": "1942"
+ },
+ "durationMs": 27000,
+ "assetsBase": "ep/sample-b/",
+ "words": [],
+ "beats": [
+  {
+   "id": "b0",
+   "startMs": 0,
+   "endMs": 2500,
+   "text": "title",
+   "scene": {
+    "type": "title",
+    "text": "New York",
+    "sub": "1942",
+    "sprite": "building"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "id": "b1",
+   "startMs": 2500,
+   "endMs": 5000,
+   "text": "map",
+   "scene": {
+    "type": "map",
+    "center": [
+     11,
+     5
+    ],
+    "zoom": 2.2,
+    "highlight": [
+     "Cameroon"
+    ],
+    "pins": [
+     {
+      "lon": 10.3,
+      "lat": 6.44,
+      "label": "Lac Nyos"
+     }
+    ],
+    "line": {
+     "from": [
+      10.3,
+      6.44
+     ],
+     "to": [
+      10.6,
+      6.2
+     ],
+     "label": "25 km"
+    }
+   },
+   "transition": "cut",
+   "hud": {
+    "clues": [
+     {
+      "sprite": "skull"
+     }
+    ]
+   }
+  },
+  {
+   "id": "b2",
+   "startMs": 5000,
+   "endMs": 7500,
+   "text": "nameTag",
+   "scene": {
+    "type": "nameTag",
+    "name": "René Dagron",
+    "role": "Photographe",
+    "sprite": "person"
+   },
+   "transition": "cut",
+   "hud": {
+    "clues": [
+     {
+      "sprite": "skull"
+     },
+     {
+      "sprite": "magnifier"
+     }
+    ]
+   }
+  },
+  {
+   "id": "b3",
+   "startMs": 7500,
+   "endMs": 10000,
+   "text": "bar",
+   "scene": {
+    "type": "barCompare",
+    "bars": [
+     {
+      "label": "Monoun",
+      "value": 37,
+      "color": "gold"
+     },
+     {
+      "label": "Nyos",
+      "value": 1746,
+      "color": "red"
+     }
+    ],
+    "factor": "×50"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "id": "b4",
+   "startMs": 10000,
+   "endMs": 12500,
+   "text": "prop",
+   "scene": {
+    "type": "prop",
+    "sprite": "dice",
+    "title": "Hasard",
+    "stamp": {
+     "text": "Interdit",
+     "color": "red"
+    }
+   },
+   "transition": "cut",
+   "hud": {
+    "date": "1942"
+   }
+  },
+  {
+   "id": "b5",
+   "startMs": 12500,
+   "endMs": 15000,
+   "text": "split",
+   "scene": {
+    "type": "split",
+    "title": "La règle",
+    "left": {
+     "sprite": "dice",
+     "stamp": "Interdit",
+     "color": "red"
+    },
+    "right": {
+     "sprite": "target",
+     "stamp": "Autorisé",
+     "color": "green"
+    }
+   },
+   "transition": "cut"
+  },
+  {
+   "id": "b6",
+   "startMs": 15000,
+   "endMs": 17500,
+   "text": "counter",
+   "scene": {
+    "type": "counter",
+    "from": 0,
+    "to": 17301,
+    "label": "messages",
+    "sprite": "pigeon"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "id": "b7",
+   "startMs": 17500,
+   "endMs": 20000,
+   "text": "timeline",
+   "scene": {
+    "type": "timeline",
+    "from": "1942",
+    "to": "1947",
+    "label": "5 ans"
+   },
+   "transition": "cut"
+  },
+  {
+   "id": "b8",
+   "startMs": 20000,
+   "endMs": 22500,
+   "text": "balance",
+   "scene": {
+    "type": "balance",
+    "left": {
+     "sprite": "coins",
+     "label": "1 000 000 $"
+    },
+    "right": {
+     "sprite": "document",
+     "label": "Contrat"
+    },
+    "tilt": "left",
+    "title": "Tous les messages"
+   },
+   "transition": "cut"
+  },
+  {
+   "id": "b9",
+   "startMs": 22500,
+   "endMs": 25000,
+   "text": "icons",
+   "scene": {
+    "type": "icons",
+    "sprite": "head",
+    "total": 12,
+    "highlight": 6,
+    "label": "12 volontaires",
+    "sub": "6 malades"
+   },
+   "transition": "pixelDissolve"
+  }
+ ],
+ "audio": {
+  "ambience": [],
+  "sfx": []
+ }
+}

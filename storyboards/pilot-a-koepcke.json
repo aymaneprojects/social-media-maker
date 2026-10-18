@@ -1,0 +1,699 @@
+{
+ "title": "Juliane Koepcke, seule survivante du vol LANSA 508",
+ "endCard": {
+  "place": "Pérou",
+  "year": "1971"
+ },
+ "post": {
+  "caption": "Elle a 17 ans quand son avion se désintègre au-dessus de l'Amazonie. Ce qui suit est à peine croyable.",
+  "hashtags": [
+   "#histoirevraie",
+   "#survie",
+   "#amazonie",
+   "#pixelart",
+   "#faitdivers",
+   "#histoire"
+  ],
+  "youtubeTitle": "Elle tombe de 3 000 mètres… et survit 11 jours dans la jungle",
+  "description": "Le 24 décembre 1971, le vol LANSA 508 se disloque dans un orage au-dessus de l'Amazonie péruvienne. Juliane Koepcke, 17 ans, est la seule survivante sur 92 personnes. Sources : Wikipédia (LANSA Flight 508), J. Koepcke « Quand je suis tombée du ciel »."
+ },
+ "ambience": [
+  {
+   "sound": "amb-wind",
+   "fromBeat": 1,
+   "toBeat": 2,
+   "volume": 0.3
+  },
+  {
+   "sound": "amb-drone",
+   "fromBeat": 3,
+   "toBeat": 6,
+   "volume": 0.22
+  },
+  {
+   "sound": "amb-storm",
+   "fromBeat": 7,
+   "toBeat": 11,
+   "volume": 0.32
+  },
+  {
+   "sound": "amb-jungle",
+   "fromBeat": 12,
+   "toBeat": 22,
+   "volume": 0.45
+  },
+  {
+   "sound": "amb-drone",
+   "fromBeat": 12,
+   "toBeat": 22,
+   "volume": 0.14
+  },
+  {
+   "sound": "amb-tension",
+   "fromBeat": 23,
+   "toBeat": 25,
+   "volume": 0.22
+  }
+ ],
+ "beats": [
+  {
+   "text": "Elle tombe de 3 000 mètres.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "sky",
+    "fx": [
+     "mist"
+    ],
+    "sprites": [
+     {
+      "sprite": "seat",
+      "x": 540,
+      "y": 520,
+      "scale": 14,
+      "fall": 160,
+      "tilt": -12
+     }
+    ]
+   },
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "24.12.1971"
+    },
+    "label": "PÉROU"
+   },
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "text": "Et elle survit.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "jungle",
+    "fx": [
+     "fireflies"
+    ],
+    "sprites": [
+     {
+      "sprite": "seat",
+      "x": 540,
+      "y": 980,
+      "scale": 12,
+      "tilt": 20
+     }
+    ]
+   },
+   "transition": "glitch"
+  },
+  {
+   "text": "24 décembre 1971.",
+   "scene": {
+    "type": "bigDate",
+    "date": "24.12.1971",
+    "label": "VOL LANSA 508",
+    "under": {
+     "type": "backdrop",
+     "terrain": "sky",
+     "sprites": [
+      {
+       "sprite": "plane",
+       "x": 300,
+       "y": 900,
+       "scale": 12,
+       "driftX": 90
+      }
+     ]
+    }
+   },
+   "transition": "pixelDissolve",
+   "hud": {
+    "label": "LIMA"
+   }
+  },
+  {
+   "text": "Vol LANSA 508, de Lima à Pucallpa.",
+   "scene": {
+    "type": "map",
+    "mode": "flat",
+    "center": [
+     -75.3,
+     -9.6
+    ],
+    "zoom": 2.4,
+    "highlight": [
+     "Peru"
+    ],
+    "pin": {
+     "lon": -74.55,
+     "lat": -8.38,
+     "label": "Pucallpa",
+     "sub": "Pérou"
+    },
+    "route": [
+     [
+      -77.04,
+      -12.05
+     ],
+     [
+      -76.9405,
+      -11.9032
+     ],
+     [
+      -76.84100000000001,
+      -11.756400000000001
+     ],
+     [
+      -76.7415,
+      -11.6096
+     ],
+     [
+      -76.64200000000001,
+      -11.462800000000001
+     ],
+     [
+      -76.5425,
+      -11.316
+     ],
+     [
+      -76.44300000000001,
+      -11.1692
+     ],
+     [
+      -76.3435,
+      -11.022400000000001
+     ],
+     [
+      -76.244,
+      -10.8756
+     ],
+     [
+      -76.14450000000001,
+      -10.7288
+     ],
+     [
+      -76.045,
+      -10.582
+     ],
+     [
+      -75.94550000000001,
+      -10.4352
+     ],
+     [
+      -75.846,
+      -10.288400000000001
+     ],
+     [
+      -75.74650000000001,
+      -10.1416
+     ],
+     [
+      -75.647,
+      -9.994800000000001
+     ],
+     [
+      -75.5475,
+      -9.848
+     ],
+     [
+      -75.44800000000001,
+      -9.7012
+     ],
+     [
+      -75.3485,
+      -9.554400000000001
+     ],
+     [
+      -75.24900000000001,
+      -9.4076
+     ],
+     [
+      -75.1495,
+      -9.2608
+     ],
+     [
+      -75.05000000000001,
+      -9.114
+     ],
+     [
+      -74.9505,
+      -8.9672
+     ],
+     [
+      -74.851,
+      -8.8204
+     ],
+     [
+      -74.75150000000001,
+      -8.6736
+     ],
+     [
+      -74.652,
+      -8.526800000000001
+     ],
+     [
+      -74.55250000000001,
+      -8.38
+     ]
+    ]
+   }
+  },
+  {
+   "text": "À bord, Juliane Koepcke, 17 ans.",
+   "scene": {
+    "type": "dossier",
+    "first": "Juliane",
+    "last": "Koepcke",
+    "fields": [
+     {
+      "k": "Âge",
+      "v": "17 ans"
+     },
+     {
+      "k": "Statut",
+      "v": "Lycéenne"
+     },
+     {
+      "k": "Vol",
+      "v": "LANSA 508"
+     }
+    ],
+    "index": "1 / 92",
+    "sprite": "plane",
+    "hair": "long"
+   },
+   "transition": "pop",
+   "imagePrompt": "portrait of a 17-year-old girl from the early 1970s, long straight hair, glasses, calm serious expression, simple collared dress"
+  },
+  {
+   "text": "Elle voyage avec sa mère pour Noël.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "sky",
+    "fx": [
+     "stars"
+    ],
+    "sprites": [
+     {
+      "sprite": "plane",
+      "x": 200,
+      "y": 760,
+      "scale": 12,
+      "driftX": 120
+     }
+    ]
+   }
+  },
+  {
+   "text": "Au-dessus de l'Amazonie, l'avion entre dans un orage.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "storm",
+    "fx": [
+     "rain",
+     "lightning"
+    ],
+    "flashAt": [
+     1500
+    ],
+    "sprites": [
+     {
+      "sprite": "plane",
+      "x": 260,
+      "y": 780,
+      "scale": 12,
+      "driftX": 110,
+      "bob": true
+     }
+    ]
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "La foudre frappe l'appareil.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "storm",
+    "fx": [
+     "rain",
+     "lightning"
+    ],
+    "flashAt": [
+     150,
+     700
+    ],
+    "sprites": [
+     {
+      "sprite": "plane",
+      "x": 540,
+      "y": 780,
+      "scale": 12,
+      "glow": true,
+      "bob": true
+     }
+    ]
+   },
+   "sfx": [
+    "thunder"
+   ],
+   "annotation": "AILE EN FEU"
+  },
+  {
+   "text": "Il se disloque en plein ciel.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "storm",
+    "fx": [
+     "rain"
+    ],
+    "breakAt": 250,
+    "sprites": [
+     {
+      "sprite": "plane",
+      "x": 540,
+      "y": 760,
+      "scale": 12,
+      "glow": true
+     }
+    ]
+   },
+   "transition": "flash"
+  },
+  {
+   "text": "Juliane est éjectée, attachée à sa rangée de sièges.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "sky",
+    "fx": [
+     "rain"
+    ],
+    "sprites": [
+     {
+      "sprite": "seat",
+      "x": 540,
+      "y": 420,
+      "scale": 14,
+      "fall": 140,
+      "tilt": 25
+     }
+    ]
+   }
+  },
+  {
+   "text": "3 000 mètres de chute.",
+   "scene": {
+    "type": "gauge",
+    "from": 3000,
+    "to": 0,
+    "unit": "M",
+    "label": "ALTITUDE",
+    "sprite": "seat",
+    "trail": "wind"
+   },
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "text": "Les arbres amortissent l'impact.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "jungle",
+    "sprites": [
+     {
+      "sprite": "seat",
+      "x": 540,
+      "y": 560,
+      "scale": 12,
+      "fall": 220,
+      "tilt": 40
+     }
+    ]
+   },
+   "sfx": [
+    "boom"
+   ]
+  },
+  {
+   "text": "Elle se réveille seule, en pleine jungle.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "jungle",
+    "fx": [
+     "mist",
+     "fireflies"
+    ]
+   },
+   "transition": "pixelDissolve",
+   "hud": {
+    "clock": {
+     "mode": "elapsed",
+     "fromSec": 0,
+     "toSec": 5400
+    },
+    "label": "JOUR 1"
+   }
+  },
+  {
+   "text": "Clavicule cassée. Un œil gonflé. Une plaie au bras.",
+   "scene": {
+    "type": "checklist",
+    "title": "Blessures",
+    "items": [
+     {
+      "text": "Clavicule cassée",
+      "state": "check"
+     },
+     {
+      "text": "Œil gonflé",
+      "state": "check"
+     },
+     {
+      "text": "Plaie au bras",
+      "state": "check"
+     }
+    ],
+    "status": "Seule"
+   }
+  },
+  {
+   "text": "Il lui reste une sandale et un sac de bonbons.",
+   "scene": {
+    "type": "inventory",
+    "title": "Ce qu'il lui reste",
+    "items": [
+     {
+      "sprite": "shoe",
+      "text": "1 sandale"
+     },
+     {
+      "sprite": "candy",
+      "text": "Des bonbons"
+     },
+     {
+      "sprite": "glasses",
+      "text": "Lunettes",
+      "crossed": true
+     }
+    ]
+   }
+  },
+  {
+   "text": "Son père lui a appris une règle.",
+   "scene": {
+    "type": "typedNote",
+    "title": "Règle n°1",
+    "text": "Suivre l'eau.",
+    "sub": "Elle mène aux hommes"
+   }
+  },
+  {
+   "text": "Suivre l'eau. Elle mène aux hommes.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "river",
+    "fx": [
+     "fireflies"
+    ]
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Alors elle marche dans les ruisseaux, jour après jour.",
+   "scene": {
+    "type": "counter",
+    "from": 1,
+    "to": 9,
+    "label": "JOURS DE MARCHE",
+    "blocks": 9,
+    "color": "accent"
+   },
+   "hud": {
+    "clock": {
+     "mode": "elapsed",
+     "fromSec": 86400,
+     "toSec": 691200
+    },
+    "label": "JOUR 8"
+   }
+  },
+  {
+   "text": "Dans sa plaie, des larves grouillent.",
+   "scene": {
+    "type": "portrait",
+    "sweat": true,
+    "bpm": [
+     110,
+     138
+    ],
+    "hair": "long"
+   },
+   "transition": "glitch",
+   "annotation": "INFECTION",
+   "imagePrompt": "close-up portrait of an exhausted teenage girl lost in the jungle, wet long hair, dirty face, scared eyes, 1970s"
+  },
+  {
+   "text": "Au neuvième jour, elle trouve une cabane et un bateau.",
+   "scene": {
+    "type": "image",
+    "zoom": [
+     1.0,
+     1.08
+    ],
+    "fx": [
+     "fireflies"
+    ],
+    "pins": [
+     {
+      "x": 560,
+      "y": 820,
+      "label": "Cabane",
+      "sub": "Jour 9"
+     }
+    ],
+    "fallback": {
+     "type": "backdrop",
+     "terrain": "river",
+     "fx": [
+      "fireflies"
+     ],
+     "sprites": [
+      {
+       "sprite": "hut",
+       "x": 700,
+       "y": 760,
+       "scale": 12
+      },
+      {
+       "sprite": "boat",
+       "x": 420,
+       "y": 1010,
+       "scale": 12,
+       "bob": true
+      }
+     ],
+     "pins": [
+      {
+       "x": 560,
+       "y": 820,
+       "label": "Cabane",
+       "sub": "Jour 9"
+      }
+     ]
+    }
+   },
+   "hud": {
+    "label": "JOUR 9"
+   },
+   "imagePrompt": "a small wooden hut on stilts next to a narrow jungle river, a wooden boat moored on the bank, night, moonlight, dense rainforest"
+  },
+  {
+   "text": "Elle verse de l'essence sur sa blessure.",
+   "scene": {
+    "type": "bigWord",
+    "text": "ESSENCE",
+    "sub": "sur la plaie",
+    "color": "accent"
+   },
+   "sfx": [
+    "splash"
+   ]
+  },
+  {
+   "text": "Le lendemain, des bûcherons la découvrent.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "river",
+    "sprites": [
+     {
+      "sprite": "boat",
+      "x": 540,
+      "y": 1000,
+      "scale": 12,
+      "bob": true
+     },
+     {
+      "sprite": "person",
+      "x": 470,
+      "y": 930,
+      "scale": 7
+     },
+     {
+      "sprite": "person",
+      "x": 610,
+      "y": 930,
+      "scale": 7
+     }
+    ]
+   },
+   "hud": {
+    "label": "JOUR 10"
+   },
+   "transition": "pixelDissolve"
+  },
+  {
+   "text": "Sur 92 personnes à bord, une seule a survécu.",
+   "scene": {
+    "type": "iconGrid",
+    "total": 92,
+    "crossed": 91,
+    "survivor": 0,
+    "label": "1 / 92",
+    "sub": "SURVIVANTE"
+   },
+   "hud": {
+    "label": "BILAN"
+   }
+  },
+  {
+   "text": "Juliane Koepcke.",
+   "scene": {
+    "type": "stamp",
+    "text": "VIVANTE",
+    "sub": "Seule survivante",
+    "heart": true
+   },
+   "transition": "pop"
+  },
+  {
+   "text": "Aujourd'hui, elle protège cette même jungle.",
+   "scene": {
+    "type": "backdrop",
+    "terrain": "jungle",
+    "fx": [
+     "fireflies",
+     "mist"
+    ]
+   },
+   "transition": "pixelDissolve",
+   "hud": {
+    "clock": {
+     "mode": "date",
+     "from": "24.12.1971",
+     "to": "18.10.2026"
+    },
+    "label": "AUJOURD'HUI"
+   }
+  }
+ ]
+}

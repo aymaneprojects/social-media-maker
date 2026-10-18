@@ -14,7 +14,7 @@ export const PixelCanvas: React.FC<{
   useLayoutEffect(() => {
     const c = ref.current;
     if (!c) return;
-    const ctx = c.getContext('2d');
+    const ctx = c.getContext('2d', {willReadFrequently: true});
     if (!ctx) return;
     ctx.imageSmoothingEnabled = false;
     ctx.clearRect(0, 0, w, h);

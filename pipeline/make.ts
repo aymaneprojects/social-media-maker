@@ -1,0 +1,104 @@
+// One command, one video:
+//   npm run make -- --brand histoires-vraies [--topic "..."] [--storyboard file.json] [--no-render]
+import {copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
+import path from 'node:path';
+import {credits} from '../core/openrouter';
+import {alignWords, synthesize} from '../core/voice';
+import {assembleEpisode, makeImages, validateStoryboard} from './assemble';
+import {loadBrand, loadHistory, nextIssue, saveHistory} from './brands';
+import {renderEpisode} from './render';
+import {direct, factCheck, pickTopic, research, type Facts, type Storyboard} from './steps';
+
+const arg = (name: string) => {
+  const i = process.argv.indexOf(`--${name}`);
+  return i > 0 ? process.argv[i + 1] : undefined;
+};
+const flag = (name: string) => process.argv.includes(`--${name}`);
+
+const slugify = (s: string) =>
+  s
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 48);
+
+export const makeVideo = async (opts: {brand: string; topic?: string; storyboard?: string; render?: boolean}) => {
+  const brand = loadBrand(opts.brand);
+  const history = loadHistory();
+  const issue = nextIssue(history, brand.slug);
+  try {
+    console.log(`OpenRouter balance: $${(await credits()).toFixed(2)}`);
+  } catch {
+    /* informative only */
+  }
+
+  let sb: Storyboard;
+  let facts: Facts | undefined;
+  let topic = opts.topic ?? '';
+  if (opts.storyboard) {
+    sb = JSON.parse(readFileSync(opts.storyboard, 'utf8'));
+    topic = topic || sb.title;
+  } else {
+    topic = topic || (await pickTopic(brand, history));
+    console.log(`topic: ${topic}`);
+    facts = await research(topic);
+    sb = await direct(brand, facts, issue, validateStoryboard(brand.style));
+    const check = await factCheck(facts, sb);
+    for (const f of check.fixes ?? []) {
+      if (sb.beats[f.beat]) {
+        console.log(`fact fix beat ${f.beat}: "${sb.beats[f.beat].text}" -> "${f.text}" (${f.reason})`);
+        sb.beats[f.beat].text = f.text;
+      }
+    }
+  }
+  const errors = validateStoryboard(brand.style)(sb);
+  if (errors.length) console.warn('storyboard warnings:\n- ' + errors.join('\n- '));
+
+  const date = new Date().toISOString().slice(0, 10);
+  const id = `${brand.slug}-${String(issue).padStart(3, '0')}-${slugify(topic)}`;
+  const dir = path.join('public', 'ep', id);
+  mkdirSync(dir, {recursive: true});
+  if (facts) writeFileSync(path.join(dir, 'facts.json'), JSON.stringify(facts, null, 2));
+  writeFileSync(path.join(dir, 'storyboard.json'), JSON.stringify(sb, null, 2));
+
+  const script = sb.beats.map((b) => b.text.trim()).join(' ');
+  const voice = path.join(dir, 'voice.mp3');
+  if (!existsSync(voice)) {
+    const ms = await synthesize(script, voice, {voice: brand.voice});
+    console.log(`voice: ${(ms / 1000).toFixed(1)}s`);
+  }
+  const words = await alignWords(voice, script, dir);
+  await makeImages(brand.style, brand, sb, dir);
+  writeFileSync(path.join(dir, 'storyboard.json'), JSON.stringify(sb, null, 2));
+
+  const music = brand.style === 'B' && existsSync('public/music/bed-b.mp3') ? 'music/bed-b.mp3' : undefined;
+  const ep = assembleEpisode({id, brand, issue, sb, words, assetsBase: `ep/${id}/`, music});
+  const epFile = path.join(dir, 'episode.json');
+  writeFileSync(epFile, JSON.stringify(ep, null, 1));
+  writeFileSync(path.join(dir, 'post.json'), JSON.stringify({...sb.post, brand: brand.slug, issue, title: sb.title}, null, 2));
+  console.log(`episode: ${epFile} (${(ep.durationMs / 1000).toFixed(1)}s, ${ep.beats.length} beats)`);
+
+  if (opts.render === false) return {epFile};
+  const outDir = path.join('out', brand.slug, `${date}-${String(issue).padStart(3, '0')}-${slugify(topic)}`);
+  const {final, qa} = await renderEpisode(epFile, outDir);
+  copyFileSync(path.join(dir, 'post.json'), path.join(outDir, 'post.json'));
+  copyFileSync(epFile, path.join(outDir, 'episode.json'));
+  history.push({brand: brand.slug, issue, topic, title: sb.title, episodeId: id, createdAt: new Date().toISOString(), final, status: 'rendered'});
+  saveHistory(history);
+  console.log(JSON.stringify(qa, null, 2));
+  return {epFile, final, qa};
+};
+
+if (process.argv[1]?.endsWith('make.ts')) {
+  const brand = arg('brand');
+  if (!brand) {
+    console.error('usage: npm run make -- --brand <slug> [--topic "..."] [--storyboard file.json] [--no-render]');
+    process.exit(1);
+  }
+  makeVideo({brand, topic: arg('topic'), storyboard: arg('storyboard'), render: !flag('no-render')}).catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}

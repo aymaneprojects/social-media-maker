@@ -1,0 +1,33 @@
+{
+  "slug": "histoires-vraies",
+  "name": "Pixels Stories",
+  "handle": "@pixels.stories.fr",
+  "style": "A",
+  "accent": "#FF448D",
+  "lang": "FR",
+  "theme": "Histoires vraies : survivants, catastrophes, destins incroyables, faits divers historiques documentés.",
+  "examples": [
+    "Harrison Okene, 60 h dans une épave",
+    "L'inondation de bière de Londres en 1814",
+    "Stanislav Petrov et la fausse alerte nucléaire de 1983"
+  ],
+  "provisional": true,
+  "uploadProfile": null,
+  "voice": "F9KUTOne5xOKqAbIU7yg",
+  "schedule": {
+    "timezone": "Europe/Paris",
+    "slots": [
+      "18:30"
+    ],
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ]
+  },
+  "hashtags": []
+}

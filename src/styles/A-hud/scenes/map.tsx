@@ -46,7 +46,7 @@ export const MapScene: React.FC<
     }
     return geoMercator()
       .center(params.center)
-      .scale(170 * zoom)
+      .scale(115 * zoom)
       .translate([W / 2, cy]);
   }, [mode, params.center, zoom, cy, p]);
 

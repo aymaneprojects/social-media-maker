@@ -26,6 +26,30 @@ type SpritePlacement = {
 export type Fx = 'rain' | 'lightning' | 'fireflies' | 'bubbles' | 'mist' | 'stars' | 'embers' | 'snow';
 
 // ---------------------------------------------------------------- terrains
+// Cumulus made of puffs: light colour first, body shifted down-right on top
+// (leaves a lit rim), then a flat base.
+const cloud = (ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number, body: string, light: string) => {
+  const puffs = [
+    [-1.3, 0.25, 0.6],
+    [-0.55, -0.25, 0.9],
+    [0.35, -0.45, 1],
+    [1.2, 0.1, 0.7],
+    [0.4, 0.3, 0.75],
+  ];
+  ctx.fillStyle = light;
+  for (const [dx, dy, k] of puffs) {
+    ctx.beginPath();
+    ctx.arc(cx + dx * r, cy + dy * r, k * r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.fillStyle = body;
+  for (const [dx, dy, k] of puffs) {
+    ctx.beginPath();
+    ctx.arc(cx + dx * r + 1.5, cy + dy * r + 2, k * r - 1, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.fillRect(cx - 1.9 * r, cy + 0.35 * r, 3.8 * r, 0.5 * r);
+};
 // Pixel landscapes drawn on a 180x320 canvas.
 const drawTerrain = (ctx: CanvasRenderingContext2D, kind: string, t: number, pal: ReturnType<typeof useThemeA>['pal'], seed: string) => {
   const rnd = (k: string) => random(`${seed}-${k}`);
@@ -37,54 +61,90 @@ const drawTerrain = (ctx: CanvasRenderingContext2D, kind: string, t: number, pal
   switch (kind) {
     case 'storm':
     case 'sky': {
-      sky(pal.bg, pal.plum2, 220);
-      // cloud banks
-      for (let i = 0; i < 16; i++) {
-        const cx = ((rnd(`c${i}`) * 260 + t * (4 + rnd(`v${i}`) * 6)) % 260) - 40;
-        const cy = 40 + rnd(`y${i}`) * 170;
-        const r = 14 + rnd(`r${i}`) * 22;
-        ctx.fillStyle = i % 3 === 0 ? pal.mid1 : pal.plum2;
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, r * 1.8, r * 0.7, 0, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      break;
-    }
-    case 'jungle': {
-      sky(pal.bg, pal.plum, 140);
-      // three canopy layers, far to near
-      const layers = [
-        {y: 120, c: pal.plum2, r: 12, n: 18},
-        {y: 170, c: pal.mid1, r: 16, n: 14},
-        {y: 230, c: pal.mid2, r: 20, n: 11},
-      ];
+      const storm = kind === 'storm';
+      sky(pal.bg, storm ? pal.plum : pal.plum2, 260);
+      // two parallax layers of cumulus: lit rim on the upper left, flat base
+      const layers = storm ? [{n: 7, y: 60, s: 16, sp: 3}, {n: 6, y: 170, s: 24, sp: 7}] : [{n: 6, y: 80, s: 14, sp: 2}, {n: 5, y: 210, s: 22, sp: 5}];
       layers.forEach((L, li) => {
-        ctx.fillStyle = L.c;
-        ctx.fillRect(0, L.y, W, H - L.y);
         for (let i = 0; i < L.n; i++) {
-          const cx = (i / (L.n - 1)) * (W + 20) - 10 + (rnd(`jx${li}${i}`) - 0.5) * 10 - t * (li + 1) * 0.8;
-          const cy = L.y - rnd(`jy${li}${i}`) * L.r;
-          ctx.beginPath();
-          ctx.arc(cx, cy, L.r * (0.7 + rnd(`jr${li}${i}`) * 0.6), 0, Math.PI * 2);
-          ctx.fill();
+          const span = W + 120;
+          const cx = (((rnd(`c${li}${i}`) * span + t * L.sp) % span) + span) % span - 60;
+          const cy = L.y + (rnd(`cy${li}${i}`) - 0.5) * 70;
+          const r = L.s * (0.7 + rnd(`cr${li}${i}`) * 0.6);
+          cloud(ctx, cx, cy, r, li === 0 ? pal.plum2 : storm ? pal.plum2 : pal.mid1, li === 0 ? pal.mid1 : pal.mid2);
         }
-        // light dither on top of each crown layer
-        ditherFill(ctx, 0, L.y - L.r * 2, W, L.r * 2, li === 2 ? pal.mid3 : pal.mid1, (x, y) => (rnd(`d${li}${x >> 3}`) > 0.6 && y < L.y - L.r * 0.8 ? 0.35 : 0));
       });
       break;
     }
+    case 'jungle': {
+      sky(pal.bg, pal.plum, 150);
+      // far -> near: lighter & smaller crowns far away, dark big crowns close
+      const layers = [
+        {y: 140, c: pal.mid1, rim: pal.mid2, r: 9, n: 24, sp: 0.6},
+        {y: 185, c: pal.plum2, rim: pal.mid1, r: 14, n: 16, sp: 1.2},
+        {y: 245, c: pal.plum, rim: pal.plum2, r: 20, n: 11, sp: 2},
+      ];
+      layers.forEach((L, li) => {
+        const off = (t * L.sp) % (W / L.n);
+        ctx.fillStyle = L.c;
+        ctx.fillRect(0, L.y, W, H - L.y);
+        for (let i = -1; i <= L.n; i++) {
+          const cx = (i / (L.n - 1)) * W + (rnd(`jx${li}${i}`) - 0.5) * 8 - off;
+          const cy = L.y - rnd(`jy${li}${i}`) * L.r * 0.8;
+          const r = L.r * (0.75 + rnd(`jr${li}${i}`) * 0.5);
+          // rim light then body (pixel-art shading)
+          ctx.fillStyle = L.rim;
+          ctx.beginPath();
+          ctx.arc(cx - 1, cy - 1, r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = L.c;
+          ctx.beginPath();
+          ctx.arc(cx + 1, cy + 1, r - 1, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        // trunks & lianas between layers
+        ctx.fillStyle = li === 2 ? pal.bg : pal.plum;
+        for (let i = 0; i < 6 + li * 2; i++) {
+          const x = Math.round(rnd(`tr${li}${i}`) * W - off);
+          ctx.fillRect(x, L.y + 4, li + 1, H - L.y);
+        }
+      });
+      ditherFill(ctx, 0, 250, W, H - 250, pal.bg, (_x, y) => (y - 250) / 90);
+      break;
+    }
     case 'river': {
-      sky(pal.bg, pal.plum, 100);
-      ctx.fillStyle = pal.mid1;
-      ctx.fillRect(0, 100, W, H - 100);
-      // winding river from top to bottom
+      sky(pal.bg, pal.plum, 90);
+      // dark banks
       ctx.fillStyle = pal.plum;
-      for (let y = 100; y < H; y++) {
-        const cx = W / 2 + Math.sin(y / 28 + t * 0.2) * 34;
-        const half = 8 + (y - 100) * 0.12;
+      ctx.fillRect(0, 90, W, H - 90);
+      ditherFill(ctx, 0, 90, W, H - 90, pal.plum2, (x, y) => (rnd(`rv${x >> 3}${y >> 3}`) > 0.55 ? 0.5 : 0));
+      // winding river, widening towards the viewer, with moving glints
+      for (let y = 90; y < H; y++) {
+        const cx = W / 2 + Math.sin(y / 34 + 0.6) * (20 + (y - 90) * 0.12);
+        const half = 6 + (y - 90) * 0.16;
+        ctx.fillStyle = pal.mid1;
         ctx.fillRect(Math.round(cx - half), y, Math.round(half * 2), 1);
+        if (y % 4 === 0) {
+          ctx.fillStyle = pal.mid3;
+          const gx = cx - half + ((((y * 7 + t * 9) % (half * 2)) + half * 2) % (half * 2));
+          ctx.fillRect(Math.round(gx), y, 3, 1);
+        }
       }
-      ditherFill(ctx, 0, 100, W, H - 100, pal.mid2, (x, y) => (rnd(`rv${x >> 2}${y >> 3}`) > 0.7 ? 0.5 : 0));
+      // crowns along the banks
+      for (let i = 0; i < 18; i++) {
+        const side = i % 2 ? 1 : -1;
+        const y = 100 + i * 12;
+        const cx = W / 2 + side * (60 + (y - 90) * 0.35) + (rnd(`bk${i}`) - 0.5) * 20;
+        const r = 10 + (y - 90) * 0.06;
+        ctx.fillStyle = pal.mid1;
+        ctx.beginPath();
+        ctx.arc(cx - 1, y - 1, r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = pal.plum2;
+        ctx.beginPath();
+        ctx.arc(cx + 1, y + 1, r - 1, 0, Math.PI * 2);
+        ctx.fill();
+      }
       break;
     }
     case 'sea': {
@@ -206,13 +266,15 @@ export const FxLayer: React.FC<{fx: Fx[]; ms: number; seed: string; flashAt?: nu
         key="mist"
         style={{
           position: 'absolute',
-          left: -200 + Math.sin(ms / 3000) * 80,
-          right: -200,
-          top: 900,
-          height: 600,
-          backgroundImage: `repeating-linear-gradient(90deg, ${pal.mid1} 0 6px, transparent 6px 12px), repeating-linear-gradient(0deg, transparent 0 6px, ${pal.bg} 6px 12px)`,
+          left: -60 + Math.round(Math.sin(ms / 3000) * 10) * 6,
+          right: -60,
+          top: 820,
+          height: 560,
+          backgroundImage: `repeating-conic-gradient(${pal.mid1} 0 25%, transparent 0 50%)`,
+          backgroundSize: '12px 12px',
           opacity: 0.35,
-          maskImage: 'linear-gradient(transparent, black 40%, black 60%, transparent)',
+          maskImage: 'linear-gradient(transparent, black 35%, black 55%, transparent)',
+          WebkitMaskImage: 'linear-gradient(transparent, black 35%, black 55%, transparent)',
         }}
       />,
     );
@@ -224,7 +286,7 @@ export const FxLayer: React.FC<{fx: Fx[]; ms: number; seed: string; flashAt?: nu
       const k = ms - hit;
       const on = k < 60 || (k > 120 && k < 170);
       if (on) {
-        out.push(<div key="flash" style={{position: 'absolute', inset: 0, background: pal.paper, opacity: 0.55, mixBlendMode: 'screen'}} />);
+        out.push(<div key="flash" style={{position: 'absolute', inset: 0, background: pal.paper, opacity: 0.22, mixBlendMode: 'screen'}} />);
         out.push(
           <Sprite key="bolt" art={SPRITES.bolt} colors={{W: pal.white}} scale={24} x={(random(`${seed}bx${hit}`) * 600 + 200) | 0} y={240} />,
         );

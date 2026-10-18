@@ -1,0 +1,33 @@
+{
+  "slug": "mysteres-crimes",
+  "name": "Dossiers Noirs",
+  "handle": "@dossiers.noirs",
+  "style": "A",
+  "accent": "#FF3B3B",
+  "lang": "FR",
+  "theme": "Mystères & crimes : affaires criminelles célèbres, disparitions, énigmes non résolues, enquêtes, braquages, évasions.",
+  "examples": [
+    "Le casse du siècle de Nice en 1976",
+    "La disparition du vol MH370",
+    "L'évasion d'Alcatraz de 1962"
+  ],
+  "provisional": true,
+  "uploadProfile": null,
+  "voice": "F9KUTOne5xOKqAbIU7yg",
+  "schedule": {
+    "timezone": "Europe/Paris",
+    "slots": [
+      "18:30"
+    ],
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ]
+  },
+  "hashtags": []
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "science-espace",
+  "name": "Pixel Science",
+  "handle": "@pixel.science",
+  "style": "B",
+  "accent": "#6FB8FF",
+  "lang": "FR",
+  "theme": "Science & espace : phénomènes naturels, découvertes, expériences, missions spatiales, médecine, expliqués simplement.",
+  "examples": [
+    "Le lac Nyos qui a tué 1 746 personnes en une nuit",
+    "Joy Milne qui sent la maladie de Parkinson",
+    "Les pigeons voyageurs du siège de Paris"
+  ],
+  "provisional": true,
+  "uploadProfile": null,
+  "voice": "F9KUTOne5xOKqAbIU7yg",
+  "schedule": {
+    "timezone": "Europe/Paris",
+    "slots": [
+      "18:30"
+    ],
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ]
+  },
+  "hashtags": []
+}

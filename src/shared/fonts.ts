@@ -13,6 +13,10 @@ const FACES: {family: string; file: string; weight: string; range?: string}[] = 
   {family: 'Pixelify Sans', file: 'pixelify-sans-latin-400-normal.woff2', weight: '400'},
   {family: 'Pixelify Sans', file: 'pixelify-sans-latin-700-normal.woff2', weight: '700'},
   {family: 'Pixelify Sans', file: 'pixelify-sans-latin-ext-700-normal.woff2', weight: '700', range: 'U+0100-024F'},
+  {family: 'Press Start 2P', file: 'press-start-2p-latin-400-normal.woff2', weight: '400'},
+  {family: 'Press Start 2P', file: 'press-start-2p-latin-ext-400-normal.woff2', weight: '400', range: 'U+0100-024F'},
+  {family: 'Archivo Black', file: 'archivo-black-latin-400-normal.woff2', weight: '400'},
+  {family: 'Archivo Black', file: 'archivo-black-latin-ext-400-normal.woff2', weight: '400', range: 'U+0100-024F'},
 ];
 
 let loaded = false;
@@ -42,4 +46,7 @@ export const FONT = {
   hud: "'Silkscreen', monospace",
   digits: "'Tiny5', monospace",
   title: "'Pixelify Sans', sans-serif",
+  // style B
+  bLabel: "'Press Start 2P', monospace",
+  bTitle: "'Archivo Black', sans-serif",
 } as const;

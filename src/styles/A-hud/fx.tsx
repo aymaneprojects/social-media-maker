@@ -44,12 +44,12 @@ const ROWS = 1920 / CELL;
 export const BlockStorm: React.FC<{density: number; seed: string}> = ({density, seed}) => {
   const {pal} = useThemeA();
   if (density <= 0) return null;
-  const colors = [pal.bg, pal.bg, pal.plum, pal.plum2, pal.mid1, pal.mid2, pal.accent, pal.white];
+  const colors = [pal.bg, pal.bg, pal.bg, pal.plum, pal.plum, pal.plum2, pal.plum2, pal.mid1, pal.mid1, pal.mid2, pal.accent, pal.white];
   const cells: React.ReactNode[] = [];
   for (let y = 0; y < ROWS; y++) {
     for (let x = 0; x < COLS; x++) {
       const r = random(`${seed}-${x}-${y}`);
-      if (r > density) continue;
+      if (r > density * 0.85) continue;
       const c = colors[Math.floor(random(`${seed}-c-${x}-${y}`) * colors.length)];
       const small = random(`${seed}-s-${x}-${y}`) > 0.6;
       cells.push(

@@ -232,7 +232,56 @@
  ],
  "audio": {
   "voice": "voice.mp3",
-  "ambience": [],
-  "sfx": []
+  "ambience": [
+   {
+    "src": "sfx/amb-storm.mp3",
+    "fromMs": 0,
+    "toMs": 2300,
+    "volume": 0.35
+   },
+   {
+    "src": "sfx/amb-drone.mp3",
+    "fromMs": 2200,
+    "toMs": 9000,
+    "volume": 0.25
+   }
+  ],
+  "sfx": [
+   {
+    "src": "sfx/thunder.wav",
+    "atMs": 900,
+    "volume": 0.6
+   },
+   {
+    "src": "sfx/pixel.wav",
+    "atMs": 2150,
+    "volume": 0.4
+   },
+   {
+    "src": "sfx/beep.wav",
+    "atMs": 3300,
+    "volume": 0.35
+   },
+   {
+    "src": "sfx/glitch.wav",
+    "atMs": 5650,
+    "volume": 0.4
+   },
+   {
+    "src": "sfx/type.wav",
+    "atMs": 6400,
+    "volume": 0.3
+   },
+   {
+    "src": "sfx/type.wav",
+    "atMs": 7100,
+    "volume": 0.3
+   },
+   {
+    "src": "sfx/sting.wav",
+    "atMs": 9050,
+    "volume": 0.4
+   }
+  ]
  }
 }

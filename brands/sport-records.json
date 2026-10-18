@@ -1,0 +1,33 @@
+{
+  "slug": "sport-records",
+  "name": "Records Pixel",
+  "handle": "@records.pixel",
+  "style": "A",
+  "accent": "#2EE6FF",
+  "lang": "FR",
+  "theme": "Sport & records : exploits sportifs, records du monde, drames et retournements historiques du sport.",
+  "examples": [
+    "Le marathon olympique de 1904",
+    "Bob Beamon et le saut de 1968",
+    "Le miracle d'Istanbul 2005"
+  ],
+  "provisional": true,
+  "uploadProfile": null,
+  "voice": "F9KUTOne5xOKqAbIU7yg",
+  "schedule": {
+    "timezone": "Europe/Paris",
+    "slots": [
+      "18:30"
+    ],
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ]
+  },
+  "hashtags": []
+}
