@@ -5,6 +5,7 @@ import {Sprite, spriteSize} from '../../../shared/pixel';
 import {colorsA, SPRITES} from '../sprites';
 import {type SceneProps, useThemeA} from '../theme';
 import {PinLabel} from '../ui';
+import {drawStoryTerrain} from './terrains';
 
 const W = 180;
 const H = 320;
@@ -51,7 +52,7 @@ const cloud = (ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number,
   ctx.fillRect(cx - 1.9 * r, cy + 0.35 * r, 3.8 * r, 0.5 * r);
 };
 // Pixel landscapes drawn on a 180x320 canvas.
-const drawTerrain = (ctx: CanvasRenderingContext2D, kind: string, t: number, pal: ReturnType<typeof useThemeA>['pal'], seed: string) => {
+export const drawTerrain = (ctx: CanvasRenderingContext2D, kind: string, t: number, pal: ReturnType<typeof useThemeA>['pal'], seed: string) => {
   const rnd = (k: string) => random(`${seed}-${k}`);
   const sky = (top: string, bottom: string, horizon: number) => {
     ctx.fillStyle = top;
@@ -242,7 +243,7 @@ const drawTerrain = (ctx: CanvasRenderingContext2D, kind: string, t: number, pal
       }
       ctx.fillStyle = pal.mid3;
       ctx.fillRect(0, 192, W, 1);
-      ctx.fillRect(W / 2, 192, 1, H - 192);
+      ditherFill(ctx, 0, 192, W, H - 192, pal.bg, (_x, y) => (y - 192) / 140);
       break;
     }
     case 'space': {
@@ -422,6 +423,7 @@ const drawTerrain = (ctx: CanvasRenderingContext2D, kind: string, t: number, pal
       break;
     }
     default: {
+      if (drawStoryTerrain(ctx, kind, t, pal, W, H, seed)) break;
       ctx.fillStyle = pal.bg;
       ctx.fillRect(0, 0, W, H);
     }

@@ -6,6 +6,7 @@ import {Dossier, PortraitScene} from './dossier';
 import {MapScene} from './map';
 import {Inventory, Radar, Thought} from './misc';
 import {LineChart, Newspaper, Podium, Scoreboard, TimelineA, Versus} from './extra';
+import {Action} from './action';
 
 // Registry of style-A scenes. The storyboard references them by `type`.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,6 +34,7 @@ export const SCENES_A: Record<string, React.FC<SceneProps<any>>> = {
   timeline: TimelineA,
   podium: Podium,
   newspaper: Newspaper,
+  action: Action,
 };
 
 // Renders a scene; `under` lets a scene sit on top of another one

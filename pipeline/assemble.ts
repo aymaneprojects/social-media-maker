@@ -11,7 +11,7 @@ import type {BrandConfig} from './brands';
 import type {Storyboard} from './steps';
 
 export const SCENES = {
-  A: ['bigDate', 'counter', 'iconGrid', 'checklist', 'clock', 'gauge', 'stamp', 'bigWord', 'typedNote', 'dossier', 'portrait', 'map', 'backdrop', 'image', 'radar', 'inventory', 'thought', 'scoreboard', 'lineChart', 'versus', 'timeline', 'podium', 'newspaper'],
+  A: ['bigDate', 'counter', 'iconGrid', 'checklist', 'clock', 'gauge', 'stamp', 'bigWord', 'typedNote', 'dossier', 'portrait', 'map', 'backdrop', 'image', 'radar', 'inventory', 'thought', 'scoreboard', 'lineChart', 'versus', 'timeline', 'podium', 'newspaper', 'action'],
   B: ['stage', 'prop', 'title', 'counter', 'map', 'nameTag', 'barCompare', 'balance', 'calendar', 'timeline', 'split', 'thought', 'icons', 'listing'],
 } as const;
 
@@ -54,7 +54,7 @@ export const validateStoryboard = (style: 'A' | 'B') => (sb: Storyboard): string
   const count = (t: string) => sb.beats?.filter((b) => b.scene?.type === t).length ?? 0;
   if (style === 'A' && count('bigWord') > 3) errors.push(`bigWord utilisé ${count('bigWord')} fois (max 3) : remplace par des scènes visuelles`);
   sb.beats?.forEach((b, i) => {
-    if (i > 0 && b.scene?.type && b.scene.type === sb.beats[i - 1].scene?.type && !['prop', 'backdrop', 'image', 'stage'].includes(b.scene.type)) errors.push(`beats ${i - 1} et ${i} : même scène "${b.scene.type}" deux fois de suite`);
+    if (i > 0 && b.scene?.type && b.scene.type === sb.beats[i - 1].scene?.type && !['prop', 'backdrop', 'image', 'stage', 'action'].includes(b.scene.type)) errors.push(`beats ${i - 1} et ${i} : même scène "${b.scene.type}" deux fois de suite`);
   });
   if (!sb.endCard?.place || !sb.post?.caption) errors.push('endCard et post sont obligatoires');
   if (style === 'B') errors.push(...validateAssetsB(sb));
