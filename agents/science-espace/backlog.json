@@ -1,0 +1,86 @@
+[
+ {
+  "topic": "Le lac Peigneur, englouti par une mine de sel (1980)",
+  "angle": "un forage pétrolier perce une mine : le lac se vide en un tourbillon",
+  "subgenre": "phénomène",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Apollo 13 et le filtre carré dans un trou rond (1970)",
+  "angle": "le CO2 monte, les ingénieurs bricolent avec du scotch et une chaussette",
+  "subgenre": "espace",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Le signal Wow! (15 août 1977)",
+  "angle": "72 secondes d'un signal venu de l'espace, jamais réentendu",
+  "subgenre": "espace",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Starfish Prime, la bombe nucléaire dans l'espace (1962)",
+  "angle": "une aurore artificielle et des satellites détruits",
+  "subgenre": "espace",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "L'événement de Tunguska (30 juin 1908)",
+  "angle": "une explosion rase 2 000 km² de forêt, sans cratère",
+  "subgenre": "phénomène",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "La tempête solaire de Carrington (1859)",
+  "angle": "des télégraphes qui fonctionnent sans courant et des aurores jusqu'aux tropiques",
+  "subgenre": "phénomène",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Mars Climate Orbiter perdu à cause des unités (1999)",
+  "angle": "unités anglaises contre métriques : la sonde se désintègre",
+  "subgenre": "erreur-scientifique",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Le forage superprofond de Kola",
+  "angle": "12 262 mètres sous terre, la roche à 180 °C",
+  "subgenre": "record-scientifique",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Le cœur du démon, la sphère de plutonium (1945-1946)",
+  "angle": "deux accidents, deux physiciens, un tournevis",
+  "subgenre": "erreur-scientifique",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Phineas Gage, la barre de fer à travers le crâne (1848)",
+  "angle": "il survit et change de personnalité : la naissance des neurosciences",
+  "subgenre": "corps-humain",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Les tardigrades, survivants de l'espace",
+  "angle": "un animal de 0,5 mm qui survit au vide spatial",
+  "subgenre": "nature",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Le disque d'or de Voyager",
+  "angle": "un message pour des extraterrestres, toujours en route aujourd'hui",
+  "subgenre": "espace",
+  "status": "todo",
+  "by": "seed"
+ }
+]

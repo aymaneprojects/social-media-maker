@@ -30,6 +30,13 @@ export type HistoryEntry = {
   scheduledFor?: string;
   uploadJob?: string;
   status: 'rendered' | 'scheduled' | 'published' | 'failed';
+  // editorial metadata for the analytics loop
+  subgenre?: string;
+  angle?: string;
+  hook?: string; // first sentence of the voice-over
+  durationMs?: number;
+  scenes?: Record<string, number>;
+  postId?: string; // Upload-Post request id / platform post ids once known
 };
 
 const HISTORY = 'data/history.json';

@@ -1,0 +1,93 @@
+[
+ {
+  "topic": "Victor Lustig vend la tour Eiffel (1925)",
+  "angle": "un escroc convainc un ferrailleur d'acheter la tour Eiffel",
+  "subgenre": "arnaque",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Blockbuster refuse d'acheter Netflix pour 50 millions (2000)",
+  "angle": "le géant éclate de rire, puis fait faillite",
+  "subgenre": "mauvais-choix",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "La pizza à 10 000 bitcoins (22 mai 2010)",
+  "angle": "deux pizzas qui vaudront plus d'un milliard",
+  "subgenre": "mauvais-choix",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Pepsi et la flotte soviétique (1989)",
+  "angle": "Pepsi reçoit des sous-marins en paiement de son soda",
+  "subgenre": "pari-fou",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Leonard contre PepsiCo, le Harrier à 7 millions de points (1996)",
+  "angle": "un étudiant réclame l'avion de chasse de la pub",
+  "subgenre": "pari-fou",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Nick Leeson coule la banque Barings (1995)",
+  "angle": "un trader de 28 ans fait tomber une banque de 233 ans",
+  "subgenre": "faillite",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Charles Ponzi et les coupons-réponses (1920)",
+  "angle": "l'homme qui a donné son nom à l'arnaque",
+  "subgenre": "arnaque",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Ronald Wayne, le troisième fondateur d'Apple",
+  "angle": "il revend ses 10 % d'Apple pour 800 dollars",
+  "subgenre": "mauvais-choix",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Kodak invente l'appareil photo numérique (1975)",
+  "angle": "l'inventeur du numérique est tué par le numérique",
+  "subgenre": "mauvais-choix",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Les frères Hunt et le jeudi de l'argent (1980)",
+  "angle": "deux milliardaires tentent d'acheter tout l'argent du monde",
+  "subgenre": "bulle",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "La bulle des tulipes (1637)",
+  "angle": "un bulbe au prix d'une maison",
+  "subgenre": "bulle",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "New Coke, le fiasco de Coca-Cola (1985)",
+  "angle": "changer la recette et déclencher une révolte nationale",
+  "subgenre": "marque",
+  "status": "todo",
+  "by": "seed"
+ },
+ {
+  "topic": "Wirecard et les 1,9 milliard d'euros introuvables (2020)",
+  "angle": "le fleuron allemand dont l'argent n'existait pas",
+  "subgenre": "faillite",
+  "status": "todo",
+  "by": "seed"
+ }
+]

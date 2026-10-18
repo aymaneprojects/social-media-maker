@@ -7,7 +7,8 @@ import {alignWords, synthesize} from '../core/voice';
 import {assembleEpisode, makeAssetsB, makeImages, stripImages, validateStoryboard} from './assemble';
 import {loadBrand, loadHistory, nextIssue, saveHistory} from './brands';
 import {renderEpisode} from './render';
-import {direct, factCheck, pickTopic, research, type Facts, type Storyboard} from './steps';
+import {markDone} from './agents';
+import {direct, factCheck, pickTopic, research, type Facts, type Storyboard, type TopicPick} from './steps';
 
 const arg = (name: string) => {
   const i = process.argv.indexOf(`--${name}`);
@@ -37,14 +38,16 @@ export const makeVideo = async (opts: {brand: string; topic?: string; storyboard
   let sb: Storyboard;
   let facts: Facts | undefined;
   let topic = opts.topic ?? '';
+  let pick: TopicPick | undefined;
   if (opts.storyboard) {
     sb = JSON.parse(readFileSync(opts.storyboard, 'utf8'));
     topic = topic || sb.title;
   } else {
-    topic = topic || (await pickTopic(brand, history));
+    pick = topic ? {topic} : await pickTopic(brand, history);
+    topic = pick.topic;
     console.log(`topic: ${topic}`);
-    facts = await research(topic);
-    sb = await direct(brand, facts, issue, validateStoryboard(brand.style));
+    facts = await research(topic, brand, pick.angle);
+    sb = await direct(brand, facts, issue, validateStoryboard(brand.style), pick);
     const check = await factCheck(facts, sb);
     for (const f of check.fixes ?? []) {
       if (sb.beats[f.beat]) {
@@ -70,7 +73,6 @@ export const makeVideo = async (opts: {brand: string; topic?: string; storyboard
     console.log(`voice: ${(ms / 1000).toFixed(1)}s`);
   }
   const words = await alignWords(voice, script, dir);
-  // style A: optional AI images with code fallbacks; style B: illustrations are mandatory
   // style A: AI images only if the page allows them (default: 100 % code); style B: illustrations are mandatory
   let assets;
   if (brand.style === 'B') assets = await makeAssetsB(sb, dir);
@@ -90,8 +92,25 @@ export const makeVideo = async (opts: {brand: string; topic?: string; storyboard
   const {final, qa} = await renderEpisode(epFile, outDir);
   copyFileSync(path.join(dir, 'post.json'), path.join(outDir, 'post.json'));
   copyFileSync(epFile, path.join(outDir, 'episode.json'));
-  history.push({brand: brand.slug, issue, topic, title: sb.title, episodeId: id, createdAt: new Date().toISOString(), final, status: 'rendered'});
+  const scenes: Record<string, number> = {};
+  for (const b of sb.beats) scenes[b.scene.type] = (scenes[b.scene.type] ?? 0) + 1;
+  history.push({
+    brand: brand.slug,
+    issue,
+    topic,
+    title: sb.title,
+    episodeId: id,
+    createdAt: new Date().toISOString(),
+    final,
+    status: 'rendered',
+    subgenre: pick?.subgenre,
+    angle: pick?.angle,
+    hook: sb.beats[0]?.text,
+    durationMs: ep.durationMs,
+    scenes,
+  });
   saveHistory(history);
+  markDone(brand.slug, topic, id);
   console.log(JSON.stringify(qa, null, 2));
   return {epFile, final, qa};
 };
