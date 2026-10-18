@@ -19,39 +19,51 @@ const fmt = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d)
 const ease = (ms: number, a: number, b: number) =>
   interpolate(ms, [a, b], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
 
-// An AI illustration (transparent background, pixelised by the pipeline) or a
-// code sprite, centred at (cx, cy) in a box of `size` px, with idle motion.
-export const Visual: React.FC<{src?: string; sprite?: string; cx: number; cy: number; size: number; ms: number; pop?: number; idle?: boolean; opacity?: number}> = ({
-  src,
-  sprite,
-  cx,
-  cy,
-  size,
-  ms,
-  pop = 1,
-  idle = true,
-  opacity = 1,
-}) => {
-  const {pal, assetsBase} = useThemeB();
+// An illustrated asset (pixelised by the pipeline, see core/illustrate.ts),
+// centred at (cx, cy) inside a box of `size` px, with a whole-pixel scale.
+// Code sprites are only allowed as small UI icons (ticks, crosses, clues).
+export const Visual: React.FC<{
+  asset?: string;
+  pose?: string;
+  src?: string;
+  sprite?: string;
+  cx: number;
+  cy: number;
+  size: number;
+  ms: number;
+  pop?: number;
+  idle?: boolean;
+  opacity?: number;
+}> = ({asset, pose, src, sprite, cx, cy, size, ms, pop = 1, idle = true, opacity = 1}) => {
+  const {pal, assetsBase, assets} = useThemeB();
   const bob = idle ? Math.round(Math.sin(ms / 600) * 2) * 4 : 0;
-  if (src)
+  const a = asset ? assets[asset]?.poses[pose ?? 'base'] ?? assets[asset]?.poses.base : undefined;
+  if (a) {
+    const px = Math.max(2, Math.floor(size / Math.max(a.w, a.h)));
     return (
       <Img
-        src={staticFile(`${assetsBase}${src}`)}
+        src={staticFile(`${assetsBase}assets/${a.file}`)}
         style={{
           position: 'absolute',
-          left: cx - size / 2,
-          top: cy - size / 2 + bob,
-          width: size,
-          height: size,
-          objectFit: 'contain',
+          left: Math.round(cx - (a.w * px) / 2),
+          top: Math.round(cy - (a.h * px) / 2 + bob),
+          width: a.w * px,
+          height: a.h * px,
           imageRendering: 'pixelated',
           transform: `scale(${pop})`,
           opacity,
         }}
       />
     );
-  const art = sprite ? SPRITES_B[sprite] : undefined;
+  }
+  if (src)
+    return (
+      <Img
+        src={staticFile(`${assetsBase}${src}`)}
+        style={{position: 'absolute', left: cx - size / 2, top: cy - size / 2 + bob, width: size, height: size, objectFit: 'contain', imageRendering: 'pixelated', transform: `scale(${pop})`, opacity}}
+      />
+    );
+  const art = sprite && size <= 160 ? SPRITES_B[sprite] : undefined;
   if (!art) return null;
   const {w, h} = spriteSize(art);
   const sc = Math.max(4, Math.floor((size * 0.62) / Math.max(w, h)));
@@ -62,7 +74,7 @@ export const Visual: React.FC<{src?: string; sprite?: string; cx: number; cy: nu
   );
 };
 
-type VisualParams = {src?: string; sprite?: string};
+type VisualParams = {asset?: string; pose?: string; src?: string; sprite?: string};
 
 // ---------------------------------------------------------------- prop
 export const Prop: React.FC<
@@ -85,7 +97,7 @@ export const Prop: React.FC<
     <>
       {params.title && <PixelTitle text={params.title.toUpperCase()} y={250} size={130} color={params.titleColor} scaleIn={popAt(ms, 80)} />}
       {params.sub && <Label text={params.sub} y={params.title ? 420 : 300} size={30} />}
-      <Visual src={params.src} sprite={params.sprite} cx={540} cy={cy} size={size} ms={ms} pop={pop} />
+      <Visual asset={params.asset} pose={params.pose} src={params.src} sprite={params.sprite} cx={540} cy={cy} size={size} ms={ms} pop={pop} />
       {params.label && ms > 250 && <Label text={params.label} y={cy + size / 2 + 30} size={30} />}
       {params.tag && ms > 300 && <Tag text={params.tag.text} x={params.tag.x ?? 540} y={params.tag.y ?? cy - size / 2 - 10} pop={popAt(ms, 300)} />}
       {params.stamp && <StampB text={params.stamp.text} color={params.stamp.color} x={540} y={cy + 60} ms={ms} delayMs={durationMs * 0.45} size={86} />}
@@ -100,7 +112,7 @@ export const Title: React.FC<SceneProps<VisualParams & {text: string; sub?: stri
     <>
       <PixelTitle text={params.text.toUpperCase()} y={hasVisual ? 330 : 720} size={150} color={params.color} scaleIn={popAt(ms)} />
       {params.sub && ms > 200 && <Label text={params.sub} y={hasVisual ? 530 : 920} size={32} />}
-      {hasVisual && <Visual src={params.src} sprite={params.sprite} cx={540} cy={1000} size={620} ms={ms} pop={popAt(ms, 150)} />}
+      {hasVisual && <Visual asset={params.asset} pose={params.pose} src={params.src} sprite={params.sprite} cx={540} cy={1000} size={620} ms={ms} pop={popAt(ms, 150)} />}
     </>
   );
 };
@@ -120,7 +132,7 @@ export const CounterB: React.FC<
     <>
       <Label text={text} y={y} size={size} color={color} />
       {params.label && <Label text={params.label} y={y + size * 1.6} size={26} />}
-      {hasVisual && <Visual src={params.src} sprite={params.sprite} cx={540} cy={1000} size={600} ms={ms} pop={popAt(ms, 100)} />}
+      {hasVisual && <Visual asset={params.asset} pose={params.pose} src={params.src} sprite={params.sprite} cx={540} cy={1000} size={600} ms={ms} pop={popAt(ms, 100)} />}
     </>
   );
 };
@@ -204,7 +216,9 @@ export const MapB: React.FC<
 };
 
 // ---------------------------------------------------------------- nameTag
-export const NameTag: React.FC<SceneProps<VisualParams & {name: string; role?: string; image?: string; body?: string}>> = ({params, ms}) => {
+// The portrait box shows the head of the character asset (`portrait`), the
+// full character (`asset`) stands under the tag.
+export const NameTag: React.FC<SceneProps<VisualParams & {name: string; role?: string; image?: string; portrait?: string}>> = ({params, ms}) => {
   const {pal, assetsBase} = useThemeB();
   const pop = popAt(ms);
   return (
@@ -226,9 +240,9 @@ export const NameTag: React.FC<SceneProps<VisualParams & {name: string; role?: s
         <div style={{position: 'absolute', left: 36, top: 36, width: 220, height: 220, border: `4px solid ${pal.goldDark}`, overflow: 'hidden', background: '#1A1003'}}>
           {params.image ? (
             <Img src={staticFile(`${assetsBase}${params.image}`)} style={{width: '100%', height: '100%', objectFit: 'cover', imageRendering: 'pixelated'}} />
-          ) : (
-            <Sprite art={SPRITES_B.head} colors={colorsB(pal)} scale={22} x={22} y={40} />
-          )}
+          ) : (params.portrait ?? params.asset) ? (
+            <Visual asset={params.portrait ?? params.asset} cx={110} cy={250} size={560} ms={ms} idle={false} />
+          ) : null}
         </div>
         <div style={{position: 'absolute', left: 300, top: 58, right: 30, fontFamily: FONT.bTitle, fontSize: 62, color: pal.cream, whiteSpace: 'nowrap', overflow: 'hidden'}}>
           {params.name.toUpperCase()}
@@ -236,7 +250,7 @@ export const NameTag: React.FC<SceneProps<VisualParams & {name: string; role?: s
         <div style={{position: 'absolute', left: 300, top: 150, right: 40, height: 5, background: pal.gold}} />
         {params.role && <div style={{position: 'absolute', left: 300, top: 180, fontFamily: FONT.bLabel, fontSize: 26, color: pal.gold, letterSpacing: 5}}>{params.role.toUpperCase()}</div>}
       </div>
-      {(params.src || params.sprite) && <Visual src={params.src} sprite={params.sprite} cx={540} cy={1060} size={560} ms={ms} pop={popAt(ms, 200)} />}
+      {(params.src || params.sprite) && <Visual asset={params.asset} pose={params.pose} src={params.src} sprite={params.sprite} cx={540} cy={1060} size={560} ms={ms} pop={popAt(ms, 200)} />}
     </>
   );
 };
@@ -311,7 +325,7 @@ export const Balance: React.FC<SceneProps<{left: VisualParams & {label?: string}
         <React.Fragment key={i}>
           <div style={{position: 'absolute', left: p.x - 3, top: p.y, width: 6, height: 150, background: pal.goldDark}} />
           <div style={{position: 'absolute', left: p.x - 120, top: p.y + 150, width: 240, height: 22, background: pal.gold, borderRadius: '0 0 120px 120px'}} />
-          <Visual src={p.s.src} sprite={p.s.sprite} cx={p.x} cy={p.y + 80} size={150} ms={ms} idle={false} />
+          <Visual asset={p.s.asset} src={p.s.src} sprite={p.s.sprite} cx={p.x} cy={p.y + 80} size={150} ms={ms} idle={false} />
           {p.s.label && <Label text={p.s.label} x={p.x - 200} width={400} y={p.y + 200} size={22} />}
         </React.Fragment>
       ))}
@@ -358,7 +372,7 @@ export const Split: React.FC<SceneProps<{title?: string; left: Side; right: Side
       ].map(({s, cx, d}, i) =>
         ms < d ? null : (
           <React.Fragment key={i}>
-            <Visual src={s.src} sprite={s.sprite} cx={cx} cy={720} size={260} ms={ms} pop={popAt(ms, d)} />
+            <Visual asset={s.asset} src={s.src} sprite={s.sprite} cx={cx} cy={720} size={260} ms={ms} pop={popAt(ms, d)} />
             {s.stamp && <StampB text={s.stamp} color={s.color ?? (i === 0 ? 'red' : 'green')} x={cx} y={950} ms={ms} delayMs={d + 250} size={40} rotate={-6} />}
             {s.label && <Label text={s.label} x={cx - 200} width={400} y={1030} size={20} />}
           </React.Fragment>
@@ -387,7 +401,7 @@ export const ThoughtB: React.FC<SceneProps<VisualParams & {text?: string; value?
       </svg>
       {params.value && <Label text={params.value} y={520} size={70} color={pal.cream} />}
       {params.text && <Label text={params.text} y={params.value ? 650 : 580} size={34} color={pal.gold} />}
-      {(params.src || params.sprite) && !params.value && <Visual src={params.src} sprite={params.sprite} cx={540} cy={620} size={380} ms={ms} />}
+      {(params.src || params.sprite) && !params.value && <Visual asset={params.asset} pose={params.pose} src={params.src} sprite={params.sprite} cx={540} cy={620} size={380} ms={ms} />}
     </div>
   );
 };
@@ -501,7 +515,7 @@ export const BackgroundB: React.FC<{ms: number; seed: string}> = ({ms, seed}) =>
   const {pal} = useThemeB();
   return (
     <>
-      <div style={{position: 'absolute', inset: 0, background: `radial-gradient(ellipse 70% 45% at 50% 45%, ${pal.halo} 0%, ${pal.bg} 75%)`}} />
+      <div style={{position: 'absolute', inset: 0, background: `radial-gradient(ellipse 80% 50% at 50% 48%, #0B0602 0%, ${pal.bg} 75%)`}} />
       {Array.from({length: 38}, (_, i) => {
         const x = Math.floor(random(`${seed}x${i}`) * 1080);
         const y = Math.floor(random(`${seed}y${i}`) * 1920);

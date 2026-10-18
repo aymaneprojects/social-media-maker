@@ -65,6 +65,8 @@ export const episodeSchema = z.object({
   beats: z.array(beatSchema),
   audio: audioSchema,
   assetsBase: z.string().default(''), // e.g. "ep/<id>/" inside public/
+  // style B: illustrated assets (pixelised PNGs in <assetsBase>assets/)
+  assets: z.record(z.string(), z.object({poses: z.record(z.string(), z.object({file: z.string(), w: z.number(), h: z.number()}))})).optional(),
 });
 export type Episode = z.infer<typeof episodeSchema>;
 

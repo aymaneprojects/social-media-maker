@@ -4,7 +4,7 @@ import {copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync} from '
 import path from 'node:path';
 import {credits} from '../core/openrouter';
 import {alignWords, synthesize} from '../core/voice';
-import {assembleEpisode, makeImages, validateStoryboard} from './assemble';
+import {assembleEpisode, makeAssetsB, makeImages, validateStoryboard} from './assemble';
 import {loadBrand, loadHistory, nextIssue, saveHistory} from './brands';
 import {renderEpisode} from './render';
 import {direct, factCheck, pickTopic, research, type Facts, type Storyboard} from './steps';
@@ -70,11 +70,12 @@ export const makeVideo = async (opts: {brand: string; topic?: string; storyboard
     console.log(`voice: ${(ms / 1000).toFixed(1)}s`);
   }
   const words = await alignWords(voice, script, dir);
-  await makeImages(brand.style, brand, sb, dir);
+  // style A: optional AI images with code fallbacks; style B: illustrations are mandatory
+  const assets = brand.style === 'B' ? await makeAssetsB(sb, dir) : (await makeImages(brand.style, brand, sb, dir), undefined);
   writeFileSync(path.join(dir, 'storyboard.json'), JSON.stringify(sb, null, 2));
 
   const music = brand.style === 'B' && existsSync('public/music/bed-b.mp3') ? 'music/bed-b.mp3' : undefined;
-  const ep = assembleEpisode({id, brand, issue, sb, words, assetsBase: `ep/${id}/`, music});
+  const ep = assembleEpisode({id, brand, issue, sb, words, assetsBase: `ep/${id}/`, music, assets});
   const epFile = path.join(dir, 'episode.json');
   writeFileSync(epFile, JSON.stringify(ep, null, 1));
   writeFileSync(path.join(dir, 'post.json'), JSON.stringify({...sb.post, brand: brand.slug, issue, title: sb.title}, null, 2));

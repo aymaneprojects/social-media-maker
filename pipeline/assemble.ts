@@ -1,6 +1,7 @@
 // Storyboard + voice timings -> episode.json (what Remotion renders).
 import {existsSync, mkdirSync, writeFileSync} from 'node:fs';
 import path from 'node:path';
+import {illustrate} from '../core/illustrate';
 import {generateImage} from '../core/openrouter';
 import {pixelize, RAMP_A, RAMP_B} from '../core/pixelize';
 import type {Word} from '../core/voice';
@@ -11,7 +12,7 @@ import type {Storyboard} from './steps';
 
 export const SCENES = {
   A: ['bigDate', 'counter', 'iconGrid', 'checklist', 'clock', 'gauge', 'stamp', 'bigWord', 'typedNote', 'dossier', 'portrait', 'map', 'backdrop', 'image', 'radar', 'inventory', 'thought'],
-  B: ['prop', 'title', 'counter', 'map', 'nameTag', 'barCompare', 'balance', 'calendar', 'timeline', 'stamp', 'split', 'thought', 'icons', 'image', 'clues', 'versus', 'listing'],
+  B: ['stage', 'prop', 'title', 'counter', 'map', 'nameTag', 'barCompare', 'balance', 'calendar', 'timeline', 'split', 'thought', 'icons', 'listing'],
 } as const;
 
 const SFX = ['beep', 'beep-low', 'blip', 'tick', 'type', 'stamp', 'boom', 'glitch', 'pixel', 'whoosh', 'counter', 'heartbeat', 'alarm', 'swell', 'splash', 'thunder', 'pop', 'ding', 'cash'];
@@ -53,10 +54,86 @@ export const validateStoryboard = (style: 'A' | 'B') => (sb: Storyboard): string
   const count = (t: string) => sb.beats?.filter((b) => b.scene?.type === t).length ?? 0;
   if (style === 'A' && count('bigWord') > 3) errors.push(`bigWord utilisé ${count('bigWord')} fois (max 3) : remplace par des scènes visuelles`);
   sb.beats?.forEach((b, i) => {
-    if (i > 0 && b.scene?.type && b.scene.type === sb.beats[i - 1].scene?.type && !['prop', 'backdrop', 'image'].includes(b.scene.type)) errors.push(`beats ${i - 1} et ${i} : même scène "${b.scene.type}" deux fois de suite`);
+    if (i > 0 && b.scene?.type && b.scene.type === sb.beats[i - 1].scene?.type && !['prop', 'backdrop', 'image', 'stage'].includes(b.scene.type)) errors.push(`beats ${i - 1} et ${i} : même scène "${b.scene.type}" deux fois de suite`);
   });
   if (!sb.endCard?.place || !sb.post?.caption) errors.push('endCard et post sont obligatoires');
+  if (style === 'B') errors.push(...validateAssetsB(sb));
   return errors;
+};
+
+// Style B: every asset id used by a scene must be declared, and the stage
+// (illustrated layers) must carry most of the video.
+const assetRefs = (v: unknown, out: Set<string>) => {
+  if (Array.isArray(v)) v.forEach((x) => assetRefs(x, out));
+  else if (v && typeof v === 'object') {
+    for (const [k, x] of Object.entries(v)) {
+      if ((k === 'asset' || k === 'portrait') && typeof x === 'string') out.add(x);
+      else assetRefs(x, out);
+    }
+  }
+};
+
+export const validateAssetsB = (sb: Storyboard): string[] => {
+  const errors: string[] = [];
+  const declared = new Set((sb.assets ?? []).map((a) => a.id));
+  if (!declared.size) errors.push('aucun asset déclaré dans "assets"');
+  if ((sb.assets ?? []).length > 22) errors.push(`${sb.assets!.length} assets déclarés, maximum 22`);
+  const poses = (sb.assets ?? []).reduce((n, a) => n + Object.keys(a.poses ?? {}).length, 0);
+  if (poses > 14) errors.push(`${poses} poses au total, maximum 14`);
+  const used = new Set<string>();
+  sb.beats?.forEach((b, i) => {
+    const refs = new Set<string>();
+    assetRefs(b.scene, refs);
+    refs.forEach((r) => {
+      used.add(r);
+      if (!declared.has(r)) errors.push(`beat ${i} : asset "${r}" non déclaré`);
+    });
+    const sc = b.scene as {type: string; layers?: unknown[]; keep?: boolean};
+    if (sc?.type === 'stage' && !sc.keep && !(sc.layers ?? []).length) errors.push(`beat ${i} : stage sans calque`);
+  });
+  const stages = sb.beats?.filter((b) => b.scene?.type === 'stage').length ?? 0;
+  if (sb.beats?.length && stages / sb.beats.length < 0.5) errors.push(`seulement ${stages} scènes stage sur ${sb.beats.length} (il en faut au moins 50 %)`);
+  return errors;
+};
+
+// "@mot" in an `at` field = the moment that word is spoken in the beat.
+export const resolveWordTimes = (sb: Storyboard, timing: {startMs: number; endMs: number}[], words: Word[]) => {
+  const norm = (w: string) =>
+    w
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
+  sb.beats.forEach((b, i) => {
+    const beatWords = words.filter((w) => w.startMs >= timing[i].startMs - 80 && w.startMs < timing[i].endMs);
+    const walk = (v: unknown): unknown => {
+      if (Array.isArray(v)) return v.map(walk);
+      if (v && typeof v === 'object') {
+        const o: Record<string, unknown> = {};
+        for (const [k, x] of Object.entries(v)) {
+          if (k === 'at' && typeof x === 'string' && x.startsWith('@')) {
+            const target = norm(x.slice(1));
+            const w = beatWords.find((bw) => norm(bw.text).startsWith(target)) ?? beatWords.find((bw) => norm(bw.text).includes(target));
+            o[k] = w ? Math.max(0, (w.startMs - timing[i].startMs) / 1000) : 0.3;
+          } else o[k] = walk(x);
+        }
+        return o;
+      }
+      return v;
+    };
+    b.scene = walk(b.scene) as Storyboard['beats'][number]['scene'];
+  });
+};
+
+// Generates every declared illustration (with its poses). No fallback: a
+// style-B video is never produced with missing illustrations.
+export const makeAssetsB = async (sb: Storyboard, dir: string) => {
+  const out: NonNullable<Episode['assets']> = {};
+  for (const spec of sb.assets ?? []) {
+    console.log(`illustration ${spec.id} (${spec.kind}${spec.poses ? `, poses: ${Object.keys(spec.poses).join(', ')}` : ''})`);
+    out[spec.id] = await illustrate(spec, path.join(dir, 'assets'));
+  }
+  return out;
 };
 
 // Beat i spans from its first word to the first word of beat i+1.
@@ -175,6 +252,25 @@ export const buildAudio = (style: 'A' | 'B', sb: Storyboard, timing: {startMs: n
       case 'title':
         if (style === 'B') add('pop', t, 0.3);
         break;
+      case 'stage': {
+        // sound every action of the illustrated layers (style B)
+        const sc = b.scene as {layers?: {acts?: {do: string; at?: number}[]}[]; stamp?: {at?: number}; sparkles?: {at: number}[]; flashes?: {at: number}[]; thought?: {at?: number}; counter?: unknown; title?: {at?: number}};
+        (sc.layers ?? []).forEach((L) =>
+          (L.acts ?? []).forEach((a) => {
+            const at = t + (a.at ?? 0) * 1000;
+            if (a.do === 'pop') add('pop', at, 0.3);
+            if (a.do === 'enter' || a.do === 'exit') add('whoosh', at, 0.18);
+            if (a.do === 'hit') add('boom', at, 0.4);
+          }),
+        );
+        if (sc.stamp) add('stamp', t + (sc.stamp.at ?? dur / 2000) * 1000, 0.45);
+        (sc.sparkles ?? []).forEach((x) => add('ding', t + x.at * 1000, 0.25));
+        (sc.flashes ?? []).forEach((x) => add('blip', t + x.at * 1000, 0.35));
+        if (sc.thought) add('pop', t + (sc.thought.at ?? 0) * 1000, 0.3);
+        if (sc.counter) add('counter', t + 50, 0.2);
+        if (sc.title) add('pop', t + (sc.title.at ?? 0) * 1000, 0.22);
+        break;
+      }
     }
   });
   add('sting', durationMs - 2000, 0.35);
@@ -196,9 +292,11 @@ export const assembleEpisode = (opts: {
   words: Word[];
   assetsBase: string;
   music?: string;
+  assets?: Episode['assets'];
 }): Episode => {
   const {brand, sb, words} = opts;
   const timing = timeBeats(sb, words);
+  resolveWordTimes(sb, timing, words);
   const endCardMs = 2000;
   const durationMs = timing[timing.length - 1].endMs + endCardMs;
   const audio = buildAudio(brand.style, sb, timing, durationMs);
@@ -210,6 +308,7 @@ export const assembleEpisode = (opts: {
     durationMs,
     words,
     assetsBase: opts.assetsBase,
+    assets: opts.assets,
     beats: sb.beats.map((b, i) => ({
       id: `b${i}`,
       startMs: timing[i].startMs,

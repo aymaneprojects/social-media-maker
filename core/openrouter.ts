@@ -78,12 +78,19 @@ export const chatJson = async <T>(opts: Parameters<typeof chat>[0]): Promise<{da
   return {data: JSON.parse(cleaned) as T, citations};
 };
 
-// Image generation through chat completions with image output.
-export const generateImage = async (prompt: string, opts: {model?: string; aspect?: string} = {}): Promise<Buffer> => {
+// Image generation through chat completions with image output. `images` are
+// sent along with the prompt (style references, or the image to edit).
+export const generateImage = async (prompt: string, opts: {model?: string; aspect?: string; images?: Buffer[]} = {}): Promise<Buffer> => {
   const model = opts.model ?? MODELS.image;
+  const content = opts.images?.length
+    ? [
+        {type: 'text', text: prompt},
+        ...opts.images.map((b) => ({type: 'image_url', image_url: {url: `data:image/png;base64,${b.toString('base64')}`}})),
+      ]
+    : prompt;
   const res = await post('/chat/completions', {
     model,
-    messages: [{role: 'user', content: prompt}],
+    messages: [{role: 'user', content}],
     modalities: ['image', 'text'],
     image_config: {aspect_ratio: opts.aspect ?? '1:1'},
   });

@@ -104,9 +104,11 @@ export const paletteA = (accent: string): PaletteA => {
   };
 };
 
+// Style B keeps the warm gold world of the references; the brand colour
+// tints the titles, tags, frames and the halo behind the subject.
 export const paletteB = (accent: string): PaletteB => ({
   bg: '#040200',
-  halo: '#120A02',
+  halo: accent.toUpperCase() === '#E2B04A' ? '#1E1205' : hsl(accentHue(accent), 0.55, 0.075),
   gold: '#E2B04A',
   goldDark: '#A67A30',
   goldDeep: '#553A16',

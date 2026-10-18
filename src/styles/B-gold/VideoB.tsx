@@ -6,6 +6,7 @@ import {paletteB} from '../../shared/palette';
 import {type Episode, msToFrame} from '../../shared/schema';
 import {beatAt, frameToMs} from '../../shared/timing';
 import {BackgroundB, HudB, SCENES_B} from './scenes';
+import {resolveStage, Stage, type StageScene} from './stage';
 import {ThemeProviderB, useThemeB} from './theme';
 import {Label, PixelTitle, popAt} from './ui';
 
@@ -71,21 +72,29 @@ export const VideoB: React.FC<Episode> = (ep) => {
   const beatDur = Math.max(1, beat.endMs - beat.startMs);
   const fIn = (beatMs / 1000) * fps;
   const fOut = next ? ((next.startMs - ms) / 1000) * fps : 99;
-  const Scene = SCENES_B[(beat.scene as {type: string}).type];
+  const sceneType = (beat.scene as {type: string}).type;
+  const Scene = SCENES_B[sceneType];
+  const stage = sceneType === 'stage' ? resolveStage(ep.beats, index) : null;
   const hud = resolveHudB(ep.beats, index);
   let curtain = 0;
   if (beat.transition === 'pixelDissolve' && fIn < 8) curtain = 1 - fIn / 8;
   if (next?.transition === 'pixelDissolve' && fOut < 6) curtain = Math.max(curtain, 1 - fOut / 6);
   const flash = (beat.transition === 'flash' || beat.transition === 'glitch') && fIn < 3;
-  const sceneHasTitle = Boolean((beat.scene as {title?: string; text?: string}).title || (beat.scene as {type: string}).type === 'title');
+  const sceneHasTitle = Boolean((beat.scene as {title?: unknown}).title || sceneType === 'title');
 
   return (
-    <ThemeProviderB value={{pal, brand: ep.brand, issue: ep.issue, assetsBase: ep.assetsBase}}>
+    <ThemeProviderB value={{pal, brand: ep.brand, issue: ep.issue, assetsBase: ep.assetsBase, assets: ep.assets ?? {}}}>
       <AbsoluteFill style={{background: pal.bg, overflow: 'hidden'}}>
         <BackgroundB ms={ms} seed="stars" />
         {!inEnd && (
           <>
-            <AbsoluteFill>{Scene ? <Scene params={beat.scene} ms={beatMs} durationMs={beatDur} /> : null}</AbsoluteFill>
+            <AbsoluteFill>
+              {stage ? (
+                <Stage scene={beat.scene as StageScene} layers={stage.layers} bases={stage.bases} ms={beatMs} durationMs={beatDur} assets={ep.assets ?? {}} assetsBase={ep.assetsBase} />
+              ) : Scene ? (
+                <Scene params={beat.scene} ms={beatMs} durationMs={beatDur} />
+              ) : null}
+            </AbsoluteFill>
             {beat.keyword && !sceneHasTitle && <PixelTitle text={beat.keyword.toUpperCase()} y={190} size={100} scaleIn={popAt(beatMs)} />}
             {beat.annotation && <Label text={beat.annotation} y={1330} size={30} color={pal.gold} />}
             <HudB clues={hud.clues} date={hud.date} ms={ms} />

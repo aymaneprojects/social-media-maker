@@ -1,8 +1,9 @@
 import React, {createContext, useContext} from 'react';
 import type {PaletteB} from '../../shared/palette';
 import type {Brand} from '../../shared/schema';
+import type {AssetMap} from './stage';
 
-export type ThemeB = {pal: PaletteB; brand: Brand; issue: number; assetsBase: string};
+export type ThemeB = {pal: PaletteB; brand: Brand; issue: number; assetsBase: string; assets: AssetMap};
 
 const Ctx = createContext<ThemeB | null>(null);
 

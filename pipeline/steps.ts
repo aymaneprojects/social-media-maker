@@ -1,6 +1,7 @@
 // LLM steps: topic, research, storyboard (style-specific director), fact check.
 import {readFileSync} from 'node:fs';
 import {chat, chatJson, MODELS} from '../core/openrouter';
+import type {AssetSpec} from '../core/illustrate';
 import type {BrandConfig, HistoryEntry} from './brands';
 
 export type Facts = {
@@ -33,6 +34,7 @@ export type Storyboard = {
   post: {caption: string; hashtags: string[]; youtubeTitle: string; description: string};
   ambience?: {sound: string; fromBeat: number; toBeat: number; volume?: number}[];
   music?: {mood: string};
+  assets?: AssetSpec[]; // style B illustrations
   beats: StoryBeat[];
 };
 

@@ -82,6 +82,90 @@ export const pixelize = async (input: Buffer, o: PixelizeOptions): Promise<Buffe
   return sharp(out, {raw: {width: info.width, height: info.height, channels: 4}}).png().toBuffer();
 };
 
+// Style B: keeps the colours of the illustration but snaps them onto the
+// palette measured on the reference videos, on a coarse pixel grid, and cuts
+// the black background out (flood fill from the borders, inner blacks stay).
+export const pixelizeColor = async (
+  input: Buffer,
+  o: {maxSide: number; palette: string[]; dither?: number; bgLum?: number},
+): Promise<{png: Buffer; width: number; height: number}> => {
+  const {data, info} = await sharp(input)
+    .resize(o.maxSide, o.maxSide, {fit: 'inside', kernel: 'lanczos3'})
+    .removeAlpha()
+    .raw()
+    .toBuffer({resolveWithObject: true});
+  const W = info.width;
+  const H = info.height;
+  const pal = o.palette.map(hex);
+  const dither = (o.dither ?? 0.22) * 48;
+  const rgba = Buffer.alloc(W * H * 4);
+  const lum = new Float32Array(W * H);
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      const i = (y * W + x) * 3;
+      const off = BAYER4[(y & 3) * 4 + (x & 3)] * dither;
+      const r = data[i] + off;
+      const g = data[i + 1] + off;
+      const b = data[i + 2] + off;
+      let best = 0;
+      let bestD = Infinity;
+      for (let k = 0; k < pal.length; k++) {
+        const dr = r - pal[k][0];
+        const dg = g - pal[k][1];
+        const db = b - pal[k][2];
+        const d = 2 * dr * dr + 4 * dg * dg + 3 * db * db;
+        if (d < bestD) {
+          bestD = d;
+          best = k;
+        }
+      }
+      const j = (y * W + x) * 4;
+      rgba[j] = pal[best][0];
+      rgba[j + 1] = pal[best][1];
+      rgba[j + 2] = pal[best][2];
+      rgba[j + 3] = 255;
+      lum[y * W + x] = (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
+    }
+  }
+  // flood fill the dark background from the borders
+  const bg = o.bgLum ?? 0.085;
+  const seen = new Uint8Array(W * H);
+  const stack: number[] = [];
+  for (let x = 0; x < W; x++) stack.push(x, (H - 1) * W + x);
+  for (let y = 0; y < H; y++) stack.push(y * W, y * W + W - 1);
+  while (stack.length) {
+    const p = stack.pop()!;
+    if (seen[p] || lum[p] > bg) continue;
+    seen[p] = 1;
+    rgba[p * 4 + 3] = 0;
+    const x = p % W;
+    const y = (p / W) | 0;
+    if (x > 0) stack.push(p - 1);
+    if (x < W - 1) stack.push(p + 1);
+    if (y > 0) stack.push(p - W);
+    if (y < H - 1) stack.push(p + W);
+  }
+  // trim to the opaque bounding box
+  let x0 = W;
+  let y0 = H;
+  let x1 = -1;
+  let y1 = -1;
+  for (let y = 0; y < H; y++)
+    for (let x = 0; x < W; x++)
+      if (rgba[(y * W + x) * 4 + 3]) {
+        x0 = Math.min(x0, x);
+        y0 = Math.min(y0, y);
+        x1 = Math.max(x1, x);
+        y1 = Math.max(y1, y);
+      }
+  if (x1 < 0) throw new Error('illustration is empty after background removal');
+  const png = await sharp(rgba, {raw: {width: W, height: H, channels: 4}})
+    .extract({left: x0, top: y0, width: x1 - x0 + 1, height: y1 - y0 + 1})
+    .png()
+    .toBuffer();
+  return {png, width: x1 - x0 + 1, height: y1 - y0 + 1};
+};
+
 // Palettes tuned on the reference frames.
 export const RAMP_A = (pal: {bg: string; plum: string; plum2: string; mid1: string; mid2: string; mid3: string; paper: string; white: string}) => [
   pal.bg,
