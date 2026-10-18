@@ -127,15 +127,31 @@ export const pixelizeColor = async (
       lum[y * W + x] = (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
     }
   }
-  // flood fill the dark background from the borders
-  const bg = o.bgLum ?? 0.085;
+  // flood fill the background from the borders. The background colour is
+  // read on the border (usually black, sometimes white or grey).
+  const borderIdx: number[] = [];
+  for (let x = 0; x < W; x++) borderIdx.push(x, (H - 1) * W + x);
+  for (let y = 0; y < H; y++) borderIdx.push(y * W, y * W + W - 1);
+  const counts = new Map<number, number>();
+  borderIdx.forEach((p) => {
+    const i = p * 3;
+    const key = ((data[i] >> 4) << 8) | ((data[i + 1] >> 4) << 4) | (data[i + 2] >> 4);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  });
+  const bgKey = [...counts.entries()].sort((a, b) => b[1] - a[1])[0][0];
+  const bgRgb = [((bgKey >> 8) & 15) * 16 + 8, ((bgKey >> 4) & 15) * 16 + 8, (bgKey & 15) * 16 + 8];
+  const darkBg = (0.2126 * bgRgb[0] + 0.7152 * bgRgb[1] + 0.0722 * bgRgb[2]) / 255 < 0.15;
+  const isBg = (p: number) => {
+    if (darkBg) return lum[p] <= (o.bgLum ?? 0.085);
+    const i = p * 3;
+    const d = Math.abs(data[i] - bgRgb[0]) + Math.abs(data[i + 1] - bgRgb[1]) + Math.abs(data[i + 2] - bgRgb[2]);
+    return d < 60;
+  };
   const seen = new Uint8Array(W * H);
-  const stack: number[] = [];
-  for (let x = 0; x < W; x++) stack.push(x, (H - 1) * W + x);
-  for (let y = 0; y < H; y++) stack.push(y * W, y * W + W - 1);
+  const stack: number[] = [...borderIdx];
   while (stack.length) {
     const p = stack.pop()!;
-    if (seen[p] || lum[p] > bg) continue;
+    if (seen[p] || !isBg(p)) continue;
     seen[p] = 1;
     rgba[p * 4 + 3] = 0;
     const x = p % W;

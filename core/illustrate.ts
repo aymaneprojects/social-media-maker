@@ -5,7 +5,7 @@
 import {createHash} from 'node:crypto';
 import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import path from 'node:path';
-import {generateImage} from './openrouter';
+import {generateImage, MODELS} from './openrouter';
 import {pixelizeColor} from './pixelize';
 
 const STYLE_DIR = 'assets/style-b';
@@ -45,7 +45,7 @@ const MAX_SIDE: Record<AssetKind, number> = {character: 150, object: 140, hand: 
 // Raw generation with a disk cache (same prompt => same image, no extra cost).
 const generateRaw = async (key: string, prompt: string, images: Buffer[]) => {
   mkdirSync(CACHE, {recursive: true});
-  const file = path.join(CACHE, `${hash(key)}.png`);
+  const file = path.join(CACHE, `${hash(`${MODELS.image}|${key}`)}.png`);
   if (existsSync(file)) return readFileSync(file);
   const buf = await generateImage(prompt, {images, aspect: '1:1'});
   writeFileSync(file, buf);
