@@ -4,7 +4,7 @@ import {copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync} from '
 import path from 'node:path';
 import {credits} from '../core/openrouter';
 import {alignWords, synthesize} from '../core/voice';
-import {assembleEpisode, makeAssetsB, makeImages, validateStoryboard} from './assemble';
+import {assembleEpisode, makeAssetsB, makeImages, stripImages, validateStoryboard} from './assemble';
 import {loadBrand, loadHistory, nextIssue, saveHistory} from './brands';
 import {renderEpisode} from './render';
 import {direct, factCheck, pickTopic, research, type Facts, type Storyboard} from './steps';
@@ -71,7 +71,11 @@ export const makeVideo = async (opts: {brand: string; topic?: string; storyboard
   }
   const words = await alignWords(voice, script, dir);
   // style A: optional AI images with code fallbacks; style B: illustrations are mandatory
-  const assets = brand.style === 'B' ? await makeAssetsB(sb, dir) : (await makeImages(brand.style, brand, sb, dir), undefined);
+  // style A: AI images only if the page allows them (default: 100 % code); style B: illustrations are mandatory
+  let assets;
+  if (brand.style === 'B') assets = await makeAssetsB(sb, dir);
+  else if (brand.aiImages === false) stripImages(sb);
+  else await makeImages(brand.style, brand, sb, dir);
   writeFileSync(path.join(dir, 'storyboard.json'), JSON.stringify(sb, null, 2));
 
   const music = brand.style === 'B' && existsSync('public/music/bed-b.mp3') ? 'music/bed-b.mp3' : undefined;

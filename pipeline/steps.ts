@@ -97,7 +97,7 @@ export const direct = async (brand: BrandConfig, facts: Facts, issue: number, va
       role: 'user' as const,
       content: `Page : ${brand.name} (${brand.handle}) — ${brand.theme}
 Épisode n°${issue}. Date du jour : ${today()}.
-Dossier de recherche (seule source autorisée) :
+${brand.aiImages === false ? "IMAGES IA DÉSACTIVÉES pour cette page : n'utilise jamais la scène `image` ni le champ `imagePrompt`. Tout est dessiné par le code (backdrop, map, dossier, portrait, gauge, counter…).\n" : ''}Dossier de recherche (seule source autorisée) :
 ${JSON.stringify(facts, null, 1)}`,
     },
   ];

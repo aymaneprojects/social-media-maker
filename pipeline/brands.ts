@@ -12,6 +12,7 @@ export type BrandConfig = {
   provisional?: boolean;
   uploadProfile: string | null;
   voice: string;
+  aiImages?: boolean; // false = 100 % code-drawn visuals (no AI illustrations)
   schedule: {timezone: string; slots: string[]; days: string[]};
   hashtags: string[];
 };

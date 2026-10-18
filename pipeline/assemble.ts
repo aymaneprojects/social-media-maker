@@ -159,11 +159,20 @@ const IMAGE_STYLE = {
 };
 
 // Without an image, scenes fall back to code-drawn equivalents.
-const applyImageFallback = (b: Storyboard['beats'][number]) => {
+export const applyImageFallback = (b: Storyboard['beats'][number]) => {
   const sc = b.scene as Record<string, unknown> & {type: string};
   if (sc.type !== 'image') return;
   const fb = sc.fallback as Record<string, unknown> | undefined;
   b.scene = (fb as never) ?? {type: 'backdrop', terrain: 'none', fx: sc.fx ?? ['stars'], pins: sc.pins};
+};
+
+// Pages without AI illustrations: drop every image request, image scenes
+// become their code-drawn fallback, portraits use the drawn bust.
+export const stripImages = (sb: Storyboard) => {
+  sb.beats.forEach((b) => {
+    delete b.imagePrompt;
+    applyImageFallback(b);
+  });
 };
 
 export const makeImages = async (style: 'A' | 'B', brand: BrandConfig, sb: Storyboard, dir: string) => {
