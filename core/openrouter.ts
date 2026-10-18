@@ -72,10 +72,26 @@ export const chat = async (opts: {
   return {text: msg.content, citations};
 };
 
+const extractJson = (text: string) => JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+
 export const chatJson = async <T>(opts: Parameters<typeof chat>[0]): Promise<{data: T; citations: {url: string; title?: string}[]}> => {
   const {text, citations} = await chat(opts);
-  const cleaned = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
-  return {data: JSON.parse(cleaned) as T, citations};
+  try {
+    return {data: extractJson(text) as T, citations};
+  } catch (e) {
+    // usually an unescaped quote inside a French string: ask the model to repair its own output once
+    console.warn(`invalid JSON (${(e as Error).message.slice(0, 100)}), repairing`);
+    const fixed = await chat({
+      model: opts.model,
+      temperature: 0,
+      maxTokens: opts.maxTokens,
+      messages: [
+        {role: 'system', content: 'Tu répares du JSON invalide. Renvoie uniquement le JSON corrigé, sans rien changer au contenu (échappe les guillemets internes, ajoute les virgules manquantes).'},
+        {role: 'user', content: `Erreur : ${(e as Error).message}\n\n${text}`},
+      ],
+    });
+    return {data: extractJson(fixed.text) as T, citations};
+  }
 };
 
 // Image generation through chat completions with image output. `images` are

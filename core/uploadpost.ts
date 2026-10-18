@@ -84,3 +84,16 @@ export const uploadStatus = async (id: {request_id?: string; job_id?: string}) =
   const q = id.job_id ? `job_id=${encodeURIComponent(id.job_id)}` : `request_id=${encodeURIComponent(id.request_id ?? '')}`;
   return json(await fetch(`${BASE}/api/uploadposts/status?${q}`, {headers: auth()}));
 };
+
+// Past uploads (most recent first): maps scheduled job_id → request_id / platform post ids.
+export const uploadHistory = async (page = 1, limit = 100) =>
+  json(await fetch(`${BASE}/api/uploadposts/history?page=${page}&limit=${limit}`, {headers: auth()})) as Promise<{
+    history: {profile_username: string; platform: string; success: boolean; platform_post_id?: string | null; post_url?: string | null; job_id?: string | null; request_id?: string | null; upload_timestamp?: string}[];
+    total?: number;
+  }>;
+
+// Live per-post metrics for every platform of one upload (TikTok adds watch time and the retention curve).
+export const postAnalytics = async (requestId: string) =>
+  json(await fetch(`${BASE}/api/uploadposts/post-analytics/${encodeURIComponent(requestId)}`, {headers: auth()})) as Promise<{
+    platforms?: Record<string, {success?: boolean; post_url?: string; post_metrics?: Record<string, unknown>; post_metrics_error?: string}>;
+  }>;

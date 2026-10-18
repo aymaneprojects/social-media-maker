@@ -13,7 +13,8 @@
     "schedule": "tsx pipeline/schedule.ts",
     "stills": "tsx pipeline/stills.ts",
     "gate-b": "tsx pipeline/gate-b.ts",
-    "sfx": "tsx core/sfx.ts"
+    "sfx": "tsx core/sfx.ts",
+    "learn": "tsx pipeline/learn.ts"
   },
   "dependencies": {
     "@fontsource/archivo-black": "5.2.8",
