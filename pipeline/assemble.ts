@@ -11,11 +11,11 @@ import type {BrandConfig} from './brands';
 import type {Storyboard} from './steps';
 
 export const SCENES = {
-  A: ['bigDate', 'counter', 'iconGrid', 'checklist', 'clock', 'gauge', 'stamp', 'bigWord', 'typedNote', 'dossier', 'portrait', 'map', 'backdrop', 'image', 'radar', 'inventory', 'thought'],
+  A: ['bigDate', 'counter', 'iconGrid', 'checklist', 'clock', 'gauge', 'stamp', 'bigWord', 'typedNote', 'dossier', 'portrait', 'map', 'backdrop', 'image', 'radar', 'inventory', 'thought', 'scoreboard', 'lineChart', 'versus', 'timeline', 'podium', 'newspaper'],
   B: ['stage', 'prop', 'title', 'counter', 'map', 'nameTag', 'barCompare', 'balance', 'calendar', 'timeline', 'split', 'thought', 'icons', 'listing'],
 } as const;
 
-const SFX = ['beep', 'beep-low', 'blip', 'tick', 'type', 'stamp', 'boom', 'glitch', 'pixel', 'whoosh', 'counter', 'heartbeat', 'alarm', 'swell', 'splash', 'thunder', 'pop', 'ding', 'cash'];
+const SFX = ['beep', 'beep-low', 'blip', 'tick', 'type', 'stamp', 'boom', 'glitch', 'pixel', 'whoosh', 'counter', 'heartbeat', 'alarm', 'swell', 'splash', 'thunder', 'pop', 'ding', 'cash', 'sting'];
 const TRANSITIONS = ['cut', 'pixelDissolve', 'glitch', 'flash', 'pop'];
 
 const tokens = (s: string) => s.trim().split(/\s+/).filter(Boolean);
@@ -256,6 +256,33 @@ export const buildAudio = (style: 'A' | 'B', sb: Storyboard, timing: {startMs: n
         break;
       case 'backdrop':
         ((b.scene.flashAt as number[]) ?? []).forEach((f) => add('thunder', t + f, 0.5));
+        break;
+      case 'scoreboard':
+        add('counter', t + dur * 0.1, 0.22);
+        add('beep', t + dur * 0.75, 0.3);
+        break;
+      case 'lineChart': {
+        const n = ((b.scene.points as unknown[]) ?? []).length;
+        for (let k = 1; k < n; k++) add('blip', t + (k * dur * 0.7) / Math.max(1, n - 1), 0.2);
+        break;
+      }
+      case 'versus':
+        add('whoosh', t, 0.3);
+        add('whoosh', t + 250, 0.3);
+        if ((b.scene.left as {crossed?: boolean})?.crossed || (b.scene.right as {crossed?: boolean})?.crossed) add('stamp', t + dur * 0.6, 0.45);
+        break;
+      case 'timeline': {
+        const n = ((b.scene.events as unknown[]) ?? []).length;
+        for (let k = 0; k < n; k++) add('beep', t + (k * dur * 0.75) / Math.max(1, n) + 60, 0.25);
+        break;
+      }
+      case 'podium':
+        [0, 0.2, 0.45].forEach((f) => add('pop', t + dur * f, 0.3));
+        add('ding', t + dur * 0.6, 0.35);
+        break;
+      case 'newspaper':
+        add('whoosh', t, 0.35);
+        add('stamp', t + 250, 0.3);
         break;
       case 'prop':
       case 'title':

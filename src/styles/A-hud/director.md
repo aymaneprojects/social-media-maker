@@ -55,15 +55,32 @@ Coordonnées écran : largeur 1080, hauteur 1920. Zone utile pour les éléments
 - `radar` — radar à balayage. `{"type":"radar","blips":5,"label":"SATELLITE OKO","alert":"ALERTE MISSILE"}`.
 - `inventory` — inventaire d'objets. `{"type":"inventory","title":"CE QU'IL LUI RESTE","items":[{"sprite":"candy","text":"Un sac de bonbons"},{"sprite":"glasses","text":"Lunettes","crossed":true}]}`.
 - `thought` — bulle de pensée (scénario imaginé). `{"type":"thought","value":"281","text":"missiles","sub":"une vraie attaque"}`.
-- `backdrop` — décor pixel procédural animé. `{"type":"backdrop","terrain":"storm"|"sky"|"jungle"|"river"|"sea"|"underwater"|"city"|"desert"|"room"|"none","sprites":[{"sprite":"plane","x":540,"y":700,"scale":12,"driftX":40,"bob":true,"glow":false,"fall":0,"tilt":0,"flipX":false}],"fx":["rain","lightning","fireflies","bubbles","mist","stars","embers","snow"],"flashAt":[600],"breakAt":900,"pins":[{"x":540,"y":800,"label":"ÉPAVE","sub":"30 M"}]}`. `breakAt` (ms) casse le premier sprite en deux (crash). `fall` = px/s vers le bas.
-  Sprites : person, personOutline, plane, seat, hut, tent, mountain, boat, ship, train, helicopter, satellite, car, police, house, phone, skull, heart, key, gun, knife, vault, goldbar, money, coin, handcuffs, fingerprint, newspaper, footprints, trophy, medal, ball, stopwatch, runner, bike, candy, shoe, glasses, star, moon, snowflake, bolt, drop, check.
+- `backdrop` — décor pixel procédural animé. `{"type":"backdrop","terrain":"storm"|"sky"|"jungle"|"river"|"sea"|"underwater"|"city"|"desert"|"room"|"stadium"|"space"|"lab"|"office"|"courtroom"|"street"|"prison"|"none","sprites":[{"sprite":"plane","x":540,"y":700,"scale":12,"driftX":40,"bob":true,"glow":false,"fall":0,"tilt":0,"flipX":false}],"fx":["rain","lightning","fireflies","bubbles","mist","stars","embers","snow"],"flashAt":[600],"breakAt":900,"pins":[{"x":540,"y":800,"label":"ÉPAVE","sub":"30 M"}]}`. `breakAt` (ms) casse le premier sprite en deux (crash). `fall` = px/s vers le bas.
+  Terrains : storm (orage), sky (ciel et nuages), jungle, river, sea, underwater, city (ville de nuit), desert, room (intérieur), stadium (stade éclairé, tribunes, pelouse), space (étoiles et planète), lab (laboratoire, fioles), office (open space, écrans), courtroom (tribunal), street (rue de nuit, lampadaires), prison (barreaux, cellule), none.
+  Sprites :
+  - personnes : person, personOutline, head, eye, runner, police ;
+  - transports : plane, seat, boat, ship, train, helicopter, car, bike, rocket, satellite ;
+  - lieux : hut, tent, mountain, house, building, tower ;
+  - enquête : skull, gun, knife, handcuffs, fingerprint, footprints, magnifier, document, lock, key, newspaper, scale (justice), cross ;
+  - argent : vault, goldbar, money, bill, coin, coins, gem, dice ;
+  - sport : trophy, medal, ball, stopwatch, shoe, shirt, target ;
+  - science : planet, moon, star, atom, flask, bulb, snowflake, drop, bolt ;
+  - divers : phone, heart, candy, glasses, pigeon, calendar, check, checkG.
+  `x`,`y` = centre du sprite à l'écran ; `scale` 8-20 (taille d'un pixel du sprite).
+- `scoreboard` — tableau d'affichage LED (match, élection, procès, duel chiffré). `{"type":"scoreboard","left":{"name":"Liverpool","from":0,"to":3},"right":{"name":"AC Milan","from":3,"to":3},"time":"90:00","label":"FINALE 2005"}`. Les scores défilent de `from` à `to`.
+- `lineChart` — courbe tracée progressivement (cours de bourse, record, température, population). `{"type":"lineChart","title":"COURS DE L'ACTION","unit":"$","points":[{"label":"1998","value":12},{"label":"2000","value":90},{"label":"2002","value":3}],"highlight":2,"note":"FAILLITE"}`. 3 à 8 points, valeurs réelles.
+- `versus` — deux fiches face à face (suspects, rivaux, entreprises, avant/après). `{"type":"versus","left":{"name":"Le mari","sub":"Suspect 1","fields":[{"k":"Alibi","v":"Aucun"}],"sprite":"person"},"right":{"name":"Le voisin","sub":"Suspect 2","fields":[{"k":"Alibi","v":"Solide"}],"sprite":"personOutline","crossed":true},"vs":"VS"}`. `crossed` = barré en fin de beat (écarté, perdant).
+- `timeline` — frise verticale de 3 à 5 dates révélées une à une. `{"type":"timeline","title":"LA CHRONOLOGIE","events":[{"date":"1969","text":"Premier pas"},{"date":"1972","text":"Dernière mission"}],"highlight":1}`.
+- `podium` — podium 1-2-3 avec trophée. `{"type":"podium","first":"Bolt","second":"Blake","third":"Gay","label":"BERLIN 2009"}`.
+- `newspaper` — une de journal d'époque qui tombe sur l'écran. `{"type":"newspaper","masthead":"LE SOIR","headline":"Le casse du siècle","date":"20 juillet 1976","sub":"Aucun coup de feu"}`. Titre ≤ 6 mots, plausible pour l'époque (pas de vraie citation inventée).
 - `image` — illustration IA pixelisée plein écran (pour ce que les autres scènes ne savent pas montrer : un lieu précis, un objet, une action). `{"type":"image","zoom":[1,1.1],"pan":[0,-40],"fx":["rain"],"pins":[...],"fit":"cover"|"card"}` + `imagePrompt` obligatoire.
 - Toute scène accepte `"bpm":[96,130]` (moniteur cardiaque en bas à gauche) et `"under": {scène}` (décor dessous).
 
 ## Variété (obligatoire)
 - Jamais deux beats consécutifs avec le même `scene.type`.
 - `bigWord` : 3 maximum. `typedNote` : 2 maximum. `stamp` : 2 maximum.
-- Au moins 7 scènes visuelles (`backdrop`, `image`, `map`, `portrait`, `gauge`) : on doit VOIR l'histoire, pas la lire.
+- Au moins 7 scènes visuelles (`backdrop`, `image`, `map`, `portrait`, `gauge`) : on doit VOIR l'histoire, pas la lire. Varie les terrains : pas plus de 3 `backdrop` d'affilée sur le même terrain.
+- Choisis la scène qui MONTRE le mieux l'idée : un score → `scoreboard`, une évolution → `lineChart`, deux camps → `versus`, plusieurs dates → `timeline`, un classement → `podium`, l'écho médiatique → `newspaper`. Une scène « données » doit toujours contenir un vrai chiffre ou un vrai nom de l'histoire.
 - Une scène `backdrop` doit contenir au moins un sprite ou un effet qui raconte l'action (avion qui se casse, tente dans la neige, bateau, voiture de police…).
 
 ## Images IA (`imagePrompt`, en anglais)
@@ -71,7 +88,7 @@ Coordonnées écran : largeur 1080, hauteur 1920. Zone utile pour les éléments
 - Décris une scène simple, centrée, lisible en tout petit : « an old wooden boat moored on a jungle river at dusk, side view ». Pas de texte dans l'image. Pour une personne réelle : description générique (âge, époque, vêtements), jamais « photo de [célébrité] ».
 
 ## Son
-- `sfx` (optionnel, par beat, joués au début du beat) parmi : beep, beep-low, blip, tick, type, stamp, boom, glitch, pixel, whoosh, counter, heartbeat, alarm, swell, splash, thunder.
+- `sfx` (optionnel, par beat, joués au début du beat) parmi : beep, beep-low, blip, tick, type, stamp, boom, glitch, pixel, whoosh, counter, heartbeat, alarm, swell, splash, thunder, pop, ding, cash (argent), sting (révélation).
 - `ambience` (au niveau de l'épisode) : `[{"sound":"amb-storm","fromBeat":1,"toBeat":6,"volume":0.3}]` parmi amb-rain, amb-storm, amb-underwater, amb-drone, amb-wind, amb-jungle, amb-room, amb-tension. Toujours au moins une ambience couvrant toute la vidéo (amb-drone ou amb-tension par défaut, volume 0.15-0.3).
 
 ## Sortie

@@ -211,6 +211,216 @@ const drawTerrain = (ctx: CanvasRenderingContext2D, kind: string, t: number, pal
       ditherFill(ctx, 0, 0, W, 230, pal.bg, (x) => Math.abs(x - W / 2) / (W / 2));
       break;
     }
+    case 'stadium': {
+      sky(pal.bg, pal.plum, 120);
+      // stands full of spectators (blinking dots), floodlights, pitch
+      for (let y = 70; y < 190; y++) {
+        const k = (y - 70) / 120;
+        ctx.fillStyle = k < 0.5 ? pal.plum2 : pal.mid1;
+        ctx.fillRect(0, y, W, 1);
+      }
+      for (let y = 74; y < 188; y += 5)
+        for (let x = (y % 2) * 2; x < W; x += 4) {
+          const r = rnd(`fan${x}-${y}`);
+          if (r > 0.45) {
+            ctx.fillStyle = r > 0.93 ? pal.accent : r > 0.75 ? pal.mid3 : pal.mid2;
+            ctx.fillRect(x, y, 2, 2);
+          }
+        }
+      [20, 160].forEach((lx) => {
+        ctx.fillStyle = pal.mid2;
+        ctx.fillRect(lx, 10, 2, 60);
+        ctx.fillStyle = pal.paper;
+        ctx.fillRect(lx - 6, 6, 14, 6);
+        ditherFill(ctx, lx - 30, 12, 60, 80, pal.plum2, (x, y) => 0.5 - Math.abs(x - lx) / 60 - (y - 12) / 160);
+      });
+      ctx.fillStyle = pal.plum2;
+      ctx.fillRect(0, 190, W, H - 190);
+      for (let i = 0; i < 8; i++) {
+        ctx.fillStyle = i % 2 ? pal.plum : pal.plum2;
+        ctx.fillRect(0, 190 + i * 16, W, 16);
+      }
+      ctx.fillStyle = pal.mid3;
+      ctx.fillRect(0, 192, W, 1);
+      ctx.fillRect(W / 2, 192, 1, H - 192);
+      break;
+    }
+    case 'space': {
+      ctx.fillStyle = pal.bg;
+      ctx.fillRect(0, 0, W, H);
+      for (let i = 0; i < 120; i++) {
+        ctx.fillStyle = rnd(`st${i}`) > 0.8 ? pal.white : pal.mid2;
+        ctx.fillRect(Math.floor(rnd(`sx${i}`) * W), Math.floor(rnd(`sy${i}`) * H), 1, 1);
+      }
+      // planet limb at the bottom, lit from the left
+      ctx.fillStyle = pal.mid1;
+      ctx.beginPath();
+      ctx.arc(W / 2, H + 120, 230, 0, Math.PI * 2);
+      ctx.fill();
+      ditherFill(ctx, 0, 200, W, H - 200, pal.mid3, (x, y) => {
+        const dx = x - W / 2;
+        const dy = y - (H + 120);
+        const d = Math.sqrt(dx * dx + dy * dy);
+        return d < 230 && d > 222 ? 0.9 : d < 230 ? Math.max(0, (-dx / 230) * 0.6) : 0;
+      });
+      ditherFill(ctx, 0, 180, W, 60, pal.plum2, (x, y) => {
+        const dx = x - W / 2;
+        const dy = y - (H + 120);
+        const d = Math.sqrt(dx * dx + dy * dy);
+        return d >= 230 && d < 246 ? 0.6 - (d - 230) / 30 : 0;
+      });
+      break;
+    }
+    case 'lab': {
+      ctx.fillStyle = pal.plum;
+      ctx.fillRect(0, 0, W, H);
+      // tiles
+      for (let y = 0; y < 200; y += 12) for (let x = (y / 12) % 2 ? 6 : 0; x < W; x += 12) {
+        ctx.fillStyle = pal.plum2;
+        ctx.fillRect(x, y, 11, 11);
+      }
+      // bench + flasks
+      ctx.fillStyle = pal.mid1;
+      ctx.fillRect(0, 200, W, 8);
+      ctx.fillStyle = pal.plum2;
+      ctx.fillRect(0, 208, W, H - 208);
+      for (let i = 0; i < 7; i++) {
+        const fx = 14 + i * 24;
+        const fh = 10 + Math.floor(rnd(`fl${i}`) * 14);
+        ctx.fillStyle = pal.mid3;
+        ctx.fillRect(fx, 200 - fh, 8, fh);
+        ctx.fillStyle = i % 3 === 0 ? pal.accent : pal.mid2;
+        ctx.fillRect(fx + 1, 200 - Math.floor(fh / 2), 6, Math.floor(fh / 2));
+        if (Math.floor(t * 3 + i) % 4 === 0) {
+          ctx.fillStyle = pal.white;
+          ctx.fillRect(fx + 3, 200 - fh - 4 - ((t * 10 + i * 3) % 10), 2, 2);
+        }
+      }
+      break;
+    }
+    case 'office': {
+      sky(pal.bg, pal.plum, 120);
+      // window wall with a night skyline, desks in front
+      ctx.fillStyle = pal.plum2;
+      for (let x = 0; x < W; x += 45) ctx.fillRect(x, 0, 3, 200);
+      ctx.fillRect(0, 196, W, 4);
+      for (let i = 0; i < 16; i++) {
+        const bh = 30 + Math.floor(rnd(`ob${i}`) * 80);
+        ctx.fillStyle = pal.plum;
+        ctx.fillRect(i * 12, 196 - bh, 11, bh);
+        for (let wy = 196 - bh + 4; wy < 192; wy += 6)
+          if (rnd(`ow${i}${wy}`) > 0.6) {
+            ctx.fillStyle = pal.mid2;
+            ctx.fillRect(i * 12 + 4, wy, 2, 2);
+          }
+      }
+      ctx.fillStyle = pal.mid1;
+      ctx.fillRect(0, 230, W, 10);
+      ctx.fillStyle = pal.plum2;
+      ctx.fillRect(0, 240, W, H - 240);
+      [30, 120].forEach((dx) => {
+        ctx.fillStyle = pal.mid2;
+        ctx.fillRect(dx, 206, 34, 22);
+        ctx.fillStyle = pal.accent;
+        ctx.fillRect(dx + 3, 209, 28, 15);
+        ditherFill(ctx, dx - 10, 196, 54, 40, pal.mid1, (x, y) => 0.35 - Math.abs(x - dx - 17) / 60 - Math.abs(y - 216) / 60);
+      });
+      break;
+    }
+    case 'courtroom': {
+      ctx.fillStyle = pal.plum;
+      ctx.fillRect(0, 0, W, H);
+      // columns, judge bench, seal
+      for (let i = 0; i < 4; i++) {
+        const cx = 18 + i * 48;
+        ctx.fillStyle = pal.plum2;
+        ctx.fillRect(cx, 20, 16, 170);
+        ditherFill(ctx, cx, 20, 16, 170, pal.mid1, (x) => (x - cx < 5 ? 0.6 : 0));
+      }
+      ctx.fillStyle = pal.mid1;
+      ctx.fillRect(30, 150, W - 60, 60);
+      ctx.fillStyle = pal.mid2;
+      ctx.fillRect(30, 150, W - 60, 4);
+      // discreet seal above the bench (sprites sit on top of it without clashing)
+      ctx.fillStyle = pal.mid1;
+      ctx.beginPath();
+      ctx.arc(W / 2, 110, 16, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = pal.plum2;
+      ctx.beginPath();
+      ctx.arc(W / 2, 110, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = pal.mid1;
+      ctx.fillRect(W / 2 - 1, 102, 2, 14);
+      ctx.fillRect(W / 2 - 6, 104, 12, 2);
+      ctx.fillStyle = pal.plum2;
+      ctx.fillRect(0, 210, W, H - 210);
+      for (let i = 0; i < 5; i++) {
+        ctx.fillStyle = pal.plum;
+        ctx.fillRect(0, 240 + i * 18, W, 6);
+      }
+      break;
+    }
+    case 'street': {
+      sky(pal.bg, pal.plum, 150);
+      for (let i = 0; i < 9; i++) {
+        const bw = 18 + Math.floor(rnd(`sb${i}`) * 14);
+        const bh = 60 + Math.floor(rnd(`sh${i}`) * 70);
+        const bx = i * 22 - 6;
+        ctx.fillStyle = i % 2 ? pal.plum2 : pal.plum;
+        ctx.fillRect(bx, 210 - bh, bw, bh);
+        for (let wy = 210 - bh + 6; wy < 200; wy += 10)
+          for (let wx = bx + 3; wx < bx + bw - 3; wx += 6)
+            if (rnd(`sw${i}${wx}${wy}`) > 0.75) {
+              ctx.fillStyle = pal.mid2;
+              ctx.fillRect(wx, wy, 3, 4);
+            }
+      }
+      ctx.fillStyle = pal.plum2;
+      ctx.fillRect(0, 210, W, H - 210);
+      // street lamps with light cones
+      [40, 140].forEach((lx) => {
+        ctx.fillStyle = pal.mid1;
+        ctx.fillRect(lx, 140, 2, 72);
+        ctx.fillStyle = pal.paper;
+        ctx.fillRect(lx - 3, 138, 8, 4);
+        ditherFill(ctx, lx - 40, 142, 84, 80, pal.mid1, (x, y) => 0.55 - Math.abs(x - lx) / ((y - 140) * 0.9 + 4) - (y - 142) / 200);
+      });
+      // wet road reflections
+      for (let x = 0; x < W; x += 3) {
+        if (rnd(`rr${x}`) > 0.7) {
+          ctx.fillStyle = pal.mid1;
+          ctx.fillRect(x, 230 + Math.floor(rnd(`ry${x}`) * 80), 2, 1);
+        }
+      }
+      break;
+    }
+    case 'prison': {
+      ctx.fillStyle = pal.plum;
+      ctx.fillRect(0, 0, W, H);
+      // brick wall
+      for (let y = 0; y < 220; y += 8)
+        for (let x = (y / 8) % 2 ? -8 : 0; x < W; x += 16) {
+          ctx.fillStyle = rnd(`br${x}${y}`) > 0.5 ? pal.plum2 : pal.plum;
+          ctx.fillRect(x, y, 15, 7);
+        }
+      // small barred window with moonlight
+      ctx.fillStyle = pal.bg;
+      ctx.fillRect(70, 50, 40, 36);
+      ctx.fillStyle = pal.mid2;
+      for (let x = 74; x < 110; x += 8) ctx.fillRect(x, 50, 2, 36);
+      ditherFill(ctx, 40, 86, 110, 140, pal.mid1, (x, y) => 0.45 - Math.abs(x - 90 - (y - 86) * 0.3) / 50 - (y - 86) / 300);
+      ctx.fillStyle = pal.plum2;
+      ctx.fillRect(0, 220, W, H - 220);
+      // front bars
+      for (let x = 6; x < W; x += 26) {
+        ctx.fillStyle = pal.mid1;
+        ctx.fillRect(x, 0, 6, H);
+        ctx.fillStyle = pal.mid2;
+        ctx.fillRect(x, 0, 2, H);
+      }
+      break;
+    }
     default: {
       ctx.fillStyle = pal.bg;
       ctx.fillRect(0, 0, W, H);
