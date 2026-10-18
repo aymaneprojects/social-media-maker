@@ -38,9 +38,9 @@ const EndCardB: React.FC<{ms: number; name: string; handle: string; issue: numbe
   const p = popAt(ms);
   return (
     <>
-      <div style={{position: 'absolute', left: 140, top: 640, width: 800, height: 420, border: `8px solid ${pal.gold}`, outline: `4px solid ${pal.goldDark}`, outlineOffset: -22, transform: `scale(${p})`}} />
-      <PixelTitle text={name.toUpperCase()} y={700} size={90} scaleIn={p} />
-      {ms > 300 && <Label text={handle} y={880} size={26} color={pal.gold} />}
+      <div style={{position: 'absolute', left: 60, top: 640, width: 960, height: 420, border: `8px solid ${pal.accent}`, outline: `4px solid ${pal.goldDeep}`, outlineOffset: -22, transform: `scale(${p})`}} />
+      <PixelTitle text={name.toUpperCase()} y={710} size={74} color="accent" scaleIn={p} />
+      {ms > 300 && <Label text={handle} y={880} size={26} color={pal.accent} />}
       {ms > 600 && <Label text={`N°${String(issue).padStart(2, '0')}  ${place}  ${year}`} y={950} size={20} color={pal.grey} />}
     </>
   );

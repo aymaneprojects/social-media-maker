@@ -21,8 +21,9 @@ const main = async () => {
   rmSync(dir, {recursive: true, force: true});
   mkdirSync(dir, {recursive: true});
   for (const [k, i] of pick.entries()) {
+    // index -1 = end card
     const b = ep.beats[i];
-    const ms = b.startMs + (b.endMs - b.startMs) * at;
+    const ms = i < 0 ? ep.durationMs - 400 : b.startMs + (b.endMs - b.startMs) * at;
     const frame = Math.min(composition.durationInFrames - 1, Math.round((ms / 1000) * 30));
     await renderStill({composition, serveUrl, inputProps: ep, frame, output: path.join(dir, `s_${String(k).padStart(3, '0')}.png`), chromiumOptions: {gl: 'swangle'}});
   }

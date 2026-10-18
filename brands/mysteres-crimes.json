@@ -1,9 +1,9 @@
 {
   "slug": "mysteres-crimes",
-  "name": "Affaires Classées",
-  "handle": "@affaires.classees",
+  "name": "Margot Enquête",
+  "handle": "@margot.enquete",
   "style": "A",
-  "accent": "#FF3B3B",
+  "accent": "#FF3D3D",
   "lang": "FR",
   "theme": "Mystères & crimes : affaires criminelles célèbres, disparitions, énigmes non résolues, enquêtes, braquages, évasions.",
   "examples": [
