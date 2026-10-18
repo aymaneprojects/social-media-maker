@@ -3,8 +3,9 @@
   "topic": "Victor Lustig vend la tour Eiffel (1925)",
   "angle": "un escroc convainc un ferrailleur d'acheter la tour Eiffel",
   "subgenre": "arnaque",
-  "status": "todo",
-  "by": "seed"
+  "status": "done",
+  "by": "seed",
+  "episodeId": "business-argent-001-victor-lustig-vend-la-tour-eiffel-1925"
  },
  {
   "topic": "Blockbuster refuse d'acheter Netflix pour 50 millions (2000)",

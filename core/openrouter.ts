@@ -51,6 +51,13 @@ export const MODELS = {
 
 export type ChatMessage = {role: 'system' | 'user' | 'assistant'; content: string};
 
+// OpenRouter is used for the voice only: Claude (the agent session) does the
+// research, writing and review. Text and image calls must be enabled explicitly.
+const assertAllowed = (what: string) => {
+  if (process.env.ALLOW_OPENROUTER_LLM !== '1')
+    throw new Error(`${what} via OpenRouter is disabled (voice only). The agent writes the storyboard itself; set ALLOW_OPENROUTER_LLM=1 to override.`);
+};
+
 export const chat = async (opts: {
   model?: string;
   messages: ChatMessage[];
@@ -60,6 +67,7 @@ export const chat = async (opts: {
   maxTokens?: number;
   reasoning?: number; // cap on hidden reasoning tokens (they count in maxTokens)
 }): Promise<{text: string; citations: {url: string; title?: string}[]}> => {
+  assertAllowed('Text generation');
   const model = opts.model ?? MODELS.writer;
   const body: Record<string, unknown> = {
     model,
@@ -106,6 +114,7 @@ export const chatJson = async <T>(opts: Parameters<typeof chat>[0]): Promise<{da
 // Image generation through chat completions with image output. `images` are
 // sent along with the prompt (style references, or the image to edit).
 export const generateImage = async (prompt: string, opts: {model?: string; aspect?: string; images?: Buffer[]} = {}): Promise<Buffer> => {
+  assertAllowed('Image generation');
   const model = opts.model ?? MODELS.image;
   const content = opts.images?.length
     ? [

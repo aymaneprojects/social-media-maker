@@ -4,7 +4,10 @@ Tu es l'agent d'**une** page. Ton âme est dans `agents/<page>/SOUL.md`, ta mém
 
 ## 0. Préparer
 - Lis : `agents/_common.md`, ton `SOUL.md`, ton `MEMORY.md`, `agents/ENGINE.md` et `src/styles/A-hud/director.md`.
-- Si `MEMORY.md` n'a pas été mis à jour depuis 7 jours et que des vidéos sont publiées : `npx tsx pipeline/learn.ts --brand <page>`.
+- Si `MEMORY.md` n'a pas été mis à jour depuis 7 jours et que des vidéos sont publiées :
+  1. `npx tsx pipeline/learn.ts --brand <page>` récupère les statistiques Upload-Post et les nouveaux rapports de `reports/`, et les écrit dans `data/analytics-<page>.md` ;
+  2. analyse-les toi-même (accroche → reste à 3 s, rétention, partages), puis réécris `MEMORY.md` : règles confirmées (avec le chiffre qui les justifie), hypothèses, choses à éviter, et une ligne de journal datée.
+- OpenRouter est verrouillé sur la voix : un appel de texte ou d'image échoue volontairement. C'est toi qui écris.
 
 ## 1. Choisir le sujet
 - Prends dans `backlog.json` le meilleur sujet `todo`.

@@ -80,8 +80,9 @@
   "topic": "Vassili Arkhipov et le sous-marin B-59 (27 octobre 1962)",
   "angle": "un officier refuse le tir d'une torpille nucléaire en pleine crise de Cuba",
   "subgenre": "erreur-historique",
-  "status": "todo",
-  "by": "seed"
+  "status": "done",
+  "by": "seed",
+  "episodeId": "histoires-vraies-001-vassili-arkhipov-et-le-sous-marin-b-59-27-octobr"
  },
  {
   "topic": "Les esclaves oubliés de l'île de Tromelin (1761-1776)",

@@ -132,6 +132,18 @@ export const learn = async (slug: string, dry = false) => {
     });
   console.log(`${slug}: ${rows.length} video(s) with stats, ${reports.length} new report(s)`);
   if (!rows.length && !reports.length) return;
+  if (process.env.ALLOW_OPENROUTER_LLM !== '1') {
+    // the page agent (Claude) reads this report and rewrites MEMORY.md itself
+    const out = `data/analytics-${slug}.md`;
+    writeFileSync(out, `# Statistiques — ${brand.name} (${new Date().toISOString().slice(0, 10)})\n\nn° | sujet | sous-genre | accroche | durée | scènes | stats\n${rows.join('\n')}\n\n## Nouveaux rapports\n${reports.map((r) => `### ${path.basename(r.file)}\n${r.text}`).join('\n\n') || '(aucun)'}\n`);
+    if (!dry) {
+      writeFileSync(ANALYTICS, JSON.stringify(cache, null, 1));
+      writeFileSync(SEEN, JSON.stringify([...loadJson<string[]>(SEEN, []), ...reports.map((r) => r.file)], null, 1));
+      saveHistory(history);
+    }
+    console.log(`${slug}: stats written to ${out} — update agents/${slug}/MEMORY.md from it`);
+    return;
+  }
 
   const {data} = await chatJson<Analysis>({
     model: MODELS.writer,

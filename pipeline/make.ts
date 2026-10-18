@@ -53,6 +53,8 @@ export const makeVideo = async (opts: {brand: string; topic?: string; storyboard
     topic = topic || sb.title;
     pick = {topic, ...backlogMeta(brand.slug, topic)};
   } else {
+    if (process.env.ALLOW_OPENROUTER_LLM !== '1')
+      throw new Error('No --storyboard given. The page agent (Claude) researches and writes storyboards/<page>-<subject>.json itself (see agents/PLAYBOOK.md); OpenRouter is used for the voice only.');
     pick = topic ? {topic, ...backlogMeta(brand.slug, topic)} : await pickTopic(brand, history);
     topic = pick.topic;
     console.log(`topic: ${topic}`);
