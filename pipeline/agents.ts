@@ -1,5 +1,5 @@
 // Theme agents: one editorial persona per page, with a memory fed by the analytics
-// loop (learnings.md) and a topic backlog. Files live in agents/<brand slug>/.
+// loop (MEMORY.md) and a topic backlog. Files live in agents/<brand slug>/.
 import {existsSync, readFileSync, writeFileSync} from 'node:fs';
 
 export type BacklogItem = {
@@ -21,8 +21,8 @@ export const loadAgent = (slug: string): Agent => {
   const backlogFile = `${dir(slug)}/backlog.json`;
   return {
     slug,
-    persona: read(`${dir(slug)}/persona.md`),
-    learnings: read(`${dir(slug)}/learnings.md`),
+    persona: read(`${dir(slug)}/SOUL.md`),
+    learnings: read(`${dir(slug)}/MEMORY.md`),
     backlog: existsSync(backlogFile) ? JSON.parse(readFileSync(backlogFile, 'utf8')) : [],
   };
 };

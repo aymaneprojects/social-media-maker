@@ -186,7 +186,7 @@ ${journal ? journal + '\n' : ''}- ${today} : ${rows.length} vidéo(s) analysée(
     console.log(md);
     return;
   }
-  writeFileSync(`agents/${slug}/learnings.md`, md);
+  writeFileSync(`agents/${slug}/MEMORY.md`, md);
   writeFileSync(ANALYTICS, JSON.stringify(cache, null, 1));
   writeFileSync(SEEN, JSON.stringify([...loadJson<string[]>(SEEN, []), ...reports.map((r) => r.file)], null, 1));
   saveHistory(history); // persists resolved request ids
