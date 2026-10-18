@@ -1,0 +1,238 @@
+{
+ "id": "sample",
+ "issue": 3,
+ "brand": {
+  "slug": "histoires-vraies",
+  "name": "Pixels Stories",
+  "handle": "@pixels.stories",
+  "style": "A",
+  "accent": "#FF448D",
+  "lang": "FR"
+ },
+ "endCard": {
+  "place": "Nigeria",
+  "year": "2013"
+ },
+ "durationMs": 10800,
+ "assetsBase": "ep/sample/",
+ "words": [
+  {
+   "text": "Il",
+   "startMs": 0,
+   "endMs": 160
+  },
+  {
+   "text": "est",
+   "startMs": 160,
+   "endMs": 240
+  },
+  {
+   "text": "quatre",
+   "startMs": 240,
+   "endMs": 540
+  },
+  {
+   "text": "heures",
+   "startMs": 540,
+   "endMs": 840
+  },
+  {
+   "text": "trente",
+   "startMs": 840,
+   "endMs": 1140
+  },
+  {
+   "text": "du",
+   "startMs": 1140,
+   "endMs": 1420
+  },
+  {
+   "text": "matin.",
+   "startMs": 1420,
+   "endMs": 1700
+  },
+  {
+   "text": "Au",
+   "startMs": 2220,
+   "endMs": 2480
+  },
+  {
+   "text": "large",
+   "startMs": 2480,
+   "endMs": 2740
+  },
+  {
+   "text": "du",
+   "startMs": 2740,
+   "endMs": 2940
+  },
+  {
+   "text": "Nigeria,",
+   "startMs": 2940,
+   "endMs": 3280
+  },
+  {
+   "text": "un",
+   "startMs": 3820,
+   "endMs": 4000
+  },
+  {
+   "text": "remorqueur",
+   "startMs": 4000,
+   "endMs": 4540
+  },
+  {
+   "text": "se",
+   "startMs": 4540,
+   "endMs": 4680
+  },
+  {
+   "text": "retourne.",
+   "startMs": 4680,
+   "endMs": 5180
+  },
+  {
+   "text": "Harrison",
+   "startMs": 5740,
+   "endMs": 6080
+  },
+  {
+   "text": "Okene,",
+   "startMs": 6080,
+   "endMs": 6487
+  },
+  {
+   "text": "vingt-neuf",
+   "startMs": 6487,
+   "endMs": 7220
+  },
+  {
+   "text": "ans,",
+   "startMs": 7220,
+   "endMs": 7460
+  },
+  {
+   "text": "est",
+   "startMs": 7460,
+   "endMs": 8040
+  },
+  {
+   "text": "cuisinier",
+   "startMs": 8040,
+   "endMs": 8540
+  },
+  {
+   "text": "à",
+   "startMs": 8540,
+   "endMs": 8680
+  },
+  {
+   "text": "bord.",
+   "startMs": 8680,
+   "endMs": 8860
+  }
+ ],
+ "beats": [
+  {
+   "id": "b1",
+   "startMs": 0,
+   "endMs": 2200,
+   "text": "Il est 4h30 du matin.",
+   "transition": "cut",
+   "hud": {
+    "clock": {
+     "mode": "time",
+     "from": "04:30",
+     "to": "04:30"
+    },
+    "label": "26.05.2013"
+   },
+   "scene": {
+    "type": "backdrop",
+    "terrain": "sea",
+    "fx": [
+     "rain",
+     "lightning"
+    ],
+    "flashAt": [
+     900
+    ],
+    "sprites": [
+     {
+      "sprite": "ship",
+      "x": 540,
+      "y": 1020,
+      "scale": 12,
+      "bob": true,
+      "glow": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "b2",
+   "startMs": 2200,
+   "endMs": 5700,
+   "text": "Au large du Nigeria, un remorqueur se retourne.",
+   "transition": "pixelDissolve",
+   "hud": {
+    "clock": {
+     "mode": "time",
+     "from": "04:30",
+     "to": "04:31"
+    }
+   },
+   "scene": {
+    "type": "map",
+    "mode": "globe",
+    "center": [
+     5,
+     4
+    ],
+    "zoom": 1.6,
+    "highlight": [
+     "Nigeria"
+    ],
+    "pin": {
+     "lon": 5.5,
+     "lat": 4.2,
+     "label": "Golfe de Guinée",
+     "sub": "au large du Nigeria"
+    }
+   }
+  },
+  {
+   "id": "b3",
+   "startMs": 5700,
+   "endMs": 9000,
+   "text": "Harrison Okene, 29 ans, est cuisinier à bord.",
+   "transition": "glitch",
+   "scene": {
+    "type": "dossier",
+    "first": "Harrison",
+    "last": "Okene",
+    "fields": [
+     {
+      "k": "Âge",
+      "v": "29 ans"
+     },
+     {
+      "k": "Poste",
+      "v": "Cuisinier"
+     },
+     {
+      "k": "Navire",
+      "v": "Jascon 4"
+     }
+    ],
+    "index": "1 / 12",
+    "sprite": "ship"
+   }
+  }
+ ],
+ "audio": {
+  "voice": "voice.mp3",
+  "ambience": [],
+  "sfx": []
+ }
+}
