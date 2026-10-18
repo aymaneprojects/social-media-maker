@@ -94,7 +94,7 @@ export const BlockStorm: React.FC<{density: number; seed: string}> = ({density, 
       const r = random(`${seed}-${x}-${y}`);
       // denser on the borders, lighter in the centre (keeps the subject readable)
       const edge = Math.min(x, y, COLS - 1 - x, ROWS - 1 - y) / (COLS / 2);
-      if (r > density * (0.95 - 0.6 * Math.min(1, edge * 1.4))) continue;
+      if (r > density * (0.8 - 0.62 * Math.min(1, edge * 1.6))) continue;
       const c = colors[Math.floor(random(`${seed}-c-${x}-${y}`) * colors.length)];
       const small = random(`${seed}-s-${x}-${y}`) > 0.6;
       cells.push(

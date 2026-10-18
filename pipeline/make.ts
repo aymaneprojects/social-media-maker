@@ -78,11 +78,31 @@ export const makeVideo = async (opts: {brand: string; topic?: string; storyboard
 
   const script = sb.beats.map((b) => b.text.trim()).join(' ');
   const voice = path.join(dir, 'voice.mp3');
-  if (!existsSync(voice)) {
+  // the voice is reused only if it was recorded for exactly this script
+  const voiceScript = path.join(dir, 'voice-script.txt');
+  const sameScript = existsSync(voiceScript) && readFileSync(voiceScript, 'utf8') === script;
+  if (!existsSync(voice) || !sameScript) {
     const ms = await synthesize(script, voice, {voice: brand.voice});
+    writeFileSync(voiceScript, script);
     console.log(`voice: ${(ms / 1000).toFixed(1)}s`);
   }
   const words = await alignWords(voice, script, dir);
+  // guard: what the voice actually says must match the script (catches a stale or wrong recording)
+  try {
+    const asr = (JSON.parse(readFileSync(path.join(dir, 'words.json'), 'utf8')).asr ?? []) as {text: string}[];
+    const toks = (t: string) => t.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, ' ').split(/\s+/).filter(Boolean);
+    const said = toks(asr.map((w) => w.text).join(' '));
+    const want = toks(script);
+    const bag = new Map<string, number>();
+    for (const t of said) bag.set(t, (bag.get(t) ?? 0) + 1);
+    let common = 0;
+    for (const t of want) if ((bag.get(t) ?? 0) > 0) (common++, bag.set(t, bag.get(t)! - 1));
+    const match = common / Math.max(1, want.length);
+    console.log(`voice/script match: ${(match * 100).toFixed(0)} %`);
+    if (asr.length && match < 0.7) throw new Error(`the voice does not match the script (${(match * 100).toFixed(0)} %): delete ${voice} and run again`);
+  } catch (e) {
+    if ((e as Error).message.startsWith('the voice')) throw e;
+  }
   // style A: AI images only if the page allows them (default: 100 % code); style B: illustrations are mandatory
   let assets;
   if (brand.style === 'B') assets = await makeAssetsB(sb, dir);
