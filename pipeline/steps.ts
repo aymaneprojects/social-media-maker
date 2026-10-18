@@ -5,7 +5,7 @@ import type {BrandConfig, HistoryEntry} from './brands';
 
 export type Facts = {
   topic: string;
-  summary: string;
+  summary: string | string[];
   timeline: {date: string; event: string}[];
   people: {name: string; age?: string; role?: string}[];
   places: {name: string; country?: string; lon?: number; lat?: number}[];
@@ -102,12 +102,15 @@ ${JSON.stringify(facts, null, 1)}`,
   for (let attempt = 0; attempt < 3; attempt++) {
     const {text} = await chat({model: MODELS.writer, messages, temperature: 0.8, maxTokens: 16000});
     try {
-      const sb = JSON.parse(text.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim()) as Storyboard;
+      const sb = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1)) as Storyboard;
       const errors = validate(sb);
       if (!errors.length) return sb;
+      console.warn(`storyboard attempt ${attempt + 1}: ${errors.length} problem(s)\n- ${errors.slice(0, 8).join('\n- ')}`);
       messages.push({role: 'assistant' as const, content: text} as never);
       messages.push({role: 'user' as const, content: `Corrige ces problèmes et renvoie le JSON complet :\n- ${errors.join('\n- ')}`});
     } catch (e) {
+      console.warn(`storyboard attempt ${attempt + 1}: invalid JSON (${(e as Error).message.slice(0, 120)})`);
+      messages.push({role: 'assistant' as const, content: text} as never);
       messages.push({role: 'user' as const, content: `JSON invalide (${(e as Error).message}). Renvoie uniquement le JSON complet et valide.`});
     }
   }

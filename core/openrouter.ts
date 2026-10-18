@@ -74,7 +74,7 @@ export const chat = async (opts: {
 
 export const chatJson = async <T>(opts: Parameters<typeof chat>[0]): Promise<{data: T; citations: {url: string; title?: string}[]}> => {
   const {text, citations} = await chat(opts);
-  const cleaned = text.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
+  const cleaned = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
   return {data: JSON.parse(cleaned) as T, citations};
 };
 

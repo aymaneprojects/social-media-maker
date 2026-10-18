@@ -56,9 +56,15 @@ Coordonnées écran : largeur 1080, hauteur 1920. Zone utile pour les éléments
 - `inventory` — inventaire d'objets. `{"type":"inventory","title":"CE QU'IL LUI RESTE","items":[{"sprite":"candy","text":"Un sac de bonbons"},{"sprite":"glasses","text":"Lunettes","crossed":true}]}`.
 - `thought` — bulle de pensée (scénario imaginé). `{"type":"thought","value":"281","text":"missiles","sub":"une vraie attaque"}`.
 - `backdrop` — décor pixel procédural animé. `{"type":"backdrop","terrain":"storm"|"sky"|"jungle"|"river"|"sea"|"underwater"|"city"|"desert"|"room"|"none","sprites":[{"sprite":"plane","x":540,"y":700,"scale":12,"driftX":40,"bob":true,"glow":false,"fall":0,"tilt":0,"flipX":false}],"fx":["rain","lightning","fireflies","bubbles","mist","stars","embers","snow"],"flashAt":[600],"breakAt":900,"pins":[{"x":540,"y":800,"label":"ÉPAVE","sub":"30 M"}]}`. `breakAt` (ms) casse le premier sprite en deux (crash). `fall` = px/s vers le bas.
-  Sprites : person, personOutline, plane, seat, hut, boat, ship, satellite, car, house, phone, skull, heart, key, gun, trophy, ball, coin, candy, shoe, glasses, star, moon, bolt, drop, check.
+  Sprites : person, personOutline, plane, seat, hut, tent, mountain, boat, ship, train, helicopter, satellite, car, police, house, phone, skull, heart, key, gun, knife, vault, goldbar, money, coin, handcuffs, fingerprint, newspaper, footprints, trophy, medal, ball, stopwatch, runner, bike, candy, shoe, glasses, star, moon, snowflake, bolt, drop, check.
 - `image` — illustration IA pixelisée plein écran (pour ce que les autres scènes ne savent pas montrer : un lieu précis, un objet, une action). `{"type":"image","zoom":[1,1.1],"pan":[0,-40],"fx":["rain"],"pins":[...],"fit":"cover"|"card"}` + `imagePrompt` obligatoire.
 - Toute scène accepte `"bpm":[96,130]` (moniteur cardiaque en bas à gauche) et `"under": {scène}` (décor dessous).
+
+## Variété (obligatoire)
+- Jamais deux beats consécutifs avec le même `scene.type`.
+- `bigWord` : 3 maximum. `typedNote` : 2 maximum. `stamp` : 2 maximum.
+- Au moins 7 scènes visuelles (`backdrop`, `image`, `map`, `portrait`, `gauge`) : on doit VOIR l'histoire, pas la lire.
+- Une scène `backdrop` doit contenir au moins un sprite ou un effet qui raconte l'action (avion qui se casse, tente dans la neige, bateau, voiture de police…).
 
 ## Images IA (`imagePrompt`, en anglais)
 - 3 à 6 par vidéo maximum (coût). Uniquement sur les scènes `image`, `dossier`, `portrait`.

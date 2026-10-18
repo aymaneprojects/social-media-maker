@@ -19,26 +19,43 @@ const TRANSITIONS = ['cut', 'pixelDissolve', 'glitch', 'flash', 'pop'];
 
 const tokens = (s: string) => s.trim().split(/\s+/).filter(Boolean);
 
+// Mechanical fixes applied before validation (never worth an LLM round trip).
+export const autofixStoryboard = (style: 'A' | 'B', sb: Storyboard) => {
+  const maxImages = style === 'A' ? 6 : 14;
+  let images = 0;
+  sb.beats?.forEach((b) => {
+    if (b.transition && !TRANSITIONS.includes(b.transition)) b.transition = 'cut';
+    if (b.sfx) b.sfx = b.sfx.filter((x) => SFX.includes(x));
+    if (b.imagePrompt) {
+      images++;
+      if (images > maxImages && b.scene?.type !== 'image') delete b.imagePrompt;
+    }
+    if (typeof b.text === 'string') b.text = b.text.replace(/\s+([:;!?])/g, '\u00a0$1').trim();
+  });
+  return sb;
+};
+
+// Hard errors only: these go back to the model for a rewrite.
 export const validateStoryboard = (style: 'A' | 'B') => (sb: Storyboard): string[] => {
+  autofixStoryboard(style, sb);
   const errors: string[] = [];
   if (!Array.isArray(sb.beats) || sb.beats.length < 8) errors.push('il faut au moins 8 beats');
   const words = sb.beats?.reduce((n, b) => n + tokens(b.text ?? '').length, 0) ?? 0;
-  const [minW, maxW] = style === 'A' ? [140, 185] : [250, 360];
+  const [minW, maxW] = style === 'A' ? [130, 195] : [240, 380];
   if (words < minW || words > maxW) errors.push(`la voix off fait ${words} mots, il en faut entre ${minW} et ${maxW}`);
-  const images = sb.beats?.filter((b) => b.imagePrompt).length ?? 0;
-  const maxImages = style === 'A' ? 6 : 14;
-  if (images > maxImages) errors.push(`${images} imagePrompt, maximum ${maxImages}`);
   sb.beats?.forEach((b, i) => {
     if (!b.text?.trim()) errors.push(`beat ${i} : texte vide`);
-    if (!b.scene || !(SCENES[style] as readonly string[]).includes(b.scene.type)) errors.push(`beat ${i} : scène inconnue "${b.scene?.type}"`);
+    if (!b.scene || !(SCENES[style] as readonly string[]).includes(b.scene.type)) errors.push(`beat ${i} : scène inconnue "${b.scene?.type}" (autorisées : ${SCENES[style].join(', ')})`);
     if (b.scene?.type === 'image' && !b.imagePrompt) errors.push(`beat ${i} : une scène image exige imagePrompt`);
-    if (b.transition && !TRANSITIONS.includes(b.transition)) errors.push(`beat ${i} : transition inconnue "${b.transition}"`);
-    (b.sfx ?? []).forEach((s) => {
-      if (!SFX.includes(s)) errors.push(`beat ${i} : son inconnu "${s}"`);
-    });
-    if (tokens(b.text ?? '').length > 14) errors.push(`beat ${i} : trop long (${tokens(b.text).length} mots, max 14)`);
+    if (tokens(b.text ?? '').length > 18) errors.push(`beat ${i} : trop long (${tokens(b.text).length} mots, max 14)`);
   });
   if (style === 'A' && !sb.beats?.[0]?.hud) errors.push('le beat 0 doit définir hud.clock et hud.label');
+  const count = (t: string) => sb.beats?.filter((b) => b.scene?.type === t).length ?? 0;
+  if (style === 'A' && count('bigWord') > 3) errors.push(`bigWord utilisé ${count('bigWord')} fois (max 3) : remplace par des scènes visuelles`);
+  sb.beats?.forEach((b, i) => {
+    if (i > 0 && b.scene?.type && b.scene.type === sb.beats[i - 1].scene?.type && !['prop', 'backdrop', 'image'].includes(b.scene.type)) errors.push(`beats ${i - 1} et ${i} : même scène "${b.scene.type}" deux fois de suite`);
+  });
+  if (!sb.endCard?.place || !sb.post?.caption) errors.push('endCard et post sont obligatoires');
   return errors;
 };
 
